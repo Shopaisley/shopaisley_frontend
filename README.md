@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shopaisley App Web Frontend
 
-## Getting Started
+## Developer Information
 
-First, run the development server:
+A. Clone the repository with the following commands
+1. git clone https://github.com/Shopaisley/shopaisley_frontend.git
+2. Run npm install to fetch requisite node modules dependencies
+3. See the Running the app section below to run the application on your local system.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+B. Create a branch for your development, preferably named in line with the issue assigned to you. E.g.,
+1. git checkout -b implement-product-catalogue
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+C. Stage files and commit locally with appropriate comment and then push the branch with -set-upstream option enabled. E.g.,
+1. git add -A
+2. git commit -m 'Implemented Product Catalogue'
+3. git push –set-upstream origin implement-product-catalogue
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+D. Make a Pull request on GitHub for your pushed branch to be reviewed and then eventually merged
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+In the project directory, you can run:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### `npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Stack
+- Node js (v.20 + )
+- Typescript
+- NextJS
+- npm
+
+
+### css writing
+-> Styled component -> Chakra Styled System
