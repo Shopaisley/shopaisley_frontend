@@ -5,7 +5,7 @@ interface ButtonProps {
     buttonText: string;
 }
 
-const Buttons: FC<ButtonProps> = (
+const SAButtons: FC<ButtonProps> = (
     {
         buttonText,
     }
