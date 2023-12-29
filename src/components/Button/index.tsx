@@ -1,18 +1,18 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
 
 interface ButtonProps {
-    categoryName: string;
+    buttonText: string;
 }
 
-const Buttons: FC<ButtonProps> = (
+const SAButtons: FC<ButtonProps> = (
     {
-        categoryName,
+        buttonText,
     }
     ) => {
     return (
-        <Box 
-        
+        <Box
+        as={Button}
         display={"flex"}
         w = {"408.343px"}
         h=  {"51.429px"}
@@ -23,7 +23,7 @@ const Buttons: FC<ButtonProps> = (
         border={"1.029px solid #003EB6"}
         bg={"#3E7CB1"}
         >
-           {categoryName}
+           {buttonText}
         </Box>
     )
 }
