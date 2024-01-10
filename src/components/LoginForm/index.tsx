@@ -51,12 +51,13 @@ const LoginForm = () => {
     };
 
     const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        setLoading(true);
+        setError(null);
+
         toast.success('Login successful');
         router.push("/product-catalogue")
-        // e.preventDefault();
-
-        // setLoading(true);
-        // setError(null);
 
         // if (email.trim() === "" || password.trim() === "") {
         //     setError("All fields are required.");
