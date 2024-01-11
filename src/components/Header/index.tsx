@@ -12,6 +12,10 @@ import {
   InputRightElement,
   Button,
 } from '@chakra-ui/react';
+import shoppingBag from '@/assets/icons/shopping-bag.svg'
+import searchBar from '@/assets/icons/fi-rr-search.svg'
+
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -47,13 +51,16 @@ const Header = () => {
         </Link>
 
         <InputGroup  ml={'4rem'}>
+              <Image src={searchBar} alt='seachBar' width={20}></Image>
               <Input
-                placeholder="Search..."
+                placeholder="Search"
+                marginLeft={3}
+                marginRight={3}
                 _placeholder={{ color: 'black', opacity: '0.4' }} 
-                w={"17rem"}
-                bg={"#fff"}
-                borderColor={'white'}
-                borderLeftRadius={"0.2rem"}
+                w={"30rem"}
+                border={'2px solid'}
+                borderRadius={15}
+                borderColor={'black'}
                 color={"black"}
                 
                 pl={'0.4rem'}
@@ -63,16 +70,21 @@ const Header = () => {
               <Button
                 h="2rem"
                 size="md"
-                color={"white"}
+                marginTop={1}
+                color={"black"}
+                border={"2px solid"}
                 fontWeight={'700px'}
-                bg={"#3E7CB1"}
-                borderColor={'white'}
-                borderRightRadius={'0.2rem'}
+                bg={"white"}
+                borderColor={'black'}
+                borderRadius={'0.5rem'}
                 p={'0.4rem'}
                 _hover={{
-                    backgroundColor: 'black',
-                    color: '#3E7CB1',
-                    cursor: 'pointer'
+                    backgroundColor: 'white',
+                    color: 'white',
+                    cursor: 'pointer',
+                    bgColor: '#3E7CB1',
+                    borderColor: '#3E7CB1',
+                    border: "2px solid"
                   }}
               >
                 Search
@@ -86,8 +98,9 @@ const Header = () => {
 
         {/* Login Button */}
         <Flex>
-        <Text color={'black'} mr={'2rem'}> Cart: 0</Text>
-        <Link href='#' color={'black'}>Sign In</Link>
+        <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
+        <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
+        <Link href='#' color={'black'} mt={'0.2rem'}>Sign In</Link>
         </Flex>
       </Flex>
     </Box>
