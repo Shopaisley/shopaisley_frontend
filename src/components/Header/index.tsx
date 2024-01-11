@@ -1,12 +1,11 @@
 // components/Header.tsx
-
 import React from 'react';
 import {
   Box,
   Flex,
   Spacer,
   Text,
-  Link,
+  Link as ChakraLink,
   Input,
   InputGroup,
   InputRightElement,
@@ -16,39 +15,51 @@ import shoppingBag from '@/assets/icons/shopping-bag.svg'
 import searchBar from '@/assets/icons/fi-rr-search.svg'
 
 import Image from 'next/image';
+import "@fontsource/public-sans"
+import "@fontsource/poppins"
+
 
 const Header = () => {
   return (
-    <Box as="header" p={4} bgColor="teal.500" color="white">
+    <Box fontFamily={"Public Sans"} >
       {/* Sentence */}
-      <Flex align={'center'} justifyContent={'space-between'} bg={'#3E7CB1'}>
-      <Text fontSize="sm"  m={'1rem'} ml={'2rem'}>
-        NGN      </Text>
-      <Text fontSize="sm"      mb={2}>
-      FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!
-      </Text>
-      <Text fontSize="sm" textAlign='end' mr={'2rem'} mb={2}>
-        Contact Us      </Text>
+      <Flex color={"#FFFFFF"} fontWeight={500} align={'center'} justifyContent={'space-between'} bg={'#3E7CB1'}>
+        <Text fontSize="sm" m={'1rem'} ml={'2rem'}>
+          NGN
+        </Text>
+        <Text fontSize="sm" mb={2}>
+          FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!
+        </Text>
+        <Text fontSize="sm" textAlign='end' mr={'2rem'} mb={2}>
+          Contact Us
+        </Text>
       </Flex>
 
       {/* Navbar */}
       <Flex align="center" justifyContent={'space-between'} bg={'white'} p={'2rem'}>
         {/* Company Name */}
         <Flex align="center" alignContent={'space-around'} >
-        <Link fontSize="lg" fontWeight="bold"  color="black">
-          Shopaisley
-        </Link>
+          <ChakraLink textDecoration="none" href="/">
+            <Text
+              color={"#000000"}
+              fontFamily={"Public Sans"}
+              fontWeight={700}
+              fontSize={"21px"}
+            >
+              Shop<span style={{ color: "#054A91" }}>aisley</span>
+            </Text>
+          </ChakraLink>
 
-        {/* Links */}
-        <Link  href="#" color="black" ml={'2.4rem'} >
-          Clothing
-        </Link>
-        <Link href="#" color="black" ml={'2.4rem'} >
-          Groceries
-        </Link>
-        <Link  href="#" color="black" ml={'2.4rem'} >
-          Electronics
-        </Link>
+          {/* Links */}
+          <ChakraLink href="#" color="black" ml={'2.4rem'} >
+            Clothing
+          </ChakraLink>
+          <ChakraLink href="#" color="black" ml={'2.4rem'} >
+            Groceries
+          </ChakraLink>
+          <ChakraLink href="#" color="black" ml={'2.4rem'} >
+            Electronics
+          </ChakraLink>
 
         <InputGroup  ml={'4rem'}>
               <Image src={searchBar} alt='seachBar' width={20}></Image>
@@ -91,16 +102,16 @@ const Header = () => {
               </Button>
             </InputGroup>
         </Flex>
-        
+
 
         {/* Search Bar */}
-        
+
 
         {/* Login Button */}
         <Flex>
         <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
         <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
-        <Link href='#' color={'black'} mt={'0.2rem'}>Sign In</Link>
+        <ChakraLink href='#' color={'black'}>Sign In</ChakraLink>
         </Flex>
       </Flex>
     </Box>

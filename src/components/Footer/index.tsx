@@ -1,29 +1,35 @@
+/* eslint-disable react/no-unescaped-entities */
 // components/Footer.tsx
 
 import {
   Box,
-  Flex,
   Text,
-  Link,
   Grid,
   Input,
   InputGroup,
-  InputRightElement,
   Button,
 } from "@chakra-ui/react";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
+import "@fontsource/public-sans"
 
 const Footer: FC = () => {
   return (
     <Box
       h={"440px"}
-      as="footer"
+      // as="footer"
       mt="auto"
-      py={4}
+      py={"4px"}
       bgColor="#3E7CB1"
       color="white"
+      px={"149px"}
+      fontFamily={"Public Sans"}
     >
-      <Box m={'18rem'} mt={'6rem'} justifyContent='center' alignItems="center" flexDirection={{ base: "column", md: "row" }}>
+      <Box 
+        mt={'6rem'}
+        justifyContent='center'
+        alignItems="center"
+        flexDirection={{ base: "column", md: "row" }}
+      >
         {/* <Flex>
         <Text >Sign up for our newsletter</Text>
         <Text>Be the first to know about our special offers, new product launches, and events</Text>
@@ -38,10 +44,16 @@ const Footer: FC = () => {
           Terms of Service
         </Link> */}
 
-        <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+        <Grid templateColumns="repeat(5, 1fr)" gap={"4px"}>
           {/* Item that spans two columns */}
-          <Box gridColumn="span 2" p={4} mr={'2rem'} ml={'2rem'} >
-            <Text fontSize={"2rem"} fontWeight={"700px"}>
+          <Box
+            w={"409.4px"}
+            gridColumn="span 2"
+            p={"4px"}
+            mr={'2rem'}
+            // ml={'2rem'}
+          >
+            <Text  fontSize={"37px"} fontWeight={600}>
               Sign up for our newsletter
             </Text>
             <Text fontSize={"0.8rem"} mt={"2rem"}>
@@ -82,34 +94,34 @@ const Footer: FC = () => {
           </Box>
 
           {/* Item that spans one column */}
-          <Box  p={4} >
+          <Box  p={"4px"} >
             <Text mb={'1.2rem'}>Shop</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Women's Clothing</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Men's Clothing</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Kid's Clothing</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Groceries</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Essentials</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Electronics</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Gift Cards</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Sale</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Women's Clothing</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Men's Clothing</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Kid's Clothing</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Groceries</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Essentials</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Electronics</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Gift Cards</Text>
+            <Text fontSize={"16.457px"} mb={'0.4rem'} opacity={'0.5'}>Sale</Text>
           </Box>
 
           {/* Another item that spans one column */}
-          <Box p={4} >
+          <Box p={"4px"} >
           <Text mb={'1.2rem'}>Help</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Help Center</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Order Status</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Size Chart</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Returns & Warranty</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Contact Us</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"}  opacity={'0.5'}>Help Center</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"}  opacity={'0.5'}>Order Status</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"}  opacity={'0.5'}>Size Chart</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"}  opacity={'0.5'}>Returns & Warranty</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"}  opacity={'0.5'}>Contact Us</Text>
           </Box>
 
-          <Box p={4} >
-          <Text mb={'1.2rem'}>About</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>About Us</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Responsibility</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Technology & Innovation</Text>
-            <Text fontSize={'0.8rem'} mb={'0.4rem'} opacity={'0.4'}>Explore our stories</Text>
+          <Box fontSize={"16.457px"} fontWeight={500} p={"4px"} >
+          <Text  mb={'1.2rem'}>About</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"} opacity={'0.5'}>About Us</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"} opacity={'0.5'}>Responsibility</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"} opacity={'0.5'}>Technology & Innovation</Text>
+            <Text mb={'0.4rem'} fontSize={"16.457px"} opacity={'0.5'}>Explore our stories</Text>
           </Box>
         </Grid>
       </Box>
