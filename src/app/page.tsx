@@ -1,14 +1,25 @@
 // import Image from 'next/image'
 // import styles from './page.module.css'
-import { Box } from '@chakra-ui/react'
+import { Box, ChakraProvider } from '@chakra-ui/react'
 import CategoryBox from '@/components/CategoryBox'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import ProductCatalogue from './product-catalogue/page'
 
 export default function Home() {
   return (
-    <Box>
-      <a href='/product-catalogue'> Products</a>
-      <CategoryBox categoryName={'Groceries'} categoryImage={''} />
-    </Box>
+    // <ChakraProvider>
+      <ToastContainer
+        position='bottom-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    // </ChakraProvider>
   )
 }
