@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 
 import { Box, ChakraProvider } from '@chakra-ui/react';
 
+import phone from "@/assets/images/electronics/iphone15.png";
+import Image from 'next/image';
 
 const ProductGrid:NextPage = () => {
   	return (
@@ -13,7 +15,9 @@ const ProductGrid:NextPage = () => {
   height= "136.8px"
   width=" 132.69px"
   background= "#c4c4c4"
- />
+ ><Image src={phone} alt='iphone15'></Image>
+
+ </Box>
 
 <Box  pos = {"relative"}
   letter-spacing = "-0.57px"
