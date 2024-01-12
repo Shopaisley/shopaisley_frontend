@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import styles from './page.module.css';
 import { Box, Button, Image } from '@chakra-ui/react';
 // import ProductCatalogue from './product-catalogue/page'
 
@@ -393,79 +392,465 @@ const Desktop4:NextPage = () => {
           							</Button>
           					</Box>
         				</Box>
-        				<Box className={styles.saveCardData1}>Save card data for future payments</Box>
-        				<Box className={styles.switch}>
-          					<Box className={styles.switchChild} />
-          					<Box className={styles.switchItem} />
+        				<Box 
+						  pos= {"absolute"}
+						  top= "512.74px"
+						  left= "147.09px"
+						  font-size= "14.4px"
+						  letter-spacing= "-0.31px"
+						  >Save card data for future payments</Box>
+
+        				<Box 
+						  pos={"absolute"}
+						  top="509.14px"
+						  right="883.54px"
+						  width="40.11px"
+						  height= "24.69px"
+						  >
+          					<Box 
+							  pos={"absolute"}
+							  height="100%"
+							  width="100%"
+							  top="0%"
+							  right="0%"
+							  bottom= "0%"
+							  left="0%"
+							  borderRadius="51.43px"
+							  backgroundColor="#3e7cb1"
+							   />
+          					<Box 
+							  pos={"absolute"}
+							  height="75%"
+							  width="46.15%"
+							  top="12.5%"
+							  right="8.65%"
+							  bottom="12.5%"
+							  left="45.19%"
+							  borderRadius="50%"
+							  backgroundColor="#fff"
+							  />
         				</Box>
-        				<Box className={styles.inputParent}>
-          					<Box className={styles.input}>
-            						<Box className={styles.rectangle12} />
-            						<Box className={styles.inputName}>Cardholder Name</Box>
+        				<Box 
+						  pos={"absolute"}
+						  top="339.43px"
+						  left="147.09px"
+						  display="flex"
+						  flexDirection="column"
+						  alignItems="flex-start"
+						  justifyContent="flex-start"
+						  gap="10.29px"
+						  font-size="14.4px"
+						  color="#a9abbd"
+						  >
+          					<Box 
+							  pos={"relative"}
+							  width="409.37px"
+							  height="41.14px"
+							  >
+            						<Box  
+									  pos={"absolute"}
+									  height="100%"
+									  width="100%"
+									  top="0%"
+									  right="0%"
+									  bottom="0%"
+									  left="0%"
+									  border="0.5px solid #000"
+									  boxSizing="border-box"
+									  />
+            						<Box 
+									  pos={"absolute"}
+									  top="11.83px"
+									  left="16.46px"
+									  letterSpacing="-0.31px"
+									  >Cardholder Name</Box>
           					</Box>
-          					<Box className={styles.input}>
-            						<Box className={styles.rectangle12} />
-            						<Box className={styles.inputName}>Card Number</Box>
+          					<Box 
+							pos={"relative"}
+							width="409.37px"
+							height="41.14px"
+							>
+            						<Box  
+									  pos={"absolute"}
+									  height="100%"
+									  width="100%"
+									  top="0%"
+									  right="0%"
+									  bottom="0%"
+									  left="0%"
+									  border="0.5px solid #000"
+									  boxSizing="border-box"
+									  />
+            						<Box 
+									  pos={"absolute"}
+									  top="11.83px"
+									  left="16.46px"
+									  letterSpacing="-0.31px"
+									  >Card Number</Box>
           					</Box>
-          					<Box className={styles.input}>
-            						<Box className={styles.input2}>
-              							<Box className={styles.rectangle12} />
-              							<Box className={styles.inputName}>CVC</Box>
+          					<Box 
+							pos={"relative"}
+							width="409.37px"
+							height="41.14px"
+							>
+            						<Box 
+									  pos={"absolute"}
+									  top="0px"
+									  left="279.77px"
+									  width="129.6px"
+									  height="41.14px"
+									  >
+              							<Box 
+										  pos={"absolute"}
+										  height="100%"
+										  width="100%"
+										  top="0%"
+										  right="0%"
+										  bottom="0%"
+										  left="0%"
+										  border="0.5px solid #000"
+										  boxSizing="border-box"
+										  />
+              							<Box 
+										  pos={"absolute"}
+										  top="11.83px"
+										  left="16.46px"
+										  letterSpacing="-0.31px"
+										  >CVC</Box>
             						</Box>
-            						<Box className={styles.dropdownInput}>
-              							<Box className={styles.rectangle12} />
-              							<Box className={styles.inputName}>Month</Box>
-              							<Image className={styles.iconsChevronDown2} alt="" src=" Icons / Chevron Down.png" />
+            						<Box 
+									  pos={"absolute"}
+									  top="0px"
+									  left="0px"
+									  width="125.49px"
+									  height="41.14px"
+									  >
+              							<Box 
+										  pos={"absolute"}
+										  height="100%"
+										  width="100%"
+										  top="0%"
+										  right="0%"
+										  bottom="0%"
+										  left="0%"
+										  border="0.5px solid #000"
+										  boxSizing="border-box"
+										   />
+              							<Box 
+										  pos={"absolute"}
+										  top="11.83px"
+										  left="16.46px"
+										  letterSpacing="-0.31px"
+										  >Month</Box>
+										<Box
+										  pos={"absolute"}
+										  top="calc(50% - 11.91px)"
+										  right="8.71px"
+										  width="24.69px"
+										  height="24.69px"
+										  objectFit="cover"
+
+										>
+              							<Image  
+										alt="" src=" Icons / Chevron Down.png" ></Image>
+										</Box>
             						</Box>
-            						<Box className={styles.dropdownInput1}>
-              							<Box className={styles.rectangle12} />
-              							<Box className={styles.inputName}>Year</Box>
-              							<Image className={styles.iconsChevronDown2} alt="" src=" Icons / Chevron Down.png" />
+            						<Box 
+									  pos={"absolute"}
+									  top="0px"
+									  left="141.94px"
+									  width="125.49px"
+									  height="41.14px"
+									  >
+              							<Box 
+										  pos={"absolute"}
+										  height="100%"
+										  width="100%"
+										  top="0%"
+										  right="0%"
+										  bottom="0%"
+										  left="0%"
+										  border="0.5px solid #000"
+										  boxSizing="border-box"
+										   />
+              							<Box 
+										  pos={"absolute"}
+										  top="11.83px"
+										  left="16.46px"
+										  letterSpacing="-0.31px"
+										  >Year</Box>
+										  <Box
+										    pos={"absolute"}
+											top="calc(50% - 11.91px)"
+											right="8.71px"
+											width="24.69px"
+											height="24.69px"
+											objectFit="cover"
+											>
+										  <Image 
+										  alt="" src=" Icons / Chevron Down.png" ></Image>
+										  </Box>
+              							
             						</Box>
           					</Box>
         				</Box>
-        				<Box className={styles.simpleBreadcrumbs}>
-          					<div className={styles.address}>Address</div>
-          					<div className={styles.simpleBreadcrumbsChild} />
-          					<div className={styles.address}>Shipping</div>
-          					<div className={styles.simpleBreadcrumbsChild} />
-          					<b className={styles.address}>Payment</b>
+        				<Box 
+						  pos={"absolute"}
+						  top="calc(50% - 290.06px)"
+						  left="calc(50% - 571.89px)"
+						  display="flex"
+						  flexDirection="row"
+						  alignItems="center"
+						  justifyContent="center"
+						  gap="14.4px"
+						  >
+          					<Box 
+							  pos={"relative"}
+							  letterSpacing="-0.41px"
+							  lineHeight="28.8px"
+							  >Address</Box>
+          					<Box 
+							  pos={"relative"}
+							  borderTop="1px solid #000"
+							  boxSizing="border-box"
+							  width="70.97px"
+							  height="1.03px"
+							   />
+          					<Box 
+							  pos={"relative"}
+							  letterSpacing="-0.41px"
+							  lineHeight="28.8px"
+							  >Shipping</Box>
+          					<Box 
+							  pos={"relative"}
+							  borderTop="1px solid #000"
+							  boxSizing="border-box"
+							  width="70.97px"
+							  height="1.03px"
+							   />
+          					<Box 
+							  pos={"relative"}
+							  letterSpacing="-0.41px"
+							  lineHeight="28.8px"
+							  >Payment</Box>
         				</Box>
-        				<div className={styles.paypal}>
-          					<div className={styles.paypalChild} />
-        				</div>
-        				<img className={styles.image4Icon} alt="" src="image 4.png" />
+        				<Box 
+						  pos={"absolute"}
+						  top="229.37px"
+						  left="147.09px"
+						  width="157.84px"
+						  height="39.46px"
+						  >
+          					<Box  
+							  pos={"absolute"}
+							  top="0px"
+							  left="0px"
+							  backgroundColor="#fff"
+							  border="1px solid #1d4d90"
+							  boxSizing="border-box"
+							  width="157.84px"
+							  height="39.46px"
+							  />
+        				</Box>
+						<Box
+						  pos={"absolute"}
+						  top="241px"
+						  left="181px"
+						  width="89px"
+						  height="15.69px"
+						  objectFit="cover"
+						  >
+						<Image className={styles.image4Icon} alt="" src="image 4.png" />
+						</Box>
+        				
       			</Box>
-      			<div className={styles.header}>
-        				<div className={styles.headerChild} />
-        				<div className={styles.navbar1}>
-          					<div className={styles.rectangle11} />
-          					<div className={styles.logoGroup}>
-            						<b className={styles.logo1}>Shopaisley</b>
-            						<div className={styles.logo}>{`Clothing `}</div>
-            						<div className={styles.logo}>{`Groceries & Essentials`}</div>
-            						<div className={styles.logo}>Electronics</div>
-            						<div className={styles.searchGroup}>
-              							<img className={styles.searchIcon3} alt="" src="Search.png" />
-              							<div className={styles.about}>Search</div>
-            						</div>
-          					</div>
-          					<div className={styles.navbarItem} />
-          					<div className={styles.groupParent}>
-            						<div className={styles.group}>
-              							<div className={styles.div3}>2</div>
-              							<img className={styles.vectorIcon3} alt="" src="Vector.png" />
-            						</div>
-            						<div className={styles.logo}>Sign In</div>
-          					</div>
-        				</div>
-        				<div className={styles.headerItem} />
-        				<div className={styles.ngn}>NGN</div>
-        				<div className={styles.freeShippingOn}>FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!</div>
-        				<div className={styles.contactUs}>Contact Us</div>
-      			</div>
-    		</Box>);
-};
+      			<Box 
+				  pos={"absolute"}
+				  top="-5px"
+				  left="0px"
+				  background-color="#eff2f6"
+				  width="1440.38px"
+				  height="107px"
+				  overflow="hidden"
+				  font-size="16.46px"
+				  color="#fff"
+				  >
+        				<Box  
+						  pos={"absolute"}
+						  top="0px"
+						  left="0px"
+						  background-color="#3e7cb1"
+						  width="1440.38px"
+						  height="46.3px"
+						  />
+        				<Box 
+						  pos={"absolute"}
+						  top="45.27px"
+						  left="0px"
+						  width="1440.38px"
+						  height="61.73px"
+						  font-size="17.49px"
+						  color="#000"
+						  font-family="Roboto, sans-serif"
+						  >
+          					<Box 
+							  pos={"absolute"}
+							  height="100%"
+							  width="100%"
+							  top="0%"
+							  right="0%"
+							  bottom="0%"
+							  left="0%"
+							  background-color="rgba(255, 255, 255, 0)"
+							  />
+          					<Box 
+							  pos={"absolute"}
+							  top="18.52px"
+							  left="149.18px"
+							  display="flex"
+							  flex-direction="row"
+							  align-items="center"
+							  justify-content="center"
+							  gap="32.92px"
+							  >
+            						<Box
+									  pos={"relative"}
+									  font-size="20.58px"
+									  letter-spacing="-0.62px"
+									  color="#054a91"
+									  >Shopaisley</Box>
+            						<Box 
+									  pos={"relative"}
+									  letter-spacing="-0.62px"
+									  >{`Clothing `}</Box>
+            						<Box 
+									  pos={"relative"}
+									  letter-spacing="-0.62px"
+									  >{`Groceries & Essentials`}</Box>
+            						<Box 
+									  pos={"relative"}
+									  letter-spacing="-0.62px"
+									  >Electronics</Box>
+            						<Box 
+									  pos={"relative"}
+									  width="83.81px"
+									  height="21px"
+									  color="#979797"
+									  >
+										<Box
+										  pos={"relative"}
+										  width="16.31px"
+										  height="16.46px"
+										  object-fit="cover"
+										  >
+										<Image className={styles.searchIcon3} alt="" src="Search.png" />
+										</Box>
+              							
+              							<Box 
+										  pos={"absolute"}
+										  top="0%"
+										  left="34.37%"
+										  letter-spacing="-0.62px"
+										  >Search</Box>
+            						</Box>
+          					</Box>
+          					<Box  
+							  pos={"absolute"}
+							  height="1.67%"
+							  width="100.07%"
+							  top="99.17%"
+							  right="-0.04%"
+							  bottom=" -0.83%"
+							  left="-0.04%"
+							  border-top="1px solid #000"
+							  box-sizing="border-box"
+							  opacity="0.5"
+							  ></Box>
+          					<Box 
+							  pos={"absolute"}
+							  top="20.58px"
+							  right="145.71px"
+							  display="flex"
+							  flex-direction="row"
+							  align-items="flex-start"
+							  justify-content="flex-start"
+							  gap="22.63px"
+							  ></Box>
+            						<Box 
+									  pos={"relative"}
+									  width="37.5px"
+									  height="21.62px"
+									  ></Box>
+              							<Box className={styles.div3}
+										  pos={"absolute"}
+										  top="0%"
+										  left="70.66%"
+										  letter-spacing="-0.62px"
+										  >2
+										  </Box>
+										  <Box
+										    pos={"absolute"}
+											height="100%"
+											width="49.49%"
+											top="0%"
+											right="50.51%"
+											bottom="0%"
+											left="0%"
+											max-width="100%"
+											overflow="hidden"
+											max-height="100%"
+											object-fit="cover"
+											>
+										  <Image className={styles.vectorIcon3} alt="" src="Vector.png" />
+										  </Box>
+              							
+            						</Box>
+            						<Box 
+									 pos={"relative"}
+									 letter-spacing="-0.62px"
+									 >Sign In</Box>
+          					
+        				</Box>
+        				<Box  
+						  pos={"absolute"}
+						  height="0.96%"
+						  width="100.07%"
+						  top="42.79%"
+						  right="-0.04%"
+						  bottom="56.25%"
+						  left="-0.04%"
+						  border-top="1px solid #000"
+						  box-sizing="border-box"
+						  opacity="0.5"
+						  ></Box>
+
+        				<Box className={styles.ngn}
+						  pos={"absolute"}
+						  top="18.38px"
+						  left="149.18px"
+						  letter-spacing="-0.62px"
+						  font-weight="500"
+						  text-shadow= "0px 4px 4px rgba(0, 0, 0, 0.25)"
+						  >NGN</Box>
+        				<Box
+						  pos={"absolute"}
+						  top="18.38px"
+						  left="437px"
+						  letter-spacing="-0.62px"
+						  font-weight="500"
+						  >FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!</Box>
+        				<Box 
+						  pos={"absolute"}
+						  top="18.38px"
+						  left="1235.64px"
+						  letter-spacing="-0.62px"
+						  font-weight="500"
+						  >Contact Us</Box>
+      			</Box>
+    		
+	
+	);
+	};
 
 export default Desktop4;
 
