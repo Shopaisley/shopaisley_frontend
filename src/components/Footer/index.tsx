@@ -23,6 +23,7 @@ const Footer: FC = () => {
       color="white"
       px={"149px"}
       fontFamily={"Public Sans"}
+      borderTop={"1px solid #909090"}
     >
       <Box 
         mt={'6rem'}
