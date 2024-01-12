@@ -15,7 +15,8 @@ const SAButtons: FC<ButtonProps> = (
         <Box
             as={Button}
             display={"flex"}
-            w={"408.343px"}
+            w={"100%"}
+            borderRadius={"0"}
             h={"51.429px"}
             justifyContent={"center"}
             alignItems={"center"}
