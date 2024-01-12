@@ -21,7 +21,7 @@ import "@fontsource/poppins"
 
 const Header = () => {
   return (
-    <Box fontFamily={"Public Sans"} >
+    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} >
       {/* Sentence */}
       <Flex color={"#FFFFFF"} fontWeight={500} align={'center'} justifyContent={'space-between'} bg={'#3E7CB1'}>
         <Text fontSize="sm" m={'1rem'} ml={'2rem'}>
@@ -108,9 +108,10 @@ const Header = () => {
 
 
         {/* Login Button */}
-        <Flex>
-        <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
-        <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
+        <Flex flexDir={"row"}
+              align={"center"}>
+        <Image src={shoppingBag} alt='shopping bag'width={20}></Image>
+        <Text color={'black'} mr={'1rem'} ml={'0.3rem'}>0</Text>
         <ChakraLink href='#' color={'black'}>Sign In</ChakraLink>
         </Flex>
       </Flex>
