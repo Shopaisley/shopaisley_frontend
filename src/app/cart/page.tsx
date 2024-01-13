@@ -99,7 +99,7 @@ const Page =()=>{
                 <Text>
                     Total
                 </Text>
-                <Text pl="310px">
+                <Text pl="340px">
                     0.00
                 </Text>
             </Stack>
