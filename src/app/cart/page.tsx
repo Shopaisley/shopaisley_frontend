@@ -100,14 +100,14 @@ const Page =()=>{
                     Total
                 </Text>
                 <Text pl="310px">
-                    blank
+                    0.00
                 </Text>
             </Stack>
             <SAButtons buttonText="Checkout"/>
             </Stack>
         </GridItem>
         <GridItem pt='331px' pb='105px'area={'orderinfo'}>
-                <Text fontSize={"23px"} pb={"15px"}>
+                <Text fontSize={"23px"} pb={"15px"} as={"b"}>
                     Order Infromation
                 </Text>
                 <Divider orientation="horizontal"/>
