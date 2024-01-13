@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Button from "@/components/SAButton";
 import photo from "@/assets/images/image 5.png"
+import phone from "@/assets/images/gadgets/iphone.png"
 import {
   Flex,
   Text,
@@ -36,6 +37,7 @@ import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import Image from "next/image";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import CheckoutProduct from "@/components/CheckoutProduct";
 
 
 const Page = () => {
@@ -176,7 +178,7 @@ const Page = () => {
                 borderRadius={"0"}
                 placeholder="CVC"
                 _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"30%"}
+                w={"33%"}
                 border={"2px solid"}
                 borderColor={"#909090"}
                 color={"black"}
@@ -200,23 +202,26 @@ const Page = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
-          <Box bgColor={"yellow"} mt={"20%"}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis,
-            ipsa iusto? Maxime alias, reprehenderit eum eos eligendi quo
-            nesciunt nostrum, eveniet in non nam amet assumenda magnam tempora
-            recusandae rem.
-            <InputGroup mb={"10px"}>
-              <Input
-                borderRadius={"0"}
-                placeholder="Enter coupon code here"
-                _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"100%"}
-                border={"2px solid"}
-                borderColor={"#909090"}
-                color={"black"}
-                pl={"0.4rem"}
-              />
-            </InputGroup>
+            <Box mt={"20%"}>
+            <Text color={"black"} mb={"20px"} fontSize={"120%"}>
+              Your cart
+            </Text>
+            <CheckoutProduct
+              productImage={phone}
+              productTitle="iPhone 15"
+              productSpecification="Pink"
+              productQuantity="1"
+              productPrice="1,050,000"
+            ></CheckoutProduct>
+            <CheckoutProduct
+              productImage={phone}
+              productTitle="iPhone 15 Magsafe"
+              productSpecification="Pink"
+              productQuantity="1"
+              productPrice="50,000"
+            ></CheckoutProduct>
+            
+           
           </Box>
           {/* <Box h={"100%"} w={"80%"} display={"flex"} bgColor={"yellow"}>
                     <Text fontSize={"100%"}>Address</Text>
