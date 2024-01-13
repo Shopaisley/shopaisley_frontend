@@ -34,10 +34,10 @@ const CheckoutProduct: FC<CheckoutProductProps> = ({
         flexDirection={"column"}
         justify={"left"}
       >
-        <Flex fontSize={"110%"} mb={"1%"}>
+        <Flex noOfLines={1} fontSize={"110%"} mb={"1%"}>
           <strong>{productTitle}</strong>
         </Flex>
-        <Flex fontSize={"80%"} mb={"1%"}>Specification: {productSpecification}</Flex>
+        <Flex noOfLines={1} fontSize={"80%"} mb={"1%"}>Specification: {productSpecification}</Flex>
         <Flex fontSize={"80%"} mb={"1%"}>Quantity: {productQuantity}</Flex>
         <Flex fontSize={"110%"}>
           <strong>NGN {productPrice}</strong>
