@@ -1,51 +1,31 @@
-import type { NextPage } from "next";
-import { Box, ChakraProvider } from "@chakra-ui/react";
-import phone from "@/assets/images/gadgets/iphone.jpeg";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
+import { FC } from "react";
 
-const CatalogueProduct: NextPage = () => {
+interface CatalogueProductProps {
+  productImage: any;
+  productTitle: string;
+  Retailer: string;
+  productPrice: string;
+}
+
+const CatalogueProduct: FC<CatalogueProductProps> = ({
+  productImage,
+  productTitle,
+  Retailer,
+  productPrice,
+}) => {
   return (
-    <ChakraProvider>
-      <Box
-        pos={"relative"}
-        height="136.8px"
-        width=" 132.69px"
-        background="#c4c4c4"
-      >
-        <Image src={phone} alt="iphone15"></Image>
-      </Box>
-
-      <Box
-        pos={"relative"}
-        letter-spacing="-0.57px"
-        fontWeight={"bold"}
-        left={"5px"}
-        top={"9px"}
-      >
-        iPhone 15
-      </Box>
-
-      <Box
-        pos={"relative"}
-        letter-spacing="-0.57px"
-        line-height="30.86px"
-        left={"5px"}
-        top={"8px"}
-      >
-        NGN 1,050,000
-      </Box>
-
-      <Box
-        position="relative"
-        font-size=" 14.4px"
-        letter-spacing="-0.41px"
-        line-height="20.57px"
-        left={"149px"}
-        top={"-39px"}
-      >
-        Apple
-      </Box>
-    </ChakraProvider>
+    <Box w={"190px"} h={"200px"} mb={"40px"}>
+      <Flex h={"80%"} w={"100%"}>
+        <Image src={productImage} alt={productTitle}></Image>
+      </Flex>
+      <Flex h={"10%"} flexDirection={"row"} justify={"space-between"} mt={"10px"}>
+          <Text noOfLines={1}><strong>{productTitle}</strong></Text>
+          <Text>{Retailer}</Text>
+      </Flex>
+        <Flex mt={"5px"}>{productPrice}</Flex>
+    </Box>
   );
 };
 
