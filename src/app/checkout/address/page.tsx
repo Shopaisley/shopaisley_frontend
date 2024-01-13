@@ -29,6 +29,7 @@ import {
   TableCaption,
   TableContainer,
   CheckboxGroup,
+  Select,
 } from "@chakra-ui/react";
 import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
@@ -38,6 +39,8 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "./index.css";
 import CheckoutProduct from "@/components/CheckoutProduct";
 import CatalogueProduct from "@/components/CatalogueProduct";
+
+
 
 const Page = () => {
   return (
@@ -148,7 +151,7 @@ const Page = () => {
               />
             </InputGroup>
             <InputGroup mb={"10px"}>
-              <Input
+              <Select
                 borderRadius={"0"}
                 placeholder="Country"
                 _placeholder={{ color: "black", opacity: "0.4" }}
@@ -158,6 +161,7 @@ const Page = () => {
                 color={"black"}
                 pl={"0.4rem"}
                 mr={"5%"}
+                ml={"-1%"}
               />
               <Input
                 borderRadius={"0"}
@@ -174,7 +178,7 @@ const Page = () => {
                 borderRadius={"0"}
                 placeholder="Zipcode"
                 _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"30%"}
+                w={"31%"}
                 border={"2px solid"}
                 borderColor={"#909090"}
                 color={"black"}
