@@ -61,46 +61,46 @@ const Header = () => {
             Electronics
           </ChakraLink>
 
-        <InputGroup  ml={'4rem'}>
-              <Image src={searchBar} alt='seachBar' width={20}></Image>
-              <Input
-                placeholder="Search"
-                marginLeft={3}
-                marginRight={3}
-                _placeholder={{ color: 'black', opacity: '0.4' }} 
-                w={"30rem"}
-                border={'2px solid'}
-                borderRadius={15}
-                borderColor={'black'}
-                color={"black"}
-                
-                pl={'0.4rem'}
-                
-                // Add any other input props you need
-              />
-              <Button
-                h="2rem"
-                size="md"
-                marginTop={1}
-                color={"black"}
-                border={"2px solid"}
-                fontWeight={'700px'}
-                bg={"white"}
-                borderColor={'black'}
-                borderRadius={'0.5rem'}
-                p={'0.4rem'}
-                _hover={{
-                    backgroundColor: 'white',
-                    color: 'white',
-                    cursor: 'pointer',
-                    bgColor: '#3E7CB1',
-                    borderColor: '#3E7CB1',
-                    border: "2px solid"
-                  }}
-              >
-                Search
-              </Button>
-            </InputGroup>
+          <InputGroup ml={'4rem'}>
+            <Image src={searchBar} alt='seachBar' width={20}></Image>
+            <Input
+              placeholder="Search"
+              marginLeft={3}
+              marginRight={3}
+              _placeholder={{ color: 'black', opacity: '0.4' }}
+              w={"30rem"}
+              border={'2px solid'}
+              borderRadius={15}
+              borderColor={'black'}
+              color={"black"}
+
+              pl={'0.4rem'}
+
+            // Add any other input props you need
+            />
+            <Button
+              h="2rem"
+              size="md"
+              marginTop={1}
+              color={"black"}
+              border={"2px solid"}
+              fontWeight={'700px'}
+              bg={"white"}
+              borderColor={'black'}
+              borderRadius={'0.5rem'}
+              p={'0.4rem'}
+              _hover={{
+                backgroundColor: 'white',
+                color: 'white',
+                cursor: 'pointer',
+                bgColor: '#3E7CB1',
+                borderColor: '#3E7CB1',
+                border: "2px solid"
+              }}
+            >
+              Search
+            </Button>
+          </InputGroup>
         </Flex>
 
 
@@ -108,10 +108,16 @@ const Header = () => {
 
 
         {/* Login Button */}
-        <Flex>
-        <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
-        <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
-        <ChakraLink href='#' color={'black'}>Sign In</ChakraLink>
+        <Flex
+          flexDir={"row"}
+          justify={"center"}
+          align="center"
+        >
+          <Flex>
+            <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
+            <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
+          </Flex>
+          <ChakraLink href='#' color={'black'}>Sign In</ChakraLink>
         </Flex>
       </Flex>
     </Box>
