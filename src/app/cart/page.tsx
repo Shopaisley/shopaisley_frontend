@@ -111,30 +111,30 @@ const Page =()=>{
                     Order Infromation
                 </Text>
                 <Divider orientation="horizontal"/>
-                <Stack direction={"row"}  pt={"16px"}>
+                <Stack direction={"row"}  pt={"16px"} pb={"11px"}>
                     <Stack direction={"column"}>
-                    <Text fontSize={"16px"} pt={"11px"} >
+                    <Text fontSize={"12px"} pt={"11px"} >
                         Return Policy
                         </Text>
-                    <Text fontSize={"16px"} pt={"11px"}>
+                    <Text fontSize={"12px"} pt={"11px"}>
                         This is our example return policy which is everything you need to know about our returns.
                     </Text>
                     </Stack>
-                     <Text fontSize={"16px"}> - </Text>
+                     <Text pl= "70px" > - </Text>
                 </Stack>
                 <Divider orientation="horizontal"/>
                 <Stack direction={"row"} pt={"16px"} pb={"11px"}>
-                    <Text fontSize={"16px"}>
+                    <Text fontSize={"12px"}>
                         Shipping Options
                     </Text>
-                    <Text pl="240px"> + </Text>
+                    <Text pl="450px"> + </Text>
                 </Stack>
                 <Divider orientation="horizontal"/>
                 <Stack direction={"row"}  pt={"16px"} pb={"11px"}>
-                    <Text fontSize={"16px"}>
+                    <Text fontSize={"12px"}>
                         Shipping Options
                     </Text>
-                    <Text pl="240px"> + </Text>
+                    <Text pl="450px"> + </Text>
                 </Stack>
                 <Divider orientation="horizontal"/>
         </GridItem>
