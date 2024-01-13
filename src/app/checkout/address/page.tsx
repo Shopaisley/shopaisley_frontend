@@ -2,6 +2,11 @@ import LoginForm from "@/components/LoginForm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Button from "@/components/SAButton";
+import AdvertBox from "@/components/AdvertBox";
+import phone from "@/assets/images/gadgets/iphone.jpeg";
+import CategoryProduct from "@/components/CategoryProduct";
+import CategoryBox from "@/components/CategoryBox";
+import photo from "@/assets/images/gadgets/iphone.jpeg";
 import {
   Flex,
   Text,
@@ -23,6 +28,7 @@ import {
   Thead,
   TableCaption,
   TableContainer,
+  CheckboxGroup,
 } from "@chakra-ui/react";
 import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
@@ -30,6 +36,8 @@ import "@fontsource/public-sans";
 import Image from "next/image";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "./index.css";
+import CheckoutProduct from "@/components/CheckoutProduct";
+import CatalogueProduct from "@/components/CatalogueProduct";
 
 const Page = () => {
   return (
@@ -202,11 +210,24 @@ const Page = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
-          <Box bgColor={"yellow"} mt={"20%"}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis,
-            ipsa iusto? Maxime alias, reprehenderit eum eos eligendi quo
-            nesciunt nostrum, eveniet in non nam amet assumenda magnam tempora
-            recusandae rem.
+          <Box mt={"20%"}>
+            <Text color={"black"} mb={"20px"} fontSize={"120%"}>
+              Your cart
+            </Text>
+            <CheckoutProduct
+              productImage={photo}
+              productTitle="iPhone 15"
+              productSpecification="Pink"
+              productQuantity="1"
+              productPrice="1,050,000"
+            ></CheckoutProduct>
+            <CheckoutProduct
+              productImage={photo}
+              productTitle="iPhone 15 Magsafe"
+              productSpecification="Pink"
+              productQuantity="1"
+              productPrice="50,000"
+            ></CheckoutProduct>
             <InputGroup mb={"10px"}>
               <Input
                 borderRadius={"0"}
@@ -219,52 +240,37 @@ const Page = () => {
                 pl={"0.4rem"}
               />
             </InputGroup>
-            <TableContainer>
-              <Table variant="simple">
-                <TableCaption>
-                  Imperial to metric conversion factors
-                </TableCaption>
-                <Thead>
-                  <Tr>
-                    <Th>To convert</Th>
-                    <Th>into</Th>
-                    <Th isNumeric>multiply by</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  <Tr>
-                    <Td>inches</Td>
-                    <Td>millimetres (mm)</Td>
-                    <Td isNumeric>25.4</Td>
-                  </Tr>
-                  <Tr>
-                    <Td>feet</Td>
-                    <Td>centimetres (cm)</Td>
-                    <Td isNumeric>30.48</Td>
-                  </Tr>
-                  <Tr>
-                    <Td>yards</Td>
-                    <Td>metres (m)</Td>
-                    <Td isNumeric>0.91444</Td>
-                  </Tr>
-                </Tbody>
-                <Tfoot>
-                  <Tr>
-                    <Th>To convert</Th>
-                    <Th>into</Th>
-                    <Th isNumeric>multiply by</Th>
-                  </Tr>
-                </Tfoot>
-              </Table>
-            </TableContainer>
+            <Box>
+              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+                <Text>Subtotal</Text>
+                <Text wordBreak={"break-word"} textAlign={"right"}>
+                  NGN1,100,000
+                </Text>
+              </Flex>
+              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+                <Text>Shipping</Text>
+                <Text
+                  wordBreak={"break-word"}
+                  textAlign={"right"}
+                  color={"#909090"}
+                >
+                  Calculated at the next step
+                </Text>
+              </Flex>
+              <Divider
+                h={"2px"}
+                bgColor={"black"}
+                mt={"-3px"}
+                mb={"4px"}
+              ></Divider>
+              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+                <Text>Total</Text>
+                <Text wordBreak={"break-word"} textAlign={"right"}>
+                  -
+                </Text>
+              </Flex>
+            </Box>
           </Box>
-          {/* <Box h={"100%"} w={"80%"} display={"flex"} bgColor={"yellow"}>
-                    <Text fontSize={"100%"}>Address</Text>
-                    <Divider w={30} h={0.7} bgColor={"red"} mt={"10%"} ></Divider>
-                    <Text>Address</Text>
-                    <Divider w={10} h={1} bgColor={"green"}></Divider>
-                    <Text>hi</Text>
-                    </Box> */}
         </GridItem>
       </Grid>
       <Footer></Footer>
