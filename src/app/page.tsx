@@ -23,7 +23,7 @@ export default function Home() {
         draggable
         pauseOnHover
       />
-      <DashboardLayout />
+      {/* <DashboardLayout /> */}
       </>
     // </ChakraProvider>
   )

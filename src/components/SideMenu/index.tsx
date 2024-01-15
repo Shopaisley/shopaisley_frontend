@@ -114,7 +114,7 @@ function SideMenu() {
                   
                   
                   >
-                    <icon />
+                    
                     <Text>{title}</Text>
                   </Box>
 
