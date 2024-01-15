@@ -4,11 +4,14 @@ import { Box, ChakraProvider } from '@chakra-ui/react'
 import CategoryBox from '@/components/CategoryBox'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SideMenu from "@/components/SideMenu";
+import DashboardLayout from '@/components/DashboardLayout';
 // import ProductCatalogue from './product-catalogue/page'
 
 export default function Home() {
   return (
     // <ChakraProvider>
+    <>
       <ToastContainer
         position='bottom-center'
         autoClose={5000}
@@ -20,6 +23,8 @@ export default function Home() {
         draggable
         pauseOnHover
       />
+      <DashboardLayout />
+      </>
     // </ChakraProvider>
   )
 }
