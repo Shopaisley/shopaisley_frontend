@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SideMenu from "@/components/SideMenu";
 import DashboardLayout from '@/components/DashboardLayout';
+import SellerHeader from '@/components/SellerHeader';
 // import ProductCatalogue from './product-catalogue/page'
 
 export default function Home() {
@@ -23,7 +24,9 @@ export default function Home() {
         draggable
         pauseOnHover
       />
-      {/* <DashboardLayout /> */}
+      <DashboardLayout />
+      <SellerHeader />
+
       </>
     // </ChakraProvider>
   )
