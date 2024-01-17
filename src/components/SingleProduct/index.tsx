@@ -16,7 +16,7 @@ import {
     ProductMaker: string;
 }
 
-  const ProductBanner: FC<SingleProductProps> = (
+  const ProductBox: FC<SingleProductProps> = (
     {
       productName,
       productPrice,
@@ -54,4 +54,4 @@ import {
     )
   }
 
-export default ProductBanner;
+export default ProductBox;

@@ -1,19 +1,13 @@
 import { Box } from "@chakra-ui/react";
-import CategoryBox from "@/components/CategoryBox";
-import acImage from "@/assets/images/electronics/air-conditioner.jpeg";
-import ProductBanner from "@/components/ProductBanner";
-import SellerHeader from "@/components/SellerHeader";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import DashboardLayout from "@/components/DashboardLayout";
+import ProductPage from "@/components/ViewPage";
 
 const Page = () => {
   return (
     <Box>
-      
-      <DashboardLayout />
-      <SellerHeader userName="OgeAta"/>
+      <ProductPage productName="Iphone 15" productCompany="Apple" productDesc="Apple Iphone 15" productPrice="$1000"/>
+      {/* <Header/> */}
       {/* <Footer /> */}
+      {/* <ProductBox productName={"Iphone 15"} productPrice={"1500"} ProductMaker={"Apple"} /> */}
       {/* <CategoryBox categoryName={"Nike"} categoryImage={acImage} /> */}
       {/* <ProductBanner categoryName={"Apple"} categoryText={"Apple Iphone 15"} /> */}
     </Box>

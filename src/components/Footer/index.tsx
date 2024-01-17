@@ -23,6 +23,7 @@ const Footer: FC = () => {
       color="white"
       px={"149px"}
       fontFamily={"Public Sans"}
+      borderTop={"1px solid #909090"}
     >
       <Box 
         mt={'6rem'}
@@ -79,12 +80,13 @@ const Footer: FC = () => {
                 fontWeight={'700px'}
                 bg={"#3E7CB1"}
                 borderColor={'white'}
-                borderRightRadius={'0.2rem'}
+                borderRadius={'0.3rem'}
                 p={'1.2rem'}
                 _hover={{
-                    backgroundColor: 'black',
+                    backgroundColor: 'white',
                     color: '#3E7CB1',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    border: "1px solid"
                   }}
               >
                 Sign Up
