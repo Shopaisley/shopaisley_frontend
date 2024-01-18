@@ -21,25 +21,24 @@ import "@fontsource/poppins"
 
 const Header = () => {
   return (
-    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} >
+    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}>
       {/* Sentence */}
-      <Flex color={"#FFFFFF"} fontWeight={500} align={'center'} justifyContent={'space-between'} bg={'#3E7CB1'}>
-        <Text fontSize="sm" m={'1rem'} ml={'2rem'}>
-          NGN
-        </Text>
-        <Text fontSize="sm" mb={2}>
-          FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!
-        </Text>
-        <Text fontSize="sm" textAlign='end' mr={'2rem'} mb={2}>
-          Contact Us
-        </Text>
-      </Flex>
-
       {/* Navbar */}
-      <Flex align="center" justifyContent={'space-between'} bg={'white'} p={'2rem'}>
+      <Flex
+        as={"nav"}
+        align="center"
+        justifyContent={'space-between'}
+        bg={'white'}
+        px={'2rem'}
+        py= {'1.3rem'}
+        width="100%"
+        position="sticky"
+        top={0}
+        zIndex={"100"}
+      >
         {/* Company Name */}
         <Flex align="center" alignContent={'space-around'} >
-          <ChakraLink textDecoration="none" href="/">
+          <ChakraLink _hover={{ textDecoration: "none" }} href="/">
             <Text
               color={"#000000"}
               fontFamily={"Public Sans"}
@@ -82,10 +81,10 @@ const Header = () => {
               h="2rem"
               size="md"
               marginTop={1}
-              color={"black"}
-              border={"2px solid"}
+              color={"white"}
+              // border={"2px solid #054A91"}
               fontWeight={'700px'}
-              bg={"white"}
+              bg={"#054A91"}
               borderColor={'black'}
               borderRadius={'0.5rem'}
               p={'0.4rem'}
@@ -94,8 +93,8 @@ const Header = () => {
                 color: 'white',
                 cursor: 'pointer',
                 bgColor: '#3E7CB1',
-                borderColor: '#3E7CB1',
-                border: "2px solid"
+                // borderColor: '#3E7CB1',
+                // border: "2px solid"
               }}
             >
               Search
@@ -117,7 +116,16 @@ const Header = () => {
             <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
             <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
           </Flex>
-          <ChakraLink href='#' color={'black'}>Sign In</ChakraLink>
+          <ChakraLink 
+            href='/login'
+            color={'black'}
+            fontWeight={'600'}
+            _hover={{
+              textDecor: "none"
+            }}
+          >
+            Sign In
+          </ChakraLink>
         </Flex>
       </Flex>
     </Box>
