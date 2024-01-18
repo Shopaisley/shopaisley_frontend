@@ -9,8 +9,6 @@ const ProductGrid:NextPage = () => {
   	return (
       <ChakraProvider>
 
-
-
 <Box pos = {"relative"}
   height= "136.8px"
   width=" 132.69px"
