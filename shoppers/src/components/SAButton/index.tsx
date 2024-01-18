@@ -1,16 +1,25 @@
+"use client"
 import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
 import "@fontsource/public-sans";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 interface ButtonProps {
     buttonText: string;
+    linkTo: string;
 }
 
 const SAButtons: FC<ButtonProps> = (
     {
         buttonText,
+        linkTo
     }
 ) => {
+    const router = useRouter()
+    const handleSubmit = () => {
+        router.push(linkTo)
+    }
     return (
         <Box
             as={Button}
@@ -27,6 +36,10 @@ const SAButtons: FC<ButtonProps> = (
             fontFamily={"Public Sans"}
             fontWeight={600}
             fontSize={"16px"}
+            _hover={{
+                color: "#000000",
+            }}
+            onClick={handleSubmit}
         >
             {buttonText}
         </Box>

@@ -32,7 +32,7 @@ import CatalogueProduct from "@/components/CatalogueProduct";
 
 const Page = () => {
   return (
-    <Flex fontFamily={"Public Sans"} flexDir={"column"}>
+    <Flex fontFamily={"Public Sans"} color={"#000000"} flexDir={"column"}>
       <Header />
       <Flex>
       <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
@@ -202,7 +202,7 @@ const Page = () => {
             >
               Save contact information
             </Checkbox>
-            <Button buttonText="Continue to Shipping"></Button>
+            <Button linkTo="/checkout/shipping" buttonText="Continue to Shipping"></Button>
           </Box>
         </GridItem>
         <GridItem

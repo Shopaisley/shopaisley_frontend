@@ -140,9 +140,7 @@ const SignupForm = () => {
                 w="500px"
                 h="660px"
                 bg="#ffffff"
-                // mt={"100px"}
-                // mb={"25px"}
-                border={"1px solid"}
+                // border={"1px solid"}
                 py={"35px"}
                 px={"30px"}
                 flexDirection={"column"}
