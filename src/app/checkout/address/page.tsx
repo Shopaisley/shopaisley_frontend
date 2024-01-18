@@ -6,6 +6,8 @@ import magsafe from "@/assets/images/gadgets/magsafe.jpeg";
 import photo from "@/assets/images/gadgets/iphone.jpeg";
 import phone from "@/assets/images/gadgets/iphone.jpeg"
 import ps5 from "@/assets/images/games/ps5.jpeg"
+import {countries} from "@/app/checkout/address/countries"
+
 import {
   Flex,
   Text,
@@ -149,7 +151,15 @@ const Page = () => {
                 pl={"0.4rem"}
                 mr={"5%"}
                 ml={"-1%"}
-              />
+              >
+                {countries.map((country) => (
+                  <option
+                    key={country.name}
+                  >
+                    {country.name}
+                  </option>
+                ))}
+              </Select>
               <Input
                 borderRadius={"0"}
                 placeholder="City"
