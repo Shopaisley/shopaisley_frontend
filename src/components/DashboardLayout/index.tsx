@@ -15,7 +15,7 @@ function DashboardLayout() {
         borderRightWidth={'0.1px'}
         className="side-menu"
         transition="transform 0.3s"
-        bg="white"
+        bg="black"
       >
         <Flex
           h="full"

@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import shoppingBag from '@/assets/icons/shopping-bag.svg'
 import searchBar from '@/assets/icons/fi-rr-search.svg'
-
 import Image from 'next/image';
 import "@fontsource/public-sans"
 import "@fontsource/poppins"
