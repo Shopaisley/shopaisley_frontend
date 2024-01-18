@@ -9,6 +9,8 @@ const ProductGrid:NextPage = () => {
   	return (
       <ChakraProvider>
 
+<Box>
+
 
 
 <Box pos = {"relative"}
@@ -60,7 +62,7 @@ const ProductGrid:NextPage = () => {
 
 
 
-
+</Box>
 
         </ChakraProvider>
 
