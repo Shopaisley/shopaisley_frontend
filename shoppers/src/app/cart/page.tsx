@@ -26,10 +26,12 @@ import CheckoutProduct from "@/components/CheckoutProduct";
 import Link from "next/link";
 import magsafe from "@/assets/images/gadgets/magsafe.jpeg";
 import photo from "@/assets/images/gadgets/iphone.jpeg";
+import AdvertHeader from "@/components/AdvertHeader";
 
 const Page = () => {
   return (
     <Flex fontFamily={"Public Sans"} flexDir={"column"}>
+      <AdvertHeader />
       <Header></Header>
       <Flex>
         <Grid templateColumns="repeat(2, 1fr)" h={"100%"} w={"100%"}>
@@ -162,7 +164,7 @@ const Page = () => {
                 </Text>
               </Flex>
             </Box>
-            <SAButtons buttonText="Continue to checkout"></SAButtons>
+            <SAButtons buttonText="Continue to checkout" linkTo={"/checkout/address"}></SAButtons>
           </GridItem>
         </Grid>
       </Flex>

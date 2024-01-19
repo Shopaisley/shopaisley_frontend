@@ -29,10 +29,12 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "./index.css";
 import CheckoutProduct from "@/components/CheckoutProduct";
 import CatalogueProduct from "@/components/CatalogueProduct";
+import AdvertHeader from "@/components/AdvertHeader";
 
 const Page = () => {
   return (
     <Flex fontFamily={"Public Sans"} color={"#000000"} flexDir={"column"}>
+      <AdvertHeader />
       <Header />
       <Flex>
       <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>

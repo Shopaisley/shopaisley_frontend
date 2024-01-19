@@ -38,11 +38,13 @@ import "@fontsource/public-sans";
 import Image from "next/image";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import CheckoutProduct from "@/components/CheckoutProduct";
+import AdvertHeader from "@/components/AdvertHeader";
 
 
 const Page = () => {
   return (
     <Box fontFamily={"Public Sans"}>
+      <AdvertHeader />
       <Header />
       <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
         <GridItem
