@@ -93,7 +93,7 @@ const Filter: React.FC = ({
                     <SliderThumb />
                 </Slider>
                 <Box display="flex" alignContent={"center"} justifyContent="space-between">
-                    <Input type="number" value={priceRange[0]} onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])} />
+                    <Input type="number" border={"1px solid #000000"} value={priceRange[0]} onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])} />
                     <Input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])} />
                 </Box>
                 <Text
