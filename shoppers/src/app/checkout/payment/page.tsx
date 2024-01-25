@@ -3,7 +3,7 @@ import LoginForm from "@/components/LoginForm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Button from "@/components/SAButton";
-import photo from "@/assets/images/image 5.png"
+import photo from "@/assets/images/image5.png"
 import phone from "@/assets/images/gadgets/iphone.png"
 import {
   Flex,
