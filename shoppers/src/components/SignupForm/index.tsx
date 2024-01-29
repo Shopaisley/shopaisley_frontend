@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup, Link, theme } from "@chakra-ui/react";
+import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text} from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
-import { server } from "@/app/server";
+import { server } from "../../server";
 
 const SignupForm = () => {
     const [fname, setFname] = useState("");
@@ -21,7 +23,7 @@ const SignupForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const router = useRouter();
+    const router = useNavigate();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isValidPhoneNumber, setIsValidPhoneNumber] = useState("");
 
@@ -118,7 +120,7 @@ const SignupForm = () => {
             // window.location.href = "/login"
             // toast.success(response.data.message);
             toast.success("Sign-up successful. \n\nPlease login to continue");
-            router.push("/login")
+            router("/login")
         } catch (err: any) {
             console.log(err.response.data);
             //   setError(err.response.data.message); //

@@ -1,11 +1,10 @@
-import { Box, Button, Container, Text } from "@chakra-ui/react";
-import React, { FC } from "react";
-import Image from "next/image"; 
+import { Box, Button, Container, Text, Image} from "@chakra-ui/react";
+import { FC } from "react";
 
 interface AdvertBoxProps {
     advertTitle: string;
     advertSubtitle: string;
-    advertImage: any;
+    advertImage: never;
     advertButtonText: string;
     advertButtonColor: string;
     advertButtonTextColor: string;

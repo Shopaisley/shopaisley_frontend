@@ -1,6 +1,6 @@
-import { Box } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Box, Image } from "@chakra-ui/react";
 import { FC } from "react";
-import Image from "next/image";
 
 interface CategoryBoxProps {
   categoryName: string;
@@ -19,8 +19,8 @@ const CategoryBox: FC<CategoryBoxProps> = ({ categoryName, categoryImage }) => {
       <Image
         src={categoryImage}
         alt={categoryName}
-        width= {150}
-        height= {150}
+        width= {"150px"}
+        height= {"150px"}
         objectFit="cover"
       />
       <Box

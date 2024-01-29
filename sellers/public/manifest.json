@@ -1,0 +1,18 @@
+{
+    "name": "Shopaisley Vendors",
+    "short_name": "Shopaisley",
+    "description": "Selling made easy with Shopaisley",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#E2E8F0",
+    "theme_color": "#3E7CB1",
+    "icons": [
+      {
+        "src": "/shopaisley-logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "orientation": "portrait"
+  }
+  

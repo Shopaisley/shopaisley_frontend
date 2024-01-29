@@ -1,9 +1,10 @@
-"use client"
-import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup, Link, theme } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup} from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
@@ -19,7 +20,7 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const router = useRouter();
+    const router = useNavigate();
 
 
     const handleEmailChange = (e: any) => {
@@ -57,7 +58,7 @@ const LoginForm = () => {
         setError(null);
 
         toast.success('Login successful');
-        router.push("/product-catalogue")
+        router("/product-catalogue")
 
         // if (email.trim() === "" || password.trim() === "") {
         //     setError("All fields are required.");

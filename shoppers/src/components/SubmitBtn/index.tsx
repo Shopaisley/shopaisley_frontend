@@ -1,5 +1,5 @@
-import { Button, useMediaQuery } from "@chakra-ui/react";
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button} from "@chakra-ui/react";
 import { FC } from "react";
 import "@fontsource/public-sans";
 

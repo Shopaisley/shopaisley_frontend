@@ -2,9 +2,8 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
-import Image from "next/image";
-import electronics from "@/assets/images/electronics/electronics.jpg";
+import { FC } from "react";
+import electronics from "../../assets/images/electronics/electronics.jpg";
 
 interface CategoryBannerProps {
   categoryName: string;
@@ -27,7 +26,7 @@ const CategoryBanner: FC<CategoryBannerProps> = (
     >
       <div
         style={{
-          backgroundImage: `url(${electronics.src})`,
+          backgroundImage: `url(${electronics})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

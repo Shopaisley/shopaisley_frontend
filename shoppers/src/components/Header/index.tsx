@@ -1,20 +1,16 @@
-// components/Header.tsx
-import React from 'react';
 import {
   Box,
   Flex,
-  Spacer,
   Text,
   Link as ChakraLink,
   Input,
   InputGroup,
-  InputRightElement,
   Button,
+  Image
 } from '@chakra-ui/react';
-import shoppingBag from '@/assets/icons/shopping-bag.svg'
-import searchBar from '@/assets/icons/fi-rr-search.svg'
-
-import Image from 'next/image';
+import shoppingBag from '../../assets/icons/shopping-bag.svg'
+import searchBar from '../../assets/icons/fi-rr-search.svg'
+import logo from "../../assets/images/shopaisley-logo.png"
 import "@fontsource/public-sans"
 import "@fontsource/poppins"
 
@@ -30,7 +26,7 @@ const Header = () => {
         justifyContent={'space-between'}
         bg={'white'}
         px={'2rem'}
-        py= {'1.3rem'}
+        py={'1.3rem'}
         width="100%"
         position="sticky"
         top={0}
@@ -39,14 +35,28 @@ const Header = () => {
         {/* Company Name */}
         <Flex align="center" alignContent={'space-around'} >
           <ChakraLink _hover={{ textDecoration: "none" }} href="/">
-            <Text
-              color={"#000000"}
-              fontFamily={"Public Sans"}
-              fontWeight={700}
-              fontSize={"21px"}
+            <Flex
+              // my={"30px"}
+              flexDirection={"row"}
+              // justifyItems={"center"}
+              mr={"2.5vw"}
+              align={"center"}
             >
-              Shop<span style={{ color: "#054A91" }}>aisley</span>
-            </Text>
+              <Image
+                src={logo}
+                alt="shopaisley-logo"
+                width={"40px"}
+                height={"40px"}
+              />
+              <Text
+                color={"#000000"}
+                fontFamily={"Public Sans"}
+                fontWeight={700}
+                fontSize={"21px"}
+              >
+                Shop<span style={{ color: "#054A91" }}>aisley</span>
+              </Text>
+            </Flex>
           </ChakraLink>
 
           {/* Links */}
@@ -61,7 +71,7 @@ const Header = () => {
           </ChakraLink>
 
           <InputGroup ml={'4rem'}>
-            <Image src={searchBar} alt='seachBar' width={20}></Image>
+            <Image src={searchBar} alt='seachBar' width={"20px"}></Image>
             <Input
               placeholder="Search"
               marginLeft={3}
@@ -72,22 +82,19 @@ const Header = () => {
               borderRadius={15}
               borderColor={'black'}
               color={"black"}
-
               pl={'0.4rem'}
-
-            // Add any other input props you need
             />
             <Button
               h="2rem"
               size="md"
               marginTop={1}
               color={"white"}
-              // border={"2px solid #054A91"}
-              fontWeight={'700px'}
+              fontSize={"14px"}
+              fontWeight={'500'}
               bg={"#054A91"}
               borderColor={'black'}
               borderRadius={'0.5rem'}
-              p={'0.4rem'}
+              p={'0.5rem'}
               _hover={{
                 backgroundColor: 'white',
                 color: 'white',
@@ -113,10 +120,10 @@ const Header = () => {
           align="center"
         >
           <Flex>
-            <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
+            <Image src={shoppingBag} alt='shopping bag' width={"20px"}></Image>
             <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
           </Flex>
-          <ChakraLink 
+          <ChakraLink
             href='/login'
             color={'black'}
             fontWeight={'600'}
