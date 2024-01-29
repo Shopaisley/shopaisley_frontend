@@ -23,7 +23,6 @@ import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import Image from "next/image";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "./index.css";
 import CheckoutProduct from "@/components/CheckoutProduct";
 import CatalogueProduct from "@/components/CatalogueProduct";

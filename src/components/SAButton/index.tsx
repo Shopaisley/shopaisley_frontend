@@ -1,6 +1,6 @@
 import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
-import "@fontsource/public-sans";
+
 
 interface ButtonProps {
     buttonText: string;

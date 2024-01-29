@@ -10,7 +10,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { FC } from "react";
-import "@fontsource/public-sans"
+
 
 const Footer: FC = () => {
   return (
