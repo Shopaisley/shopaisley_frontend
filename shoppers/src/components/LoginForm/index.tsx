@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup} from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,7 @@ import "./index.css";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
-    const [isEmail, setIsEmail] = useState(true);
+    const [isEmail] = useState(true);
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");

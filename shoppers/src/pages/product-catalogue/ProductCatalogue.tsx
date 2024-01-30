@@ -27,6 +27,7 @@ interface Product {
 const ProductCatalogue = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
+  const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
 
   const handleLoadMoreProducts = () => {
     setShowMoreProducts(true);
@@ -44,6 +45,20 @@ const ProductCatalogue = () => {
     };
     fetchProducts();
   }, []);
+
+  const loadMoreProducts = () => {
+    const newProducts = products.filter(
+      (product) => !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id)
+    );
+
+    // Filter out the products that are already loaded
+    const filteredNewProducts = newProducts.filter(
+      (newProduct) => !loadedProducts.some((loadedProduct) => loadedProduct.id === newProduct.id)
+    );
+
+    setLoadedProducts((prevLoadedProducts) => [...prevLoadedProducts, ...filteredNewProducts]);
+  };
+  
   return (
     <Box
       bg={"#E2E8F0"}
@@ -84,29 +99,32 @@ const ProductCatalogue = () => {
                 {products && (products.map((product) => (
                   <CatalogueProduct
                     key={product.id}
+                    productID={product.id}
                     productImage={product.ImageURL}
                     productTitle={product.name}
                     Retailer={product.retailer}
                     productPrice={product.unitPrice}
                   />
                 )))}
-                {showMoreProducts && (
-                  <>
-                    {products && (products.map((product) => (
-                      <CatalogueProduct
-                        key={product.id}
-                        productImage={product.ImageURL}
-                        productTitle={product.name}
-                        Retailer={product.retailer}
-                        productPrice={product.unitPrice}
-                      />
-                    )))}
-                  </>
-                )}
+                {showMoreProducts &&
+                products &&
+                products.map((product) => (
+                  !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id) && (
+                    <CatalogueProduct
+                      key={product.id}
+                      productID={product.id}
+                      productImage={product.ImageURL}
+                      productTitle={product.name}
+                      Retailer={product.retailer}
+                      productPrice={product.unitPrice}
+                    />
+                  )
+                ))}
               </Grid>
             </Box>
           </Suspense>
           <Box>
+          {!showMoreProducts && (
             <Button
               border={"1px solid #000000"}
               color={"#000000"}
@@ -115,6 +133,17 @@ const ProductCatalogue = () => {
             >
               Load More Products
             </Button>
+          )}
+          {showMoreProducts && (
+            <Button
+              border={"1px solid #000000"}
+              color={"#000000"}
+              onClick={loadMoreProducts}
+              borderRadius={"2px"}
+            >
+              Load More Products
+            </Button>
+          )}
           </Box>
         </Flex>
       </Flex>
@@ -124,6 +153,3 @@ const ProductCatalogue = () => {
 };
 
 export default ProductCatalogue;
-
-
-

@@ -8,6 +8,7 @@ import {
   Payment,
   Address,
   ProductCatalogue,
+  Product,
 
 } from './Routes'
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/product-catalogue" element={<ProductCatalogue />} />
+        <Route path="/product/:productId" element={<Product />} />
       </Routes>
     </BrowserRouter>
   )

@@ -11,9 +11,7 @@ import {
   Text,
   // Link as ChakraLink,
   Box,
-  Grid,
   Divider,
-  GridItem,
   Input,
   InputGroup,
   Checkbox,
@@ -32,16 +30,17 @@ const Address = () => {
   return (
     <Flex fontFamily={"Public Sans"} color={"#000000"} flexDir={"column"}>
       <Header />
-      <Flex>
-      <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
+      <Flex w="100%" mb={"3%"} mt={"5%"} px={"10vw"} justifyContent="space-between">
+        {/* <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
         <GridItem
           bgColor={"#EFF2F6"}
           h={"100%"}
           paddingLeft={"10%"}
           paddingRight={"10%"}
-        >
-          <Box display={"flex"} flexDir={"column"} h={"100px"} mt={"10%"}>
-            <Text  fontSize={"230%"} h={"100%"}>
+        > */}
+        <Box>
+          <Box display={"flex"} flexDir={"column"} h={"100px"}>
+            <Text fontSize={"230%"} h={"100%"}>
               <strong>Checkout</strong>
             </Text>
             <Flex
@@ -52,7 +51,7 @@ const Address = () => {
               display={"flex"}
               position={"relative"}
             >
-              <Text  fontSize={"100%"}>
+              <Text fontSize={"100%"}>
                 <strong>Address</strong>
               </Text>
               <Divider
@@ -62,7 +61,7 @@ const Address = () => {
                 mr={"10px"}
                 bgColor={"black"}
               ></Divider>
-              <Text  fontSize={"100%"}>Shipping</Text>
+              <Text fontSize={"100%"}>Shipping</Text>
               <Divider
                 w={"20%"}
                 h={"1px"}
@@ -70,12 +69,11 @@ const Address = () => {
                 mr={"10px"}
                 bgColor={"black"}
               ></Divider>
-              <Text  fontSize={"100%"}>Payment</Text>
+              <Text fontSize={"100%"}>Payment</Text>
             </Flex>
           </Box>
-
           <Box h={"390px"} mt={"3%"} mb={"15%"}>
-            <Text  fontSize={"150%"} mb={"10px"}>
+            <Text fontSize={"150%"} mb={"10px"}>
               Shipping Information
             </Text>
             <InputGroup mb={"10px"}>
@@ -194,78 +192,79 @@ const Address = () => {
             </Checkbox>
             <Button linkTo="/checkout/shipping" buttonText="Continue to Shipping"></Button>
           </Box>
-        </GridItem>
-        <GridItem
+        </Box>
+        {/* </GridItem> */}
+        {/* <GridItem
           bgColor={"#EFF2F6"}
           h={"100%"}
           paddingLeft={"10%"}
           paddingRight={"10%"}
-        >
-          <Box mt={"20%"}>
-            <Text  color={"black"} mb={"20px"} fontSize={"120%"}>
-              Your cart
-            </Text>
-            <CheckoutProduct
-              productImage={photo}
-              productTitle="iPhone 15"
-              productSpecification="Pink"
-              productQuantity="1"
-              productPrice="1,050,000"
-            ></CheckoutProduct>
-            <CheckoutProduct
-              productImage={magsafe}
-              productTitle="iPhone 15 Magsafe"
-              productSpecification="Pink"
-              productQuantity="1"
-              productPrice="50,000"
-            ></CheckoutProduct>
-            <InputGroup mb={"10px"}>
-              <Input
-                borderRadius={"0"}
-                placeholder="Enter coupon code here"
-                _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"100%"}
-                border={"2px solid"}
-                borderColor={"#909090"}
-                color={"black"}
-                pl={"0.4rem"}
-              />
-            </InputGroup>
-            <Box>
-              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Subtotal</Text>
-                <Text  wordBreak={"break-word"} textAlign={"right"}>
-                  NGN1,100,000
-                </Text>
-              </Flex>
-              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Shipping</Text>
-                <Text 
-                  wordBreak={"break-word"}
-                  textAlign={"right"}
-                  color={"#909090"}
-                >
-                  Calculated at the next step
-                </Text>
-              </Flex>
-              <Divider
-                h={"2px"}
-                bgColor={"black"}
-                mt={"-3px"}
-                mb={"4px"}
-              ></Divider>
-              <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Total</Text>
-                <Text  wordBreak={"break-word"} textAlign={"right"}>
-                  -
-                </Text>
-              </Flex>
-            </Box>
+        > */}
+        <Box w={"30vw"} mt={"2%"}>
+          <Text color={"black"} mb={"20px"} fontSize={"120%"}>
+            Your cart
+          </Text>
+          <CheckoutProduct
+            productImage={photo}
+            productTitle="iPhone 15"
+            productSpecification="Pink"
+            productQuantity="1"
+            productPrice="1,050,000"
+          ></CheckoutProduct>
+          <CheckoutProduct
+            productImage={magsafe}
+            productTitle="iPhone 15 Magsafe"
+            productSpecification="Pink"
+            productQuantity="1"
+            productPrice="50,000"
+          ></CheckoutProduct>
+          <InputGroup mb={"10px"}>
+            <Input
+              borderRadius={"0"}
+              placeholder="Enter coupon code here"
+              _placeholder={{ color: "black", opacity: "0.4" }}
+              w={"100%"}
+              border={"2px solid"}
+              borderColor={"#909090"}
+              color={"black"}
+              pl={"0.4rem"}
+            />
+          </InputGroup>
+          <Box>
+            <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+              <Text >Subtotal</Text>
+              <Text wordBreak={"break-word"} textAlign={"right"}>
+                NGN1,100,000
+              </Text>
+            </Flex>
+            <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+              <Text >Shipping</Text>
+              <Text
+                wordBreak={"break-word"}
+                textAlign={"right"}
+                color={"#909090"}
+              >
+                Calculated at the next step
+              </Text>
+            </Flex>
+            <Divider
+              h={"2px"}
+              bgColor={"black"}
+              mt={"-3px"}
+              mb={"4px"}
+            ></Divider>
+            <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
+              <Text >Total</Text>
+              <Text wordBreak={"break-word"} textAlign={"right"}>
+                -
+              </Text>
+            </Flex>
           </Box>
-        </GridItem>
-      </Grid>
+        </Box>
+        {/* </GridItem>
+      </Grid> */}
       </Flex>
-      <Footer/>
+      <Footer />
     </Flex>
   );
 };

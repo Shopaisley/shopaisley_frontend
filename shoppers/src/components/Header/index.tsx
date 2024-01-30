@@ -90,11 +90,13 @@ const Header = () => {
               marginTop={1}
               color={"white"}
               fontSize={"14px"}
-              fontWeight={'500'}
+              fontWeight={500}
               bg={"#054A91"}
               borderColor={'black'}
-              borderRadius={'0.5rem'}
-              p={'0.5rem'}
+              borderRadius={'4px'}
+              px={"12px"}
+              py={"16px"}
+              lineHeight={"16px"}
               _hover={{
                 backgroundColor: 'white',
                 color: 'white',
@@ -103,8 +105,9 @@ const Header = () => {
                 // borderColor: '#3E7CB1',
                 // border: "2px solid"
               }}
+              boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
             >
-              Search
+              SEARCH
             </Button>
           </InputGroup>
         </Flex>
