@@ -1,67 +1,126 @@
-// components/Header.tsx
-import React from 'react';
 import {
   Box,
   Flex,
-  Spacer,
   Text,
   Link as ChakraLink,
   Input,
   InputGroup,
-  InputRightElement,
   Button,
+  Image
 } from '@chakra-ui/react';
-import shoppingBag from '@/assets/icons/shopping-bag.svg'
-import searchBar from '@/assets/icons/fi-rr-search.svg'
-
-import Image from 'next/image';
-import "@fontsource/public-sans"
-import "@fontsource/poppins"
+import shoppingBag from '../../assets/icons/shopping-bag.svg';
+import searchBar from '../../assets/icons/fi-rr-search.svg';
+import logo from "../../assets/images/shopaisley-logo.png";
+import "@fontsource/public-sans";
+import "@fontsource/poppins";
+import { useEffect, useState } from 'react';
+import {
+  useLocation,
+  // useNavigate
+} from 'react-router-dom';
 
 
 const Header = () => {
+  // const navigate = useNavigate();
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState<string | null>(null);
+  const { linkStyle } = useStyles();
+
+  // useEffect(() => {
+  //   const currentPath = location.pathname;
+
+  //   if (currentPath === '/product-catalogue/Clothing') {
+  //     navigate('/product-catalogue/Clothing');
+  //   }
+  // }, [navigate, location]);
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
+
+
+  // const handleNavLinkClick = (category: string) => {
+  //   // Update the URL when a navigation link is clicked
+  //   navigate(`/product-catalogue/${category}`);
+  // };
   return (
-    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}>
-      {/* Sentence */}
-      {/* Navbar */}
+    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}
+      boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
+    >
       <Flex
         as={"nav"}
         align="center"
         justifyContent={'space-between'}
         bg={'white'}
         px={'2rem'}
-        py= {'1.3rem'}
+        py={'1.3rem'}
         width="100%"
         position="sticky"
         top={0}
         zIndex={"100"}
       >
-        {/* Company Name */}
         <Flex align="center" alignContent={'space-around'} >
-          <ChakraLink _hover={{ textDecoration: "none" }} href="/">
-            <Text
-              color={"#000000"}
-              fontFamily={"Public Sans"}
-              fontWeight={700}
-              fontSize={"21px"}
+          <ChakraLink _hover={{ textDecoration: "none" }} mr={"2.4rem"} href="/">
+            <Flex
+              // my={"30px"}
+              flexDirection={"row"}
+              // justifyItems={"center"}
+              mr={"2.5vw"}
+              align={"center"}
             >
-              Shop<span style={{ color: "#054A91" }}>aisley</span>
-            </Text>
+              <Image
+                src={logo}
+                alt="shopaisley-logo"
+                width={"40px"}
+                height={"40px"}
+              />
+              <Text
+                color={"#000000"}
+                fontFamily={"Public Sans"}
+                fontWeight={700}
+                fontSize={"21px"}
+              >
+                Shop<span style={{ color: "#054A91" }}>aisley</span>
+              </Text>
+            </Flex>
           </ChakraLink>
-
-          {/* Links */}
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Clothing
-          </ChakraLink>
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Groceries
-          </ChakraLink>
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Electronics
-          </ChakraLink>
-
+          <Flex
+            flexDir={"row"}
+            w={"12vw"}
+            gap={"25px"}
+            marginX={"4vw"}
+            justify={"center"}
+          >
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Clothing"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Clothing" ? linkStyle._activeLink : linkStyle}
+            >
+              Clothing
+            </ChakraLink>
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Groceries"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Groceries" ? linkStyle._activeLink : linkStyle}
+            >
+              Groceries
+            </ChakraLink>
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Electronics"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Electronics" ? linkStyle._activeLink : linkStyle}
+            >
+              Electronics
+            </ChakraLink>
+          </Flex>
           <InputGroup ml={'4rem'}>
-            <Image src={searchBar} alt='seachBar' width={20}></Image>
+            <Image src={searchBar} alt='seachBar' width={"20px"}></Image>
             <Input
               placeholder="Search"
               marginLeft={3}
@@ -69,25 +128,24 @@ const Header = () => {
               _placeholder={{ color: 'black', opacity: '0.4' }}
               w={"30rem"}
               border={'2px solid'}
-              borderRadius={15}
+              borderRadius={"8px"}
               borderColor={'black'}
               color={"black"}
-
               pl={'0.4rem'}
-
-            // Add any other input props you need
             />
             <Button
               h="2rem"
               size="md"
               marginTop={1}
               color={"white"}
-              // border={"2px solid #054A91"}
-              fontWeight={'700px'}
+              fontSize={"14px"}
+              fontWeight={500}
               bg={"#054A91"}
               borderColor={'black'}
-              borderRadius={'0.5rem'}
-              p={'0.4rem'}
+              borderRadius={'4px'}
+              px={"12px"}
+              py={"16px"}
+              lineHeight={"16px"}
               _hover={{
                 backgroundColor: 'white',
                 color: 'white',
@@ -96,8 +154,9 @@ const Header = () => {
                 // borderColor: '#3E7CB1',
                 // border: "2px solid"
               }}
+              boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
             >
-              Search
+              SEARCH
             </Button>
           </InputGroup>
         </Flex>
@@ -113,10 +172,10 @@ const Header = () => {
           align="center"
         >
           <Flex>
-            <Image src={shoppingBag} alt='shopping bag' width={20}></Image>
+            <Image src={shoppingBag} alt='shopping bag' width={"20px"}></Image>
             <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
           </Flex>
-          <ChakraLink 
+          <ChakraLink
             href='/login'
             color={'black'}
             fontWeight={'600'}
@@ -133,3 +192,24 @@ const Header = () => {
 };
 
 export default Header;
+
+
+const useStyles = () => {
+  return {
+    linkStyle: {
+      textDecoration: "none",
+      color: "#000000",
+      fontFamily: "Public Sans",
+      fontSize: "16px",
+      fontWeight: 400,
+      _activeLink: {
+        textDecoration: "none",
+        color: "#000000",
+        fontFamily: "Public Sans",
+        fontSize: "16px",
+        fontWeight: 400,
+        borderBottom: "3px solid #054A91",
+      },
+    },
+  }
+};

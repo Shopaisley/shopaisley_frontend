@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 // components/Footer.tsx
 
 import {
@@ -9,7 +8,7 @@ import {
   InputGroup,
   Button,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import { FC } from "react";
 import "@fontsource/public-sans"
 
 const Footer: FC = () => {

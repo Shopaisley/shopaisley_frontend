@@ -1,9 +1,6 @@
-import type { NextPage } from "next";
-import { Box, ChakraProvider, Divider, Flex } from "@chakra-ui/react";
-import phone from "@/assets/images/gadgets/iphone.jpeg";
-import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Box, Divider, Flex, Image, Link} from "@chakra-ui/react";
 import { FC } from "react";
-import Link from "next/link";
 
 interface CheckoutProductProps {
   productImage: any;

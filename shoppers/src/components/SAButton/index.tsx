@@ -2,7 +2,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
 import "@fontsource/public-sans";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 // import { useRouter } from "next/navigation";
 
 interface ButtonProps {
@@ -16,9 +16,9 @@ const SAButtons: FC<ButtonProps> = (
         linkTo
     }
 ) => {
-    const router = useRouter()
+    const router = useNavigate()
     const handleSubmit = () => {
-        router.push(linkTo)
+        router(linkTo)
     }
     return (
         <Box
