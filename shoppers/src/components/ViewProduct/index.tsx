@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Button, Flex, Input, Select, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Select, Text, Image, Icon } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../server";
-import "@fontsource/public-sans"
-import "@fontsource/poppins"
+import "@fontsource/public-sans";
+import "@fontsource/poppins";
+import cart from "../../assets/icons/shopping-cart.svg";
 
 interface ProductViewProps { }
 
@@ -49,6 +50,21 @@ const ProductView: FC<ProductViewProps> = () => {
       setItemCount((prevCount) => prevCount - 1);
     }
   };
+  const handleAddToCart = async () => {
+    try {
+      // Fetch the number of cart items for the user from the DB
+      const response = await axios.get(`${server}/cart/items/count`);
+      const cartItemCount = response.data.count;
+
+      // Update the cart item number in the DB
+      await axios.put(`${server}/cart/items/count`, { count: cartItemCount + 1 });
+
+      // Optionally, you can show a success message or perform any other actions after updating the cart item number
+      console.log('Cart item number updated successfully!');
+    } catch (error) {
+      console.error('Error updating cart item number:', error);
+    }
+  };
   return (
     <Flex
       fontFamily={"Public Sans"}
@@ -60,7 +76,7 @@ const ProductView: FC<ProductViewProps> = () => {
       alignContent={"center"}
       borderRadius={"6px"}
     >
-      <Box h={"490px"} w={"490px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+      <Box h={"490px"} w={"420px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
         <Image w={"80%"} h={"80%"} src={product.ImageURL} alt="Product Image 1" mb={2} />
       </Box>
       <Box mt={"60px"}>
@@ -177,7 +193,7 @@ const ProductView: FC<ProductViewProps> = () => {
           {/* Box for item count */}
         </Flex>
         {/* Buttons to add to cart and process order */}
-        <Flex     
+        <Flex
           w={"25vw"}
           flexDir={"row"}
           justify={"space-between"}
@@ -187,28 +203,43 @@ const ProductView: FC<ProductViewProps> = () => {
             w={"12vw"}
             border={"1.029px solid rgba(13, 13, 13, 0.49)"}
             fontWeight={500}
-            fontSize={"16.457px"}
+            fontSize={"15px"}
             lineHeight={"22.629px"}
             letterSpacing={"-0.411px"}
-            color={"#ffffff"} 
-            p={"1.3rem"} 
+            color={"#ffffff"}
+            p={"1.3rem"}
             bg={"rgba(13, 13, 13, 0.60)"}
             borderRadius={"2px"}
             _hover={{
               bg: "rgba(0, 0, 0, 0.60)",
               color: "#ffffff"
             }}
+            boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
+            onClick={handleAddToCart}
           >
-            Add to Cart
+            <Flex
+              w={"100%"}
+              flexDir={"row"}
+              gap={"10px"}
+              align={"center"}
+            >
+              <Icon
+                as={Image}
+                src={cart}
+                h={"16px"}
+                w={"16px"}
+              />
+              ADD TO CART
+            </Flex>
           </Button>
-          <Button 
+          <Button
             w={"10vw"}
             bg={"#3E6FED"}
             fontWeight={500}
-            fontSize={"16.457px"}
+            fontSize={"15px"}
             lineHeight={"22.629px"}
             letterSpacing={"-0.411px"}
-            color={"#ffffff"} 
+            color={"#ffffff"}
             p={"1.3rem"}
             borderRadius={"2px"}
             border={"1.029px solid #003EB6"}
@@ -216,8 +247,9 @@ const ProductView: FC<ProductViewProps> = () => {
               bg: "#003EB6",
               color: "#ffffff"
             }}
+            boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
           >
-            Buy Now
+            BUY NOW
           </Button>
         </Flex>
       </Box>
