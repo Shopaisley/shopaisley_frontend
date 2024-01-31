@@ -1,9 +1,7 @@
 "use client"
 import { Box, Button, Flex, Grid } from "@chakra-ui/react";
-// import coffee from "../../assets/images/electronics/coffee-maker.png";
 import Header from "../../components/Header";
 import ProductBanner from "../../components/ProductBanner";
-// import CatalogueProduct from "@/components/CatalogueProduct";
 import Filter from "../../components/Filter";
 import "@fontsource/public-sans"
 import "@fontsource/poppins"
@@ -14,6 +12,10 @@ import React, { Suspense } from 'react';
 import { Spinner } from "@chakra-ui/react";
 import axios from "axios";
 import { server } from "../../server";
+import clothing from "../../assets/images/fashion/clothing.jpg";
+import groceries from "../../assets/images/food/groceries.jpg";
+import electronics from "../../assets/images/electronics/electronics.jpg";
+import { useParams } from "react-router-dom";
 const CatalogueProduct = React.lazy(() => import('../../components/CatalogueProduct'));
 
 interface Product {
@@ -24,10 +26,32 @@ interface Product {
   unitPrice: number;
 }
 
+const Categories = [
+  {
+    id: 0,
+    catName: "Clothing",
+    catImage: clothing,
+    catSubText: "Discover a wide range of clothing options for every occasion."
+  },
+  {
+    id: 1,
+    catName: "Groceries",
+    catImage: groceries,
+    catSubText: "Quality groceries delivered right to your doorstep."
+  },
+  {
+    id: 2,
+    catName: "Electronics",
+    catImage: electronics,
+    catSubText: "Shop for your quality and affordable electronics"
+  }
+]
+
 const ProductCatalogue = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
   const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
+  const { categoryName } = useParams();
 
   const handleLoadMoreProducts = () => {
     setShowMoreProducts(true);
@@ -66,10 +90,20 @@ const ProductCatalogue = () => {
     >
       <AdvertHeader />
       <Header />
-      <Box
-        mb={"45px"}
-      >
-        <ProductBanner categoryName="Electronics" categoryText="Shop for your quality and affordable electronics." />
+      <Box mb={"45px"}>
+        {Categories.map((category) => {
+          if (category.catName === categoryName) {
+            return (
+              <ProductBanner
+                key={category.id}
+                categoryName={category.catName}
+                categoryText={category.catSubText}
+                bgImage={category.catImage}
+              />
+            );
+          }
+          return null;
+        })}
       </Box>
       <Flex
         flexDir={"row"}
@@ -95,14 +129,15 @@ const ProductCatalogue = () => {
               py={"30px"}
               mb={"50px"}
             >
-              <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"20px"}>
+              <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"0px 30px"}>
                 {products && (products.map((product) => (
                   <CatalogueProduct
                     key={product.id}
                     productID={product.id}
                     productImage={product.ImageURL}
                     productTitle={product.name}
-                    Retailer={product.retailer}
+                    // Retailer={product.retailer}
+                    Retailer={"Apple"}
                     productPrice={product.unitPrice}
                   />
                 )))}

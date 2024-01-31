@@ -8,18 +8,45 @@ import {
   Button,
   Image
 } from '@chakra-ui/react';
-import shoppingBag from '../../assets/icons/shopping-bag.svg'
-import searchBar from '../../assets/icons/fi-rr-search.svg'
-import logo from "../../assets/images/shopaisley-logo.png"
-import "@fontsource/public-sans"
-import "@fontsource/poppins"
+import shoppingBag from '../../assets/icons/shopping-bag.svg';
+import searchBar from '../../assets/icons/fi-rr-search.svg';
+import logo from "../../assets/images/shopaisley-logo.png";
+import "@fontsource/public-sans";
+import "@fontsource/poppins";
+import { useEffect, useState } from 'react';
+import {
+  useLocation,
+  // useNavigate
+} from 'react-router-dom';
 
 
 const Header = () => {
+  // const navigate = useNavigate();
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState<string | null>(null);
+  const { linkStyle } = useStyles();
+
+  // useEffect(() => {
+  //   const currentPath = location.pathname;
+
+  //   if (currentPath === '/product-catalogue/Clothing') {
+  //     navigate('/product-catalogue/Clothing');
+  //   }
+  // }, [navigate, location]);
+
+  useEffect(() => {
+    setActiveLink(location.pathname);
+  }, [location.pathname]);
+
+
+  // const handleNavLinkClick = (category: string) => {
+  //   // Update the URL when a navigation link is clicked
+  //   navigate(`/product-catalogue/${category}`);
+  // };
   return (
-    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}>
-      {/* Sentence */}
-      {/* Navbar */}
+    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}
+      boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
+    >
       <Flex
         as={"nav"}
         align="center"
@@ -32,9 +59,8 @@ const Header = () => {
         top={0}
         zIndex={"100"}
       >
-        {/* Company Name */}
         <Flex align="center" alignContent={'space-around'} >
-          <ChakraLink _hover={{ textDecoration: "none" }} href="/">
+          <ChakraLink _hover={{ textDecoration: "none" }} mr={"2.4rem"} href="/">
             <Flex
               // my={"30px"}
               flexDirection={"row"}
@@ -58,18 +84,41 @@ const Header = () => {
               </Text>
             </Flex>
           </ChakraLink>
-
-          {/* Links */}
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Clothing
-          </ChakraLink>
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Groceries
-          </ChakraLink>
-          <ChakraLink href="#" color="black" ml={'2.4rem'} >
-            Electronics
-          </ChakraLink>
-
+          <Flex
+            flexDir={"row"}
+            w={"12vw"}
+            gap={"25px"}
+            marginX={"4vw"}
+            justify={"center"}
+          >
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Clothing"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Clothing" ? linkStyle._activeLink : linkStyle}
+            >
+              Clothing
+            </ChakraLink>
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Groceries"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Groceries" ? linkStyle._activeLink : linkStyle}
+            >
+              Groceries
+            </ChakraLink>
+            <ChakraLink
+              // onClick={() => handleNavLinkClick("Clothing")}
+              href={"/product-catalogue/Electronics"}
+              color="black"
+              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
+              style={activeLink === "/product-catalogue/Electronics" ? linkStyle._activeLink : linkStyle}
+            >
+              Electronics
+            </ChakraLink>
+          </Flex>
           <InputGroup ml={'4rem'}>
             <Image src={searchBar} alt='seachBar' width={"20px"}></Image>
             <Input
@@ -79,7 +128,7 @@ const Header = () => {
               _placeholder={{ color: 'black', opacity: '0.4' }}
               w={"30rem"}
               border={'2px solid'}
-              borderRadius={15}
+              borderRadius={"8px"}
               borderColor={'black'}
               color={"black"}
               pl={'0.4rem'}
@@ -143,3 +192,24 @@ const Header = () => {
 };
 
 export default Header;
+
+
+const useStyles = () => {
+  return {
+    linkStyle: {
+      textDecoration: "none",
+      color: "#000000",
+      fontFamily: "Public Sans",
+      fontSize: "16px",
+      fontWeight: 400,
+      _activeLink: {
+        textDecoration: "none",
+        color: "#000000",
+        fontFamily: "Public Sans",
+        fontSize: "16px",
+        fontWeight: 400,
+        borderBottom: "3px solid #054A91",
+      },
+    },
+  }
+};
