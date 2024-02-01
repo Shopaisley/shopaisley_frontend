@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { Box, Button, Flex, Grid } from "@chakra-ui/react";
 import Header from "../../components/Header";
@@ -10,21 +11,23 @@ import AdvertHeader from "../../components/AdvertHeader";
 import { useEffect, useState } from "react";
 import React, { Suspense } from 'react';
 import { Spinner } from "@chakra-ui/react";
-import axios from "axios";
-import { server } from "../../server";
+// import axios from "axios";
+// import { server } from "../../server";
 import clothing from "../../assets/images/fashion/clothing.jpg";
 import groceries from "../../assets/images/food/groceries.jpg";
 import electronics from "../../assets/images/electronics/electronics.jpg";
 import { useParams } from "react-router-dom";
+import { useGetProductQuery } from "../../store/slices/appSlice";
+import Loader from "../../components/Loader";
 const CatalogueProduct = React.lazy(() => import('../../components/CatalogueProduct'));
 
-interface Product {
-  id: string;
-  ImageURL: string;
-  name: string;
-  retailer: string;
-  unitPrice: number;
-}
+// interface Product {
+//   id: string;
+//   ImageURL: string;
+//   name: string;
+//   retailer: string;
+//   unitPrice: number;
+// }
 
 const Categories = [
   {
@@ -48,41 +51,29 @@ const Categories = [
 ]
 
 const ProductCatalogue = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
-  const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
+  // const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
   const { categoryName } = useParams();
 
   const handleLoadMoreProducts = () => {
     setShowMoreProducts(true);
   };
 
+  const {
+    data: products,
+    isLoading,
+    error,
+    // isError
+  } = useGetProductQuery()
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`${server}/product`);
-        console.log(response.data.data)
-        setProducts(response.data.data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-    fetchProducts();
-  }, []);
+    if (error) {
+      // Handle the error state here, e.g., display an error message
+      console.error("Error fetching products:", error);
+    }
+  }, [error]);
 
-  const loadMoreProducts = () => {
-    const newProducts = products.filter(
-      (product) => !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id)
-    );
-
-    // Filter out the products that are already loaded
-    const filteredNewProducts = newProducts.filter(
-      (newProduct) => !loadedProducts.some((loadedProduct) => loadedProduct.id === newProduct.id)
-    );
-
-    setLoadedProducts((prevLoadedProducts) => [...prevLoadedProducts, ...filteredNewProducts]);
-  };
-  
   return (
     <Box
       bg={"#E2E8F0"}
@@ -121,7 +112,17 @@ const ProductCatalogue = () => {
           <Flex>
 
           </Flex>
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+              />
+            }
+          >
             <Box
               bg={"#ffffff"}
               w={"1020px"}
@@ -129,56 +130,34 @@ const ProductCatalogue = () => {
               py={"30px"}
               mb={"50px"}
             >
-              <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"0px 30px"}>
-                {products && (products.map((product) => (
+              {isLoading && <Loader/>}
+              {products && 
+                <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"0px 30px"}>
+                {products?.data.map((product: any) => (
                   <CatalogueProduct
                     key={product.id}
                     productID={product.id}
                     productImage={product.ImageURL}
                     productTitle={product.name}
-                    // Retailer={product.retailer}
-                    Retailer={"Apple"}
+                    Retailer={product.merchantId}
                     productPrice={product.unitPrice}
                   />
-                )))}
-                {showMoreProducts &&
-                products &&
-                products.map((product) => (
-                  !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id) && (
-                    <CatalogueProduct
-                      key={product.id}
-                      productID={product.id}
-                      productImage={product.ImageURL}
-                      productTitle={product.name}
-                      Retailer={product.retailer}
-                      productPrice={product.unitPrice}
-                    />
-                  )
                 ))}
               </Grid>
+              }
             </Box>
           </Suspense>
           <Box>
-          {!showMoreProducts && (
-            <Button
-              border={"1px solid #000000"}
-              color={"#000000"}
-              onClick={handleLoadMoreProducts}
-              borderRadius={"2px"}
-            >
-              Load More Products
-            </Button>
-          )}
-          {showMoreProducts && (
-            <Button
-              border={"1px solid #000000"}
-              color={"#000000"}
-              onClick={loadMoreProducts}
-              borderRadius={"2px"}
-            >
-              Load More Products
-            </Button>
-          )}
+            {showMoreProducts && (
+              <Button
+                border={"1px solid #000000"}
+                color={"#000000"}
+                onClick={handleLoadMoreProducts}
+                borderRadius={"2px"}
+              >
+                Load More Products
+              </Button>
+            )}
           </Box>
         </Flex>
       </Flex>
@@ -188,3 +167,36 @@ const ProductCatalogue = () => {
 };
 
 export default ProductCatalogue;
+
+
+
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get(`${server}/product`);
+  //       console.log(response.data.data)
+  //       setProducts(response.data.data);
+  //     } catch (error) {
+  //       console.error('Error fetching products:', error);
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, []);
+
+
+    // useEffect(() => {
+  //     if (error) {
+  //       console.error('Error fetching products:', error);
+  //     }
+  //   }, [error]);
+  // const loadMoreProducts = () => {
+  //   const newProducts = products?.filter(
+  //     (product: any) => !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id)
+  //   );
+
+  //   // Filter out the products that are already loaded
+  //   const filteredNewProducts = newProducts?.filter(
+  //   );
+
+  //   setLoadedProducts((prevLoadedProducts) => [...prevLoadedProducts, ...filteredNewProducts]);
+  // };

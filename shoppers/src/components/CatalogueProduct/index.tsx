@@ -40,6 +40,7 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
     // Navigate to the product view page
     navigate(path);
   };
+  
   const handleAddToCart = async () => {
     try {
       // Fetch the number of cart items for the user from the DB
@@ -95,6 +96,7 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
           <Text
             fontSize={"12px"}
             color={"#75757A"}
+            fontWeight={600}
           >
             {Retailer}
           </Text>
@@ -133,5 +135,3 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
 };
 
 export default CatalogueProduct;
-
-
