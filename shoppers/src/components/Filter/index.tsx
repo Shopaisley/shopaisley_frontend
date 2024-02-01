@@ -1,6 +1,6 @@
 "use client"
-import { Box, Checkbox, Flex, Input, Select, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Box, Checkbox, Flex, Input, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
 import "./index.css";
 
 const categories = ["Electronics", "Clothing", /* Add more categories */];
@@ -8,10 +8,9 @@ const categories = ["Electronics", "Clothing", /* Add more categories */];
 const colors = ["Red", "Blue", "Green", "Yellow", "Black", "White"];
 
 
-const Filter: React.FC = ({
-}) => {
+const Filter: React.FC = () => {
     const [categoryFilters, setCategoryFilters] = useState<string[]>([]);
-    const [colorFilters, setColorFilters] = useState<string[]>([]);
+    // const [colorFilters, setColorFilters] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
 
     const handleCategoryChange = (category: string) => {
@@ -22,13 +21,13 @@ const Filter: React.FC = ({
         }
     };
 
-    const handleColorChange = (color: string) => {
-        if (colorFilters.includes(color)) {
-            setColorFilters(colorFilters.filter((item) => item !== color));
-        } else {
-            setColorFilters([...colorFilters, color]);
-        }
-    };
+    // const handleColorChange = (color: string) => {
+    //     if (colorFilters.includes(color)) {
+    //         setColorFilters(colorFilters.filter((item) => item !== color));
+    //     } else {
+    //         setColorFilters([...colorFilters, color]);
+    //     }
+    // };
 
     const handlePriceRangeChange = (values: [number, number]) => {
         setPriceRange(values);
@@ -63,7 +62,7 @@ const Filter: React.FC = ({
                             color={"#000000"}
                             key={category}
                             // isChecked={categoryFilters.includes("Phones")}
-                            onChange={(e) => handleCategoryChange(category)}
+                            onChange={() => handleCategoryChange(category)}
                         >
                             {category}
                         </Checkbox>
@@ -76,13 +75,18 @@ const Filter: React.FC = ({
                     mt={"10px"}
                 >PRICE (₦)</Text>
                 <Slider
-                    my={"6px"}
+                    my={"12px"}
                     min={1000}
                     max={1000000}
                     step={2}
                     value={priceRange[0]}
                     onChange={(value) => handlePriceRangeChange([value, priceRange[1]])}
                 >
+                    <SliderThumb
+                        boxSize={4}
+                        bg='#e2f1f3'
+                        border={"0.3px solid #030303"}
+                    />
                     <SliderTrack
                         bg={"#3E7CB1"}
                     >
@@ -90,11 +94,29 @@ const Filter: React.FC = ({
                             bg={"#3E7af1"}
                         />
                     </SliderTrack>
-                    <SliderThumb />
+                    {/* <SliderThumb /> */}
                 </Slider>
-                <Box display="flex" alignContent={"center"} justifyContent="space-between">
-                    <Input type="number" border={"1px solid #000000"} value={priceRange[0]} onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])} />
-                    <Input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])} />
+                <Box display="flex" gap="5px" alignContent={"center"} justifyContent="space-between">
+                    <Input
+                        type="number"
+                        border={"1px solid #000000"}
+                        value={priceRange[0]}
+                        onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+                        _hover={{
+                            border: "1px solid #000000"
+                        }}
+                        color={"#030303"}
+                    />
+                    <Input
+                        type="number"
+                        border={"1px solid #000000"}
+                        value={priceRange[1]}
+                        onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                        _hover={{
+                            border: "1px solid #000000"
+                        }}
+                        color={"#030303"}
+                    />
                 </Box>
                 <Text
                     fontWeight="bold"
@@ -109,7 +131,7 @@ const Filter: React.FC = ({
                             color={"#000000"}
                             key={color}
                             // isChecked={categoryFilters.includes("Phones")}
-                            onChange={(e) => handleCategoryChange(color)}
+                            onChange={() => handleCategoryChange(color)}
                         >
                             {color}
                         </Checkbox>

@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 import {
   Box,
   Grid,
@@ -127,6 +125,7 @@ const ProductPage: FC<ViewPageProps> = ({
             ml={"4.4rem"}
             bg={"grey"}
             fontSize={"0.9rem"}
+            title="Select Option"
           >
             <option value="option1" color={"black"}>
               Option 1
