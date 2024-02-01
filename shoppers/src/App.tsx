@@ -8,24 +8,31 @@ import {
   Payment,
   Address,
   ProductCatalogue,
-  Product,
-
+  Product
 } from './Routes'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-function App() {
+const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout/shipping" element={<Shipping />} />
-        <Route path="/checkout/address" element={<Address />} />
-        <Route path="/checkout/payment" element={<Payment />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/product-catalogue/:categoryName" element={<ProductCatalogue />} />
-        <Route path="/product/:productId" element={<Product />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout/shipping" element={<Shipping />} />
+            <Route path="/checkout/address" element={<Address />} />
+            <Route path="/checkout/payment" element={<Payment />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/product-catalogue/:categoryName" element={<ProductCatalogue />} />
+            <Route path="/product/:productId" element={<Product />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </QueryClientProvider>
   )
 }
 
