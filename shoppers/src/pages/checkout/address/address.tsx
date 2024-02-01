@@ -21,11 +21,10 @@ import {
 // import logo from "../../assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
-<<<<<<< HEAD:src/app/checkout/address/page.tsx
-import Image from "next/image";
-=======
+
+
 // import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
->>>>>>> e609e8a06a716893eac4fd5c108ae2d01d9c8d0f:shoppers/src/pages/checkout/address/address.tsx
+
 import "./index.css";
 import CheckoutProduct from "../../../components/CheckoutProduct";
 // import CatalogueProduct from "../../../components/CatalogueProduct";
