@@ -1,1 +1,0 @@
-export const server = "https://shopaisley-backend.onrender.com";
