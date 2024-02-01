@@ -7,10 +7,10 @@ function DashboardLayout() {
   return (
     <Box
         // transform={{ base: "translateX(-100%)", lg: "none" }}
-        position="fixed"
+        // position="fixed"
         h="100vh"
-        w="280px"
-        zIndex="1"
+        w="240px"
+        // zIndex="10"
         borderRightColor={'lightgrey'}
         borderRightWidth={'0.1px'}
         className="side-menu"

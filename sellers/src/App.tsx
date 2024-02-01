@@ -1,14 +1,21 @@
 // import './App.css'
 import { Box } from "@chakra-ui/react";
-import DashboardLayout from "./components/DashboardLayout";
+import MainLayout from "./components/MainLayout";
 import SellerHeader from "./components/SellerHeader";
+
+
+
 
 function App() {
   return (
     <>
     <Box>
-      <DashboardLayout />
-      <SellerHeader userName="Ogechukwu"/>
+      
+      <MainLayout />
+      
+      
+      
+      
     </Box>
     </>
   )

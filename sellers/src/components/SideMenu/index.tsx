@@ -1,7 +1,12 @@
 import React from "react";
-import { Box, Button, Flex, Icon, Image, Text, Link } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Image, Text, Link} from "@chakra-ui/react";
 // import Link from "next/link";
-import Logo from "../../assets/icons/fi-rr-arrow-down-to-square.svg";
+import dashboard from '../../assets/icons/icons8-dashboard-32.png';
+import products from '../../assets/icons/icons8-box-24.png';
+import orders from '../../assets/icons/icons8-order-50.png';
+import notif from '../../assets/icons/icons8-notification-50.png';
+import settings from '../../assets/icons/icons8-settings-64.png';
+
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 
@@ -9,27 +14,27 @@ const menus = [
   {
     title: "Dashboard",
     link: "/",
-    icon: Logo,
+    icon: dashboard,
   },
   {
     title: "Products",
     link: "/",
-    icon: Logo,
+    icon: products,
   },
   {
     title: "Orders",
     link: "/",
-    icon: Logo,
+    icon: orders,
   },
   {
     title: "Notifications",
     link: "/",
-    icon: Logo,
+    icon: notif,
   },
   {
     title: "Settings",
     link: "/",
-    icon: Logo,
+    icon: settings,
   },
 ];
 
@@ -51,15 +56,15 @@ function SideMenu() {
               gap={"0.5rem"}
               flexDirection={"column"}
             >
-              <Text fontFamily={"Poppins"} fontWeight={600} fontSize={"20px"} color={'white'}>
-                Shopaisley
+              <Text fontFamily={"Poppins"} fontWeight={'1000rem'} fontSize={"28px"} color={'white'}>
+              Shop<span style={{ color: "#054A91" }}>aisley</span>
               </Text>
             </Flex>
           </Link>
         </Box>
         <Flex
           direction={"column"}
-          mt="32px"
+          // mt="32px"
           justifyContent={"flex-end"}
           alignItems={"flex-end"}
         >
@@ -72,15 +77,18 @@ function SideMenu() {
               <Box
                 boxShadow="rgba(0, 0, 0, 0.08) 0px 1px 4px"
                 fontFamily={"Public Sans"}
-                fontWeight={490}
-                fontSize={"17px"}
-                borderColor={"grey"}
-                py={"1.5rem"}
+                fontWeight={400}
+                fontSize={"14px"}
+                // borderColor={"grey"}
+                // py={"-1.5rem"}
                 bg="black"
-                w={"12rem"}
-                mb="20px"
-                // bgGradient={"linear(to-r, #6837f0, #9d4edd)  !important"}
+                w={"10rem"}
+                mb="12px"
+                
                 as={Button}
+                px={'1px'}
+                py={'2p'}
+                size={'sm'}
                 justifyContent={"flex-start"}
                 _hover={{
                   background: "#3E7CB1",
@@ -88,6 +96,7 @@ function SideMenu() {
                 }}
                 color="white"
               >
+                <Image src={icon } alt='user' width={18} ml={22} mr={12}/>
                 <Text>{title}</Text>
               </Box>
             </Link>
@@ -97,8 +106,8 @@ function SideMenu() {
         <Box
           borderBottom="2px"
           borderColor="gray.300"
-          width="90%"
-          my="4" // margin on the y-axis (top and bottom)
+          // width="90%"
+          // my="4" // margin on the y-axis (top and bottom)
         />
 
         {/* <Flex direction={"column"} mt="32px">
