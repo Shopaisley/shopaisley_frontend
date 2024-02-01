@@ -8,7 +8,8 @@ import {
   Payment,
   Address,
   ProductCatalogue,
-  Product
+  Product,
+  LandingPage
 } from './Routes'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/checkout/shipping" element={<Shipping />} />
             <Route path="/checkout/address" element={<Address />} />
             <Route path="/checkout/payment" element={<Payment />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/product-catalogue/:categoryName" element={<ProductCatalogue />} />
