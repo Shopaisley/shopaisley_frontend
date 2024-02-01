@@ -5,9 +5,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //     id: string;
 //     ImageURL: string;
 //     name: string;
+//     description: string;
 //     retailer: string;
 //     unitPrice: number;
 // }
+
+
 // Define the base query
 const baseQuery = fetchBaseQuery({ baseUrl: 'https://shopaisley-backend.onrender.com/' });
 
@@ -26,8 +29,8 @@ export const appApi = createApi({
     getProduct: builder.query<any, void>({
         query: () => "product",
     }),
-    getAProduct: builder.query<any, void>({
-        query: (productId) => `product/${productId}`,
+    getAProduct: builder.query<any, string>({
+      query: (productId) => `product/${productId}`, // assuming the API returns a product object
     }),
     // getPost: builder.query({
     //   query: (postId) => /posts/${postId},
@@ -39,5 +42,6 @@ export const appApi = createApi({
 export const {
     // useGetHelloV1Query,
     // useGetHelloV2Query,
-    useGetProductQuery
+    useGetProductQuery,
+    useGetAProductQuery
 } = appApi;

@@ -14,6 +14,9 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { Suspense, lazy } from 'react';
+import PageLoader from './components/PageLoader';
+import React from 'react';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -22,15 +25,78 @@ const App = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout/shipping" element={<Shipping />} />
-            <Route path="/checkout/address" element={<Address />} />
-            <Route path="/checkout/payment" element={<Payment />} />
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<Signup />} />
-            <Route path="/product-catalogue/:categoryName" element={<ProductCatalogue />} />
-            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/cart" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Cart }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/checkout/shipping" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Shipping }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/checkout/address/:productId" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Address }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/checkout/payment" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Payment }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: LandingPage }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/login" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Login }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/sign-up" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Signup }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/product-catalogue/:categoryName" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: ProductCatalogue }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/product/:productId" element={
+              <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Product }))
+                )}
+              </Suspense>
+            }
+            />
           </Routes>
         </BrowserRouter>
       </Provider>
