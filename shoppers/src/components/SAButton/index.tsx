@@ -1,9 +1,13 @@
 "use client"
 import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
+<<<<<<< HEAD:src/components/SAButton/index.tsx
+
+=======
 import "@fontsource/public-sans";
 import { useNavigate } from "react-router-dom";
 // import { useRouter } from "next/navigation";
+>>>>>>> e609e8a06a716893eac4fd5c108ae2d01d9c8d0f:shoppers/src/components/SAButton/index.tsx
 
 interface ButtonProps {
     buttonText: string;

@@ -8,8 +8,13 @@ import {
   InputGroup,
   Button,
 } from "@chakra-ui/react";
+<<<<<<< HEAD:src/components/Footer/index.tsx
+import React, { FC } from "react";
+
+=======
 import { FC } from "react";
 import "@fontsource/public-sans"
+>>>>>>> e609e8a06a716893eac4fd5c108ae2d01d9c8d0f:shoppers/src/components/Footer/index.tsx
 
 const Footer: FC = () => {
   return (
