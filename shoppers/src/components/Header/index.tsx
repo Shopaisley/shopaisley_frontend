@@ -97,28 +97,28 @@ const Header = () => {
           >
             <ChakraLink
               // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Clothing"}
+              href={"/product-catalogue/clothing"}
               color="black"
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Clothing" ? linkStyle._activeLink : linkStyle}
+              style={activeLink === "/product-catalogue/clothing" ? linkStyle._activeLink : linkStyle}
             >
               {t('Header.cloth')}
             </ChakraLink>
             <ChakraLink
               // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Groceries"}
+              href={"/product-catalogue/groceries"}
               color="black"
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Groceries" ? linkStyle._activeLink : linkStyle}
+              style={activeLink === "/product-catalogue/groceries" ? linkStyle._activeLink : linkStyle}
             >
               {t('Header.groc')}
             </ChakraLink>
             <ChakraLink
               // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Electronics"}
+              href={"/product-catalogue/electronics"}
               color="black"
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Electronics" ? linkStyle._activeLink : linkStyle}
+              style={activeLink === "/product-catalogue/electronics" ? linkStyle._activeLink : linkStyle}
             >
               {t('Header.elect')}
             </ChakraLink>

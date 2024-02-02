@@ -1,25 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { Box, Button } from "@chakra-ui/react";
 import { FC } from "react";
 import "@fontsource/public-sans";
-import { useNavigate } from "react-router-dom";
-// import { useRouter } from "next/navigation";
+// import { useNavigate } from "react-router-dom";
 
 interface ButtonProps {
     buttonText: string;
-    linkTo: string;
+    onClick: any;
 }
 
 const SAButtons: FC<ButtonProps> = (
     {
         buttonText,
-        linkTo
+        onClick
     }
 ) => {
-    const router = useNavigate()
-    const handleSubmit = () => {
-        router(linkTo)
-    }
+    // const router = useNavigate()
+    // const handleSubmit = () => {
+    //     router(linkTo)
+    // }
     return (
         <Box
             as={Button}
@@ -39,7 +39,7 @@ const SAButtons: FC<ButtonProps> = (
             _hover={{
                 color: "#000000",
             }}
-            onClick={handleSubmit}
+            onClick={onClick}
         >
             {buttonText}
         </Box>

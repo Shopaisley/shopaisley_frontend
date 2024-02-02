@@ -1,8 +1,6 @@
 // import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import {Dashboard, Products} from './Routes'
-
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Dashboard, Products } from './Routes';
 
 
 

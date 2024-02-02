@@ -17,7 +17,7 @@ import clothing from "../../assets/images/fashion/clothing.jpg";
 import groceries from "../../assets/images/food/groceries.jpg";
 import electronics from "../../assets/images/electronics/electronics.jpg";
 import { useParams } from "react-router-dom";
-import { useGetProductQuery } from "../../store/slices/appSlice";
+import { useGetAMerchantQuery, useGetProductQuery } from "../../store/slices/appSlice";
 import Loader from "../../components/Loader";
 const CatalogueProduct = React.lazy(() => import('../../components/CatalogueProduct'));
 
@@ -67,13 +67,28 @@ const ProductCatalogue = () => {
     error,
     // isError
   } = useGetProductQuery()
+  const merchantIds = products?.data.map((product: any) => product.merchantId) || [];
+  const {
+    data: merchants,
+    error: merchantError
+  } = useGetAMerchantQuery(merchantIds)
+
+  console.log(merchants)
 
   useEffect(() => {
     if (error) {
-      // Handle the error state here, e.g., display an error message
       console.error("Error fetching products:", error);
     }
-  }, [error]);
+    if (merchantError) {
+      console.error("Error fetching merchants:", error);
+    }
+  }, [error, merchantError]);
+
+  const getBusinessNameByMerchantId = (merchantId: string) => {
+    console.log(merchantId)
+    const merchant = merchants?.data.find((m: any) => m.id === merchantId);
+    return merchant?.BusinessName || "Unknown Retailer";
+  };
 
   return (
     <Box
@@ -84,7 +99,7 @@ const ProductCatalogue = () => {
       <Header />
       <Box mb={"45px"}>
         {Categories.map((category) => {
-          if (category.catName === categoryName) {
+          if (categoryName === category.catName.toLowerCase()) {
             return (
               <ProductBanner
                 key={category.id}
@@ -131,20 +146,27 @@ const ProductCatalogue = () => {
               py={"30px"}
               mb={"50px"}
             >
-              {isLoading && <Loader/>}
-              {products && 
+              {isLoading && <Loader />}
+              {products &&
                 <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"0px 30px"}>
-                {products?.data.map((product: any) => (
-                  <CatalogueProduct
-                    key={product.id}
-                    productID={product.id}
-                    productImage={product.ImageURL}
-                    productTitle={product.name}
-                    Retailer={product.merchantId}
-                    productPrice={product.unitPrice}
-                  />
-                ))}
-              </Grid>
+                  {products?.data.map((product: any) => {
+                    const productCategoryLower = product.category.toLowerCase();
+                    console.log(product.category)
+                    if (productCategoryLower === categoryName) {
+                      return (
+                        <CatalogueProduct
+                          key={product.id}
+                          productID={product.id}
+                          productImage={product.ImageURL}
+                          productTitle={product.name}
+                          Retailer={getBusinessNameByMerchantId(product.merchantId)}
+                          productPrice={product.unitPrice}
+                        />
+                      );
+                    }
+                    return null;
+                  })}
+                </Grid>
               }
             </Box>
           </Suspense>
