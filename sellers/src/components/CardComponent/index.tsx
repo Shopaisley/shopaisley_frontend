@@ -57,8 +57,8 @@ const Cardcomponent: FC<TotalComponentProps> = ({
   const parsedPercentage = parseFloat(percentage);
 
   return (
-    
-    <Stat bg={'white'} borderRadius={4} w={'270px'} >
+    <Box  borderRadius={18} borderColor={'lightgray'} borderWidth={1} borderStyle={'solid'}>
+    <Stat bg={'white'} borderRadius={4} w={'270px'} borderWidth={2} borderColor={'gray'}>
       <StatHelpText color={'grey'}>
         <StatArrow color={getFontColor(parsedPercentage)}  type={getType(parsedPercentage)} mr={'4px'} />
         <Badge
@@ -76,6 +76,7 @@ const Cardcomponent: FC<TotalComponentProps> = ({
         {number}
       </StatHelpText>
     </Stat>
+    </Box>
     
   );
 };

@@ -11,16 +11,27 @@ import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import MainLayout from "../../components/MainLayout";
 import Cardcomponent from "../../components/CardComponent";
-
+import DashboardTable from "../../components/DashboardTable";
+import data from "../../assets/DummyFiles/data.json"
 
 const Dashboard = () => {
   return (
     <MainLayout>
+    <Text mt={'30px'} ml={'78px'} fontFamily={'Public Sans'} fontSize={'24px'} fontWeight={'800'} color={'black'}>
+        Weekly Statistics
+      </Text>
     <HStack w={''} justifyContent={'space-around'} mt={'40px'} ml={'50px'} mr={'50px'} spacing={'100px'} fontFamily={'Public Sans'}>
-        <Cardcomponent name={'Total Sales'} number={'12'} percentage={'80%'}/>
-        <Cardcomponent name={'Total Consumers'} number={'40'} percentage={'29%'}/>
-        <Cardcomponent name={'Total Stock Ordered'} number={'12'} percentage={'80%'}/>
+        <Cardcomponent name={'Total Sales'} number={'1,240'} percentage={'80%'}/>
+        <Cardcomponent name={'Total Consumers'} number={'400'} percentage={'29%'}/>
+        <Cardcomponent name={'Total Stock Ordered'} number={'20,000'} percentage={'80%'}/>
     </HStack>
+    <Box>
+      <Text mt={'80px'} ml={'78px'} fontFamily={'Public Sans'} fontSize={'24px'} fontWeight={'800'} color={'black'}>
+        Recent Orders
+      </Text>
+      <DashboardTable data={data}/>
+     
+    </Box>
       <Flex ml={'50px'} w={'full'}>
         {/* <Flex w={"3024px"} h={"713"} backgroundColor={"black"}  >
           <Flex pos={"relative"} top={"-24px"}>
@@ -131,6 +142,7 @@ const Dashboard = () => {
           </Box>
         </Flex> */}
       </Flex>
+      
     </MainLayout>
   );
 };

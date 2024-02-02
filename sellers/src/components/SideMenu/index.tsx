@@ -18,22 +18,22 @@ const menus = [
   },
   {
     title: "Products",
-    link: "/",
+    link: "/products",
     icon: products,
   },
   {
     title: "Orders",
-    link: "/",
+    link: "/orders",
     icon: orders,
   },
   {
     title: "Notifications",
-    link: "/",
+    link: "/notifications",
     icon: notif,
   },
   {
     title: "Settings",
-    link: "/",
+    link: "/settings",
     icon: settings,
   },
 ];
