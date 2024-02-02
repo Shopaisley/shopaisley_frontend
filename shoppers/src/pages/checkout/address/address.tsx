@@ -1,24 +1,9 @@
-<<<<<<< HEAD:shoppers/src/app/checkout/address/page.tsx
-import LoginForm from "@/components/LoginForm";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Button from "@/components/SAButton";
-import magsafe from "@/assets/images/gadgets/magsafe.jpeg";
-import photo from "@/assets/images/gadgets/iphone.jpeg";
-import phone from "@/assets/images/gadgets/iphone.jpeg"
-import ps5 from "@/assets/images/games/ps5.jpeg"
-import {countries} from "@/app/checkout/address/countries"
-
-=======
 // import LoginForm from "../../../components/LoginForm";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Button from "../../../components/SAButton";
-import magsafe from "../../../assets/images/gadgets/magsafe.jpeg";
-import photo from "../../../assets/images/gadgets/iphone.jpeg";
 // import phone from "../../assets/images/gadgets/iphone.jpeg"
 // import ps5 from "../../assets/images/games/ps5.jpeg"
->>>>>>> 9f476b6a8fbc952182abff4b2ac73cf1f02810ba:shoppers/src/pages/checkout/address/address.tsx
 import {
   Flex,
   Text,
@@ -36,19 +21,32 @@ import "@fontsource/poppins";
 import "@fontsource/public-sans";
 // import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import "./index.css";
-<<<<<<< HEAD:shoppers/src/app/checkout/address/page.tsx
-import CheckoutProduct from "@/components/CheckoutProduct";
-import CatalogueProduct from "@/components/CatalogueProduct";
-import AdvertHeader from "@/components/AdvertHeader";
-=======
 import CheckoutProduct from "../../../components/CheckoutProduct";
 // import CatalogueProduct from "../../../components/CatalogueProduct";
->>>>>>> 9f476b6a8fbc952182abff4b2ac73cf1f02810ba:shoppers/src/pages/checkout/address/address.tsx
+import { useParams } from "react-router-dom";
+import { useGetAProductQuery } from "../../../store/slices/appSlice";
+import PageLoader from "../../../components/PageLoader";
+import { useEffect } from "react";
+
 
 const Address = () => {
+  const { productId }: { productId?: string } = useParams();
+  const { data, isLoading, error } = useGetAProductQuery(productId || "");
+
+  useEffect(() => {
+    console.log(productId)
+  }, [productId])
+
+  if (isLoading) {
+    return (<PageLoader />)   
+  }
+  if (error || !data) {
+    return <div>Error loading product details...</div>;
+  }
+
+  const product = data.data;
   return (
     <Flex fontFamily={"Public Sans"} color={"#000000"} flexDir={"column"}>
-      <AdvertHeader />
       <Header />
       <Flex w="100%" mb={"3%"} mt={"5%"} px={"10vw"} justifyContent="space-between">
         {/* <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
@@ -167,15 +165,7 @@ const Address = () => {
                 pl={"0.4rem"}
                 mr={"5%"}
                 ml={"-1%"}
-              >
-                {countries.map((country) => (
-                  <option
-                    key={country.name}
-                  >
-                    {country.name}
-                  </option>
-                ))}
-              </Select>
+              />
               <Input
                 borderRadius={"0"}
                 placeholder="City"
@@ -233,18 +223,11 @@ const Address = () => {
             Your cart
           </Text>
           <CheckoutProduct
-            productImage={photo}
-            productTitle="iPhone 15"
-            productSpecification="Pink"
+            productImage={product.ImageURL}
+            productTitle={product.name}
+            productSpecification={""}
             productQuantity="1"
-            productPrice="1,050,000"
-          ></CheckoutProduct>
-          <CheckoutProduct
-            productImage={magsafe}
-            productTitle="iPhone 15 Magsafe"
-            productSpecification="Pink"
-            productQuantity="1"
-            productPrice="50,000"
+            productPrice={product.unitPrice.toLocaleString()}
           ></CheckoutProduct>
           <InputGroup mb={"10px"}>
             <Input
@@ -297,4 +280,4 @@ const Address = () => {
   );
 };
 
-export default Address;
+export default Address;
