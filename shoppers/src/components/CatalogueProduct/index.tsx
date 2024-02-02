@@ -56,6 +56,7 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
       console.error('Error updating cart item number:', error);
     }
   };
+  
   return (
     <Box
       w={"208px"}

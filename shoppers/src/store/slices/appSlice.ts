@@ -32,6 +32,9 @@ export const appApi = createApi({
     getAProduct: builder.query<any, string>({
       query: (productId) => `product/${productId}`, // assuming the API returns a product object
     }),
+    getAMerchant: builder.query<any, string>({
+      query: (merchantId) => `merchant/${merchantId}`,
+    }),
     // getPost: builder.query({
     //   query: (postId) => /posts/${postId},
     // }),
@@ -43,5 +46,6 @@ export const {
     // useGetHelloV1Query,
     // useGetHelloV2Query,
     useGetProductQuery,
-    useGetAProductQuery
+    useGetAProductQuery,
+    useGetAMerchantQuery
 } = appApi;

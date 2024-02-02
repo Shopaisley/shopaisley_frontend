@@ -23,7 +23,7 @@ import "@fontsource/public-sans";
 import "./index.css";
 import CheckoutProduct from "../../../components/CheckoutProduct";
 // import CatalogueProduct from "../../../components/CatalogueProduct";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetAProductQuery } from "../../../store/slices/appSlice";
 import PageLoader from "../../../components/PageLoader";
 import { useEffect } from "react";
@@ -32,19 +32,25 @@ import { useEffect } from "react";
 const Address = () => {
   const { productId }: { productId?: string } = useParams();
   const { data, isLoading, error } = useGetAProductQuery(productId || "");
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(productId)
   }, [productId])
 
   if (isLoading) {
-    return (<PageLoader />)   
+    return (<PageLoader />)
   }
   if (error || !data) {
     return <div>Error loading product details...</div>;
   }
 
   const product = data.data;
+
+  const handleContinueToSHipping = () => {
+    // Navigate to the shipping page
+    navigate(`/checkout/shipping/${productId}?productName=${encodeURIComponent(product.name)}&productPrice=${encodeURIComponent(product.unitPrice)}`);
+  }
   return (
     <Flex fontFamily={"Public Sans"} color={"#000000"} flexDir={"column"}>
       <Header />
@@ -208,7 +214,7 @@ const Address = () => {
             >
               Save contact information
             </Checkbox>
-            <Button linkTo="/checkout/shipping" buttonText="Continue to Shipping"></Button>
+            <Button onClick={handleContinueToSHipping} buttonText="Continue to Shipping"></Button>
           </Box>
         </Box>
         {/* </GridItem> */}
@@ -245,7 +251,16 @@ const Address = () => {
             <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
               <Text >Subtotal</Text>
               <Text wordBreak={"break-word"} textAlign={"right"}>
-                NGN1,100,000
+                {/* {for product in p} */}
+                {product.unitPrice}
+                {/* {
+                  let subtotal = 0;
+        cartItems.forEach((item) => {
+                  subtotal += item.price * item.quantity;
+        });
+                // Display the subtotal
+                return <Text>Subtotal: NGN{subtotal.toLocaleString()}</Text>;
+      } */}
               </Text>
             </Flex>
             <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
