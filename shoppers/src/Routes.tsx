@@ -6,6 +6,7 @@ import Shipping from "./pages/checkout/shipping/shipping";
 import ProductCatalogue from "./pages/product-catalogue/ProductCatalogue";
 import Signup from "./pages/sign-up/page";
 import Product from "./pages/product/product";
+import LandingPage from "./pages/landing-page/LandingPage";
 
 export {
     Cart,
@@ -15,5 +16,6 @@ export {
     Payment,
     Address,
     ProductCatalogue,
-    Product
+    Product,
+    LandingPage
 }

@@ -17,6 +17,7 @@ const Product = () => {
                 px={"10vw"}
                 mb={"50px"}
             >
+                
                 <ProductView />
             </Box>
             <Footer />

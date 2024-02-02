@@ -1,44 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Button, Flex, Input, Select, Text, Image, Icon } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { server } from "../../server";
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import cart from "../../assets/icons/shopping-cart.svg";
+import { useGetAProductQuery } from "../../store/slices/appSlice";
+import PageLoader from "../PageLoader";
 
 interface ProductViewProps { }
 
-interface Product {
-  id: string;
-  ImageURL: string;
-  name: string;
-  retailer: string;
-  unitPrice: number;
-  description: string; // Add a description property
-}
-
 const ProductView: FC<ProductViewProps> = () => {
-  const { productId } = useParams<{ productId: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const { productId } = useParams();
+  // const [product, setProduct] = useState<Product | null>(null);
   const [itemCount, setItemCount] = useState(1);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`${server}/product/${productId}`);
-        setProduct(response.data.data);
-      } catch (error) {
-        console.error('Error fetching product details:', error);
-      }
-    };
+  const { data, isLoading, error } = useGetAProductQuery(productId || "");
+    useEffect(() => {
+    console.log(productId)
+  }, [productId])
+  if (isLoading) {
+    return (<PageLoader />)   
+  }
 
-    fetchProduct();
-  }, [productId]);
-
-  if (!product) {
-    return <div>Loading...</div>;
+  if (error || !data) {
+    return <div>Error loading product details...</div>;
   }
 
   const handleIncrement = () => {
@@ -65,6 +54,14 @@ const ProductView: FC<ProductViewProps> = () => {
       console.error('Error updating cart item number:', error);
     }
   };
+  const handleBuyNow = () => {
+    // Navigate to the checkout page with product details and price
+    navigate(`/checkout/address/${productId}?productName=${encodeURIComponent(data.data.name)}&productPrice=${encodeURIComponent(data.data.unitPrice)}&quantity=${itemCount}`);
+  };
+  //   const handleBuyNow = () => {
+  //   // Navigate to the checkout page with product details and price
+  //   navigate(`/checkout/address?productId=${encodeURIComponent(productId || "")}&productName=${encodeURIComponent(data.data.name)}&productPrice=${encodeURIComponent(data.data.unitPrice)}&quantity=${itemCount}`);
+  // };
   return (
     <Flex
       fontFamily={"Public Sans"}
@@ -77,14 +74,14 @@ const ProductView: FC<ProductViewProps> = () => {
       borderRadius={"6px"}
     >
       <Box h={"490px"} w={"420px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <Image w={"80%"} h={"80%"} src={product.ImageURL} alt="Product Image 1" mb={2} />
+        <Image w={"80%"} h={"80%"} src={data.data.ImageURL} alt="Product Image 1" mb={2} />
       </Box>
       <Box mt={"60px"}>
         <Text fontSize={"2.314rem"} fontWeight={600} mb={"1rem"} color={"black"} lineHeight={"49.371px"} letterSpacing={"-1.111px"}>
-          {product.name}
+          {data.data.name}
         </Text>
         <Text fontSize={"1.4rem"} fontWeight={400} color={"black"} lineHeight={"37.029px"} letterSpacing={"-0.741px"}>
-          ₦{product.unitPrice.toLocaleString()}
+          ₦{data.data.unitPrice.toLocaleString()}
         </Text>
         <Text
           color={"grey"}
@@ -95,11 +92,11 @@ const ProductView: FC<ProductViewProps> = () => {
           opacity={0.5}
           mb={4}
         >
-          {product.retailer}
+          {data.data.retailer}
         </Text>
 
         <Text mt={"16.94px"} lineHeight={"24.686px"} fontSize={"17.486px"} fontWeight={400} color={"black"} mb={"43.42px"}>
-          {product.description}
+          {data.data.description}
         </Text>
 
         <Flex
@@ -248,6 +245,7 @@ const ProductView: FC<ProductViewProps> = () => {
               color: "#ffffff"
             }}
             boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
+            onClick={handleBuyNow}
           >
             BUY NOW
           </Button>
@@ -258,3 +256,25 @@ const ProductView: FC<ProductViewProps> = () => {
 };
 
 export default ProductView;
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const response = await axios.get(`${server}/product/${productId}`);
+  //       setProduct(response.data.data);
+  //     } catch (error) {
+  //       console.error('Error fetching product details:', error);
+  //     }
+  //   };
+
+  //   fetchProduct();
+  // }, [productId]);
+
+  // interface Product {
+//   id: string;
+//   ImageURL: string;
+//   name: string;
+//   retailer: string;
+//   unitPrice: number;
+//   description: string; // Add a description property
+// }
