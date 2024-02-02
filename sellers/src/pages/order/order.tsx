@@ -1,32 +1,18 @@
-import { Box, Button, ChakraProvider, Flex, Grid, GridItem, Input, InputGroup, Text , Image, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Tag} from "@chakra-ui/react";
+import { Box, Button, ChakraProvider, Flex, Grid, GridItem, Input, InputGroup, Text , Image, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Tag, Checkbox} from "@chakra-ui/react";
+import MainLayout from "../../components/MainLayout";
+import AcceptOrder from "../../components/AcceptOrder";
 
 
 
 const order = () => {
+
 return(
     <Flex fontFamily={"Public Sans"} backgroundColor={"black"}  pt={"5%"} flexDir={"column"} h={"100vh"} w={"100vw"}>
     
-    <Box  display={"flex"} h={"100%"} w={"80%"} flexDir={"column"} pt={"5%"} bg={"white"} borderTopRightRadius={"20"}>
-    
-    <InputGroup >
-            
-            <Input
-               
-              placeholder="Search"
-              marginLeft={10}
-              marginRight={10}
-              _placeholder={{ color: 'black', opacity: '0.4' }}
-              w={"30rem"}
-              border={'1px solid'}
-              borderRadius={"8px"}
-              borderColor={'black'}
-              color={"black"}
-              pl={'0.4rem'}
-              
-            />
-             
-        
-          </InputGroup>
+    <Box  display={"flex"} ml={"20%"} h={"100%"} w={"80%"} flexDir={"column"} pt={"5%"} bg={"white"} borderTopLeftRadius={"20"}>
+      <Box>
+    <AcceptOrder/>
+    </Box>
           <Box pt={"5%"} marginLeft={10}
               marginRight={10}>
             <Text fontSize={"230%"}>
@@ -51,6 +37,7 @@ return(
         <Td><Tag colorScheme="blue">shipped</Tag></Td>
         <Td>NGN10000</Td>
       </Tr>
+     
       <Tr>
       <Td><strong>Jeffrey</strong><Text>jeffrey@gmail.com</Text></Td>
         <Td>12/10/2003</Td>
@@ -58,6 +45,7 @@ return(
         <Td><Tag colorScheme="blue">shipped</Tag></Td>
         <Td>NGN10000</Td>
       </Tr>
+      
       <Tr>
       <Td><strong>Alo</strong><Text>alo@gmail.com</Text></Td>
         <Td>12/10/2003</Td>
@@ -65,6 +53,7 @@ return(
         <Td><Tag colorScheme="blue">shipped</Tag></Td>
         <Td>NGN10000</Td>
       </Tr>
+      
     </Tbody>
     </Table>
     </TableContainer>
