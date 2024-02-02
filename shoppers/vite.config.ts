@@ -11,4 +11,12 @@ export default defineConfig({
       filename: 'my-sw.ts'
     })
   ],
+  // server: {
+  //   proxy: {
+  //     "product": {
+  //       target: "https://shopaisley-backend.onrender.com/",
+  //       changeOrigin: true,
+  //     },
+  //   },
+  // }
 });
