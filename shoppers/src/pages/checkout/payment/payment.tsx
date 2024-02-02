@@ -51,6 +51,13 @@ const Page = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
+          <Flex flexDir={"column"}
+              
+              h={"100%"}
+              w={"78.5%"}
+              display={"flex"}
+              position={"relative"}
+              >
           <Box display={"flex"} flexDir={"column"} h={"100px"} mt={"10%"}>
             <Text fontSize={"230%"} h={"100%"}>
               <strong>Checkout</strong>
@@ -67,7 +74,7 @@ const Page = () => {
                 Address
               </Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -75,7 +82,7 @@ const Page = () => {
               ></Divider>
               <Text fontSize={"100%"}>Shipping</Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -84,7 +91,7 @@ const Page = () => {
               <Text fontSize={"100%"}><strong>Payment</strong></Text>
             </Flex>
           </Box>
-          <Box h={"39.46px"} w={"35%"} border={"1px solid"} pt={"10px"} bgColor={"white"}>
+          <Box h={"39.46px"} w={"35%"} border={"1px solid"} mt={"13.46px"} pt={"10px"} bgColor={"white"}>
             <center>
           <Image src={photo} alt='paystack' width={89}></Image>
           </center>
@@ -158,7 +165,8 @@ const Page = () => {
                color={"black"}
                pl={"0.4rem"}
                mr={"5%"}
-               ml={"-1.2%"}
+              
+               
                >
               <option value='option1'>2024</option>
               <option value='option2'>2025</option>
@@ -178,11 +186,12 @@ const Page = () => {
                 borderRadius={"0"}
                 placeholder="CVC"
                 _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"33%"}
+                w={"30%"}
                 border={"2px solid"}
                 borderColor={"#909090"}
                 color={"black"}
                 pl={"0.4rem"}
+                mr={"1.2%"}
               />
             </InputGroup>
             <FormControl display='flex' alignItems='center' mt={"20px"}
@@ -195,6 +204,7 @@ const Page = () => {
 
             <Button buttonText="Pay with card"></Button>
           </Box>
+          </Flex>
         </GridItem>
         <GridItem
           bgColor={"#EFF2F6"}

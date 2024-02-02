@@ -32,6 +32,13 @@ const Shipping = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
+        <Flex flexDir={"column"}
+              
+              h={"100%"}
+              w={"78.5%"}
+              display={"flex"}
+              position={"relative"}
+              >
           <Box display={"flex"} flexDir={"column"} h={"100px"} mt={"10%"}>
             <Text fontSize={"230%"} h={"100%"} mb={"5px"}>
               <strong>Checkout</strong>
@@ -49,7 +56,7 @@ const Shipping = () => {
                 Address
               </Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -57,7 +64,7 @@ const Shipping = () => {
               ></Divider>
               <Text  fontSize={"100%"}><strong>Shipping</strong></Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -66,21 +73,22 @@ const Shipping = () => {
               <Text fontSize={"100%"}>Payment</Text>
             </Flex>
           </Box>
-          <Box h={"78.92px"} w={"85%"} border={"2px solid"} mb={"20px"} pt={"10px"} bgColor={"white"}>
+
+          <Box h={"78.92px"} w={"100%"}  mb={"20px"} pt={"10px"} bgColor={"white"}>
           <Checkbox
               mt={"5px"}
               color={"#909090"}
               mb={"20px"}
               paddingLeft={"30px"}
               className="custom-checkbox"
-              isChecked
+             
             >
              <Text  fontSize={"100%"} color={"black"} mt={"2.5px"} ><strong>DHL Economy Payment</strong></Text>
              <Text  fontSize={"100%"} color={"black"}>4-7 business days</Text>
             </Checkbox>
           </Box>
 
-          <Box h={"78.92px"} w={"85%"} mb={"100px"}  pt={"20px"} bgColor={"white"}>
+          <Box h={"78.92px"} w={"100%"} mb={"100px"}  pt={"20px"} bgColor={"white"}>
           <Checkbox
               mt={"1.25px"}
               color={"#909090"}
@@ -97,6 +105,7 @@ const Shipping = () => {
 
             <Button  buttonText="Continue to payment" linkTo={"/checkout/payment"}></Button>
           </Box>
+          </Flex>
         </GridItem>
 
         <GridItem
