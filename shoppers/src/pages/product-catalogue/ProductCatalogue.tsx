@@ -6,6 +6,7 @@ import ProductBanner from "../../components/ProductBanner";
 import Filter from "../../components/Filter";
 import "@fontsource/public-sans"
 import "@fontsource/poppins"
+import { useTranslation } from 'react-i18next';
 import Footer from "../../components/Footer";
 import AdvertHeader from "../../components/AdvertHeader";
 import { useEffect, useState } from "react";
@@ -51,6 +52,13 @@ const Categories = [
 ]
 
 const ProductCatalogue = () => {
+  const { t, i18n } = useTranslation();
+  const translatedCloth = t('ProductBanner.cloth');
+  const translatedGroc = t('ProductBanner.groc');
+  const translatedElect = t('ProductBanner.elect');
+  const translatedClothText = t('ProductBanner.clothtext');
+  const translatedGrocText = t('ProductBanner.groctext');
+  const translatedElectText = t('ProductBanner.electtext');
   // const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
   // const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);

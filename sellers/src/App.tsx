@@ -1,22 +1,18 @@
 // import './App.css'
-import { Box } from "@chakra-ui/react";
-import MainLayout from "./components/MainLayout";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import {Dashboard} from './Routes'
 
 
 
 
 function App() {
   return (
-    <>
-    <Box>
-      
-      <MainLayout />
-      
-      
-      
-      
-    </Box>
-    </>
+    <BrowserRouter>
+    <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+    </BrowserRouter>
   )
 }
 

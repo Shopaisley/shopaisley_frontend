@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text, Image, Spacer, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import AdvertHeader from "../../components/AdvertHeader";
+import { useTranslation } from 'react-i18next';
 // import BlackHeader from '../../components/BlackHeader'
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
@@ -10,12 +11,15 @@ import gadgets from "../../assets/images/gadgets.svg";
 import girl from "../../assets/images/girl.svg";
 import BlackHeader from "../../components/BlackHeader";
 
+
 function LandingPage() {
+  const { t, i18n } = useTranslation();
+
   return (
     <Box bg={"#000"} h={"100%"} fontFamily={"Public Sans"}>
       <AdvertHeader />
       <BlackHeader />
-
+      
       <Flex justifyContent={"space-around"} mt={"34px"}>
         <Box>
           <Text
@@ -25,11 +29,12 @@ function LandingPage() {
             lineHeight={"normal"}
             fontSize={"64px"}
             mt={'35px'}
+            ml={'40px'}
           >
-            The <br /> Supermarket <br /> in your <br /> pocket.
+            {t('landingPage.supermarketInPocket')}
           </Text>
-          <Text color={"#fff"} fontSize={"24px"} fontFamily={"Public Sans"} mt={'12px'}>
-            You’ll never line up in a <br /> queue again.
+          <Text color={"#fff"} ml={'40px'} fontSize={"24px"} fontFamily={"Public Sans"} mt={'12px'}>
+          {t('landingPage.neverQueueAgain')}
           </Text>
         </Box>
 
@@ -47,7 +52,7 @@ function LandingPage() {
           letterSpacing={"-0.617px"}
           color={"#fff"}
         >
-          What aisle are you visiting first?
+          {t('landingPage.aisleVisit')}
         </Text>
       </Flex>
       <Flex justifyContent={"space-around"}>

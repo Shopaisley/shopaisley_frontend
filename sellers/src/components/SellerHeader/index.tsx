@@ -32,7 +32,7 @@ const SellerHeader: FC<SellerHeaderProps> = (
 ) => {
   return (
     <Box fontFamily={"Public Sans"}   borderBottomColor={'lightgrey'}
-    borderBottomWidth={'0.1px'} w={'1294px'} >
+    borderBottomWidth={'0.1px'} w={'1274px'} top={0} position={"fixed"}>
       {/* Sentence */}
 
       {/* Navbar */}

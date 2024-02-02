@@ -1,0 +1,32 @@
+{
+    "landingPage": {
+      "supermarketInPocket": "Le supermarché dans votre poche.",
+      "neverQueueAgain": "Vous ne ferez plus  jamais la queue.",
+      "aisleVisit": "Quel rayon visitez-vous en premier ?"
+    },
+    "blackHeader":{
+      "sell": "Vendre sur Shopaisley",
+      "sign": "S'identifier"
+    },
+    "advertHeader":{
+      "free": "LIVRAISON GRATUITE POUR TOUTES LES COMMANDES SUPÉRIEURES À 20 000,00 NGN CE BLACK FRIDAY !",
+      "contact": "Contactez-nous"
+    },
+    "Header":{
+      "cloth": "Vêtement",
+      "groc": "Épicerie",
+      "elect": "Électronique",
+      "search": "Rechercher",
+      "sign": "S'identifier"
+    },
+    "ProductBanner":{
+      "cloth": "Vêtement",
+      "groc": "Épicerie",
+      "elect": "Électronique",
+      "clothtext": "Découvrez une large gamme d’options vestimentaires pour toutes les occasions.",
+      "groctext": "Des produits d’épicerie de qualité livrés directement à votre porte.",
+      "electtext": "Magasinez pour vos appareils électroniques de qualité et abordables."
+      
+    }
+  }
+  

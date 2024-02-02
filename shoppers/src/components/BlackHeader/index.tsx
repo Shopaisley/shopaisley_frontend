@@ -11,6 +11,7 @@ import {
 import shoppingBag from '../../assets/icons/shopping-bag.svg';
 import searchBar from '../../assets/icons/fi-rr-search.svg';
 import logo from "../../assets/images/shopaisley-logo.png";
+import { useTranslation } from 'react-i18next';
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import { useEffect, useState } from 'react';
@@ -18,6 +19,7 @@ import {
   useLocation,
   // useNavigate
 } from 'react-router-dom';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 
 const BlackHeader = () => {
@@ -25,6 +27,7 @@ const BlackHeader = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const { linkStyle } = useStyles();
+  const { t, i18n } = useTranslation();
 
   // useEffect(() => {
   //   const currentPath = location.pathname;
@@ -85,11 +88,13 @@ const BlackHeader = () => {
             </Flex>
           </ChakraLink>
           
+          <LanguageSwitcher />
           
         </Flex>
 
 
         {/* Search Bar */}
+        
 
 
         {/* Login Button */}
@@ -98,6 +103,7 @@ const BlackHeader = () => {
           justify={"center"}
           align="center"
         >
+          
           <ChakraLink
             href='/'
             
@@ -110,7 +116,7 @@ const BlackHeader = () => {
               transition: "0.2s ease-in"
             }}
           >
-            Sell on Shopaisley
+            {t('blackHeader.sell')}
           </ChakraLink>
          
           <ChakraLink
@@ -118,6 +124,7 @@ const BlackHeader = () => {
             bgColor={'#054A91'}
             color={'white'}
             as={Button}
+            // mr={'2rem'}
             fontWeight={'400'}
             _hover={{
               textDecor: "none",
@@ -125,9 +132,11 @@ const BlackHeader = () => {
               color: "black"
             }}
           >
-            Sign In
+          {t('blackHeader.sign')}
           </ChakraLink>
+          
         </Flex>
+        
       </Flex>
     </Box>
   );
