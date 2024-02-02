@@ -4,6 +4,7 @@ import Footer from "../../../components/Footer";
 import Button from "../../../components/SAButton";
 import photo from "../../../assets/images/image 5.png"
 import phone from "../../../assets/images/gadgets/iphone.png"
+import AdvertHeader from "../../../components/AdvertHeader";
 import {
   Flex,
   Text,
@@ -30,6 +31,7 @@ import CheckoutProduct from "../../../components/CheckoutProduct";
 const Payment = () => {
   return (
     <Box fontFamily={"Public Sans"}>
+      <AdvertHeader />
       <Header />
       <Grid templateColumns="repeat(2, 1fr)" h={"100vh"}>
         <GridItem
