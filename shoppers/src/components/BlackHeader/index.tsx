@@ -3,13 +3,10 @@ import {
   Flex,
   Text,
   Link as ChakraLink,
-  Input,
-  InputGroup,
   Button,
   Image
 } from '@chakra-ui/react';
-import shoppingBag from '../../assets/icons/shopping-bag.svg';
-import searchBar from '../../assets/icons/fi-rr-search.svg';
+
 import logo from "../../assets/images/shopaisley-logo.png";
 import { useTranslation } from 'react-i18next';
 import "@fontsource/public-sans";
@@ -23,7 +20,6 @@ import LanguageSwitcher from '../LanguageSwitcher';
 
 
 const BlackHeader = () => {
-  // const navigate = useNavigate();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const { linkStyle } = useStyles();
@@ -92,12 +88,6 @@ const BlackHeader = () => {
           
         </Flex>
 
-
-        {/* Search Bar */}
-        
-
-
-        {/* Login Button */}
         <Flex
           flexDir={"row"}
           justify={"center"}
@@ -105,8 +95,7 @@ const BlackHeader = () => {
         >
           
           <ChakraLink
-            href='/'
-            
+            href='http://localhost:5174/'
             color={'white'}
             fontWeight={'400'}
             mr={4}
@@ -118,18 +107,18 @@ const BlackHeader = () => {
           >
             {t('blackHeader.sell')}
           </ChakraLink>
-         
+          
           <ChakraLink
             href='/login'
             bgColor={'#054A91'}
             color={'white'}
-            as={Button}
-            // mr={'2rem'}
+            borderRadius={4}
+            p={2}
             fontWeight={'400'}
             _hover={{
               textDecor: "none",
-              bgColor: "white",
-              color: "black"
+              bgColor:'white',
+              color:'#054A91'
             }}
           >
           {t('blackHeader.sign')}

@@ -1,34 +1,43 @@
-import React, {useState} from "react";
-import {
-    Flex,
-    Text,
-    Box,
-    Table,
-    Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalBody,
-    ModalFooter,
-} from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Text, Box, Button } from "@chakra-ui/react";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import MainLayout from "../../components/MainLayout";
-import data from "../../assets/DummyFiles/productdata.json"
+import data from "../../assets/DummyFiles/productdata.json";
 import ProductsTable from "../../components/ProductTable";
 
-function Products() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
 
-    const handleNewProductClick = () => {
-      setIsModalOpen(true);
-    };
-  
-    const handleCloseModal = () => {
-      setIsModalOpen(false);
-    };
+  return (
+    <Box
+      pos={"fixed"}
+      top={"0"}
+      left={"0"}
+      w={"100%"}
+      h={"100%"}
+      bg={"rgba(0, 0, 0, 0.5)"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
+      <Box bg={"#fff"} p={"20px"} borderRadius={"8px"}>
+        {children}
+      </Box>
+    </Box>
+  );
+};
+
+function Products() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleNewProductClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <MainLayout>
       <Flex alignContent={"center"} justifyContent={"space-between"}>
@@ -42,7 +51,18 @@ function Products() {
         >
           Products
         </Text>
-        <Button h={"40px"} size="md" mt={"30px"} mr={"80px"} onClick={handleNewProductClick}>
+        <Button
+          h={"40px"}
+          size="md"
+          mt={"30px"}
+          mr={"80px"}
+          onClick={handleNewProductClick}
+          _hover={{
+            color: "white",
+            cursor: "pointer",
+            bgColor: "#3E7CB1",
+          }}
+        >
           {" "}
           New Product{" "}
         </Button>
@@ -52,22 +72,17 @@ function Products() {
       </Box>
 
       {/* Modal for Editing */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} size="xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            
-          </ModalBody>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <>
+          <Text>Title</Text>
+          <Box>
+            <Text>Title</Text>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleCloseModal}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
+            <Box mt={"20px"}>
+              <Button onClick={handleCloseModal}>Close</Button>
+            </Box>
+          </Box>
+        </>
       </Modal>
     </MainLayout>
   );

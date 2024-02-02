@@ -15,9 +15,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { Suspense, lazy } from 'react';
 import PageLoader from './components/PageLoader';
-import React from 'react';
 
 // const Home = lazy(() => import('./pages/landing-page'));
 
