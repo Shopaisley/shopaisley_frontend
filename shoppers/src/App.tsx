@@ -1,4 +1,5 @@
 // import './App.css'
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
   Cart,
@@ -14,6 +15,8 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+
+// const Home = lazy(() => import('./pages/landing-page'));
 
 const App = () => {
   const queryClient = new QueryClient();

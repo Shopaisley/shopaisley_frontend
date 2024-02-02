@@ -1,8 +1,7 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import { Box, Text, Image, Spacer, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import AdvertHeader from "../../components/AdvertHeader";
 import { useTranslation } from 'react-i18next';
-// import BlackHeader from '../../components/BlackHeader'
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import groceries from "../../assets/images/groceries.svg";
@@ -10,6 +9,8 @@ import cloth from "../../assets/images/cloth.svg";
 import gadgets from "../../assets/images/gadgets.svg";
 import girl from "../../assets/images/girl.svg";
 import BlackHeader from "../../components/BlackHeader";
+import Loader from "../../components/Loader";
+
 
 
 function LandingPage() {
@@ -38,7 +39,9 @@ function LandingPage() {
           </Text>
         </Box>
 
-        <Image src={girl} alt="shopping girl" />
+        <Suspense fallback={<Loader />}>
+          <Image src={girl} alt="shopping girl" loading="lazy"/>
+        </Suspense>
       </Flex>
 
       <Flex justifyContent={"center"} mt={'47px'}>
@@ -56,11 +59,11 @@ function LandingPage() {
         </Text>
       </Flex>
       <Flex justifyContent={"space-around"}>
-        <ChakraLink href="/product-catalogue/Clothing"><Image src={cloth} alt="cloth" mt={'27px'}/></ChakraLink>
+        <ChakraLink href="/product-catalogue/Clothing"><Image src={cloth} alt="cloth" mt={'27px'} loading="lazy"/></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Groceries"><Image src={groceries} alt="groceries" /></ChakraLink>
+        <ChakraLink href="/product-catalogue/Groceries"><Image src={groceries} alt="groceries" loading="lazy"/></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Electronics"><Image src={gadgets} alt="gadgets" /></ChakraLink>
+        <ChakraLink href="/product-catalogue/Electronics"><Image src={gadgets} alt="gadgets" loading="lazy"/></ChakraLink>
       </Flex>
     </Box>
   );

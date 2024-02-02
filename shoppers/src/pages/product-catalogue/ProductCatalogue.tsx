@@ -6,7 +6,6 @@ import ProductBanner from "../../components/ProductBanner";
 import Filter from "../../components/Filter";
 import "@fontsource/public-sans"
 import "@fontsource/poppins"
-import { useTranslation } from 'react-i18next';
 import Footer from "../../components/Footer";
 import AdvertHeader from "../../components/AdvertHeader";
 import { useEffect, useState } from "react";
@@ -52,13 +51,7 @@ const Categories = [
 ]
 
 const ProductCatalogue = () => {
-  const { t, i18n } = useTranslation();
-  const translatedCloth = t('ProductBanner.cloth');
-  const translatedGroc = t('ProductBanner.groc');
-  const translatedElect = t('ProductBanner.elect');
-  const translatedClothText = t('ProductBanner.clothtext');
-  const translatedGrocText = t('ProductBanner.groctext');
-  const translatedElectText = t('ProductBanner.electtext');
+
   // const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
   // const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
@@ -178,33 +171,4 @@ export default ProductCatalogue;
 
 
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await axios.get(`${server}/product`);
-  //       console.log(response.data.data)
-  //       setProducts(response.data.data);
-  //     } catch (error) {
-  //       console.error('Error fetching products:', error);
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, []);
-
-
-    // useEffect(() => {
-  //     if (error) {
-  //       console.error('Error fetching products:', error);
-  //     }
-  //   }, [error]);
-  // const loadMoreProducts = () => {
-  //   const newProducts = products?.filter(
-  //     (product: any) => !loadedProducts.some((loadedProduct) => loadedProduct.id === product.id)
-  //   );
-
-  //   // Filter out the products that are already loaded
-  //   const filteredNewProducts = newProducts?.filter(
-  //   );
-
-  //   setLoadedProducts((prevLoadedProducts) => [...prevLoadedProducts, ...filteredNewProducts]);
-  // };
+ 
