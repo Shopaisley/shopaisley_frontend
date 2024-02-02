@@ -4,6 +4,7 @@ import Footer from "../../../components/Footer";
 import Button from "../../../components/SAButton";
 import photo from "../../../assets/images/image 5.png"
 import phone from "../../../assets/images/gadgets/iphone.png"
+import AdvertHeader from "../../../components/AdvertHeader";
 import {
   Flex,
   Text,
@@ -23,15 +24,8 @@ import {
 // import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
-<<<<<<< HEAD:shoppers/src/app/checkout/payment/page.tsx
-import Image from "next/image";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import CheckoutProduct from "@/components/CheckoutProduct";
-import AdvertHeader from "@/components/AdvertHeader";
-=======
 // import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import CheckoutProduct from "../../../components/CheckoutProduct";
->>>>>>> 9f476b6a8fbc952182abff4b2ac73cf1f02810ba:shoppers/src/pages/checkout/payment/payment.tsx
 
 
 const Payment = () => {
