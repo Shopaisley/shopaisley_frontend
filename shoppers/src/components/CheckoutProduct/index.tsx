@@ -7,7 +7,7 @@ interface CheckoutProductProps {
   productTitle: string;
   productSpecification: string;
   productQuantity: string;
-  productPrice: number;
+  productPrice: string;
 }
 
 const CheckoutProduct: FC<CheckoutProductProps> = ({
