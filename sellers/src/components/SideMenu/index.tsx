@@ -31,11 +31,11 @@ const menus = [
     link: "/notifications",
     icon: notif,
   },
-  {
-    title: "Settings",
-    link: "/settings",
-    icon: settings,
-  },
+  // {
+  //   title: "Settings",
+  //   link: "/settings",
+  //   icon: settings,
+  // },
 ];
 
 function SideMenu() {
@@ -108,7 +108,7 @@ function SideMenu() {
 
         <Box borderBottom="2px" borderColor="gray.300" />
         <Link
-          mt={"80px"}
+          mt={"100px"}
           color={"white"}
           href="http://localhost:5173/"
           _hover={{
