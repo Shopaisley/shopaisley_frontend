@@ -1,5 +1,5 @@
-import { Box, Button, ChakraProvider, Flex, Grid, GridItem, Input, InputGroup, Text , Image, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Tag, Checkbox} from "@chakra-ui/react";
-import MainLayout from "../../components/MainLayout";
+import { Box, Flex, Text , Table, TableContainer, Tbody, Td, Th, Thead, Tr, Tag} from "@chakra-ui/react";
+
 import AcceptOrder from "../../components/AcceptOrder";
 
 
@@ -10,10 +10,10 @@ return(
     <Flex fontFamily={"Public Sans"} backgroundColor={"black"}  pt={"5%"} flexDir={"column"} h={"100vh"} w={"100vw"}>
     
     <Box  display={"flex"} ml={"20%"} h={"100%"} w={"80%"} flexDir={"column"} pt={"5%"} bg={"white"} borderTopLeftRadius={"20"}>
-      <Box>
+    <Flex justify={"Flex-end"}>
     <AcceptOrder/>
-    </Box>
-          <Box pt={"5%"} marginLeft={10}
+    </Flex>
+          <Box marginLeft={10}
               marginRight={10}>
             <Text fontSize={"230%"}>
                 <strong>Orders</strong>

@@ -13,12 +13,12 @@ import {
    
   } from '@chakra-ui/react'
  
-    const AcceptOrder = () => {
+    const SaveProduct = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
       
       <Box>
-        <Button onClick={onOpen} colorScheme={"blue"}>Accept Order</Button>
+        <Button onClick={onOpen} colorScheme={"blue"}>Save Product</Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -26,7 +26,7 @@ import {
             <ModalHeader></ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              Order Accepted
+              Product saved
             </ModalBody>
   
             <ModalFooter>
@@ -40,4 +40,4 @@ import {
     );
   };
   
-  export default AcceptOrder;
+  export default SaveProduct;
