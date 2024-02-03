@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Image, Spacer, Flex, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Text, Image, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import AdvertHeader from "../../components/AdvertHeader";
 // import BlackHeader from '../../components/BlackHeader'
 import "@fontsource/poppins";
@@ -51,11 +51,11 @@ function LandingPage() {
         </Text>
       </Flex>
       <Flex justifyContent={"space-around"}>
-        <ChakraLink href="/product-catalogue/Clothing"><Image src={cloth} alt="cloth" mt={'27px'}/></ChakraLink>
+        <ChakraLink href="/product-catalogue/clothing"><Image src={cloth} alt="cloth" mt={'27px'}/></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Groceries"><Image src={groceries} alt="groceries" /></ChakraLink>
+        <ChakraLink href="/product-catalogue/groceries"><Image src={groceries} alt="groceries" /></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Electronics"><Image src={gadgets} alt="gadgets" /></ChakraLink>
+        <ChakraLink href="/product-catalogue/electronics"><Image src={gadgets} alt="gadgets" /></ChakraLink>
       </Flex>
     </Box>
   );

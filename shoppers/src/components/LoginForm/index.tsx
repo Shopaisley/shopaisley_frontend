@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup} from "@chakra-ui/react";
+import { Flex, FormControl, FormLabel, Input, FormErrorMessage, InputGroup, InputRightElement, IconButton, Text, Link as ChakraLink, Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 // import { useRouter } from "next/navigation";
@@ -11,6 +11,10 @@ import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import SubmitBtn from "../SubmitBtn";
 import "./index.css";
+import { useSignInMutation } from "../../store/slices/appSlice";
+import { server } from "../../services/server";
+import axios from "axios";
+import { isAuthenticated, setAuthToken, setCustomerID } from "../../services/authService";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -52,57 +56,86 @@ const LoginForm = () => {
         return { isValid, errorMessage };
     };
 
+    const createCart = async () => {
+        if (isAuthenticated()) {
+            try {
+                const token = localStorage.getItem('authToken');
+                const cart = localStorage.getItem('cart')
+                console.log(cart)
+                // const productsInCart = 
+                if (cart && cart.length > 0) {
+                    const res = await axios.post(
+                        `${server}/order/cart`,
+                        {
+                            "cart": cart
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                            },
+                        }
+                    );
+                    console.log(res.data);
+                } else {
+                    const res = await axios.post(
+                        `${server}/order/cart`,
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                            },
+                        }
+                    );
+                    console.log(res.data);
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         setLoading(true);
         setError(null);
 
-        toast.success('Login successful');
-        router("/product-catalogue")
+        // toast.success('Login successful');
+        // router("/product-catalogue")
 
-        // if (email.trim() === "" || password.trim() === "") {
-        //     setError("All fields are required.");
-        //     setLoading(false);
-        //     return;
-        // }
+        if (email.trim() === "" || password.trim() === "") {
+            setError("All fields are required.");
+            setLoading(false);
+            return;
+        }
 
-        // try {
-        //     const res = await axios.post(
-        //         `${server}/auth/login`,
-        //         {
-        //             "email": email,
-        //             "password": password,
-        //         },
-        //         // { withCredentials: true }
-        //     );
+        try {
+            const res = await axios.post(
+                `${server}/auth/signin`,
+                {
+                    "email": email,
+                    "password": password,
+                },
+                // { withCredentials: true }
+            );
 
-        //     // Assuming the backend returns a success message upon successful login
-        //     if (res.status === 200) {
-        //         toast.success("Login Success!");
-        //         const token = res.data.data.token;
-        //         const customerID = res.data.data.customerID
-        //         // console.log(token);
-        //         setAuthToken(token);
-        //         setCustomerID(customerID);
-        //         navigate("/home");
-        //         console.log(customerID);
-        //         console.log(sessionStorage.getItem('authToken'));
-        //     }
-        //     else {
-        //         // console.log(res.status);
-        //         // Handle other responses from the backend as needed
-        //         // toast.error("Login failed. Please check your credentials.");
-        //     }
+            // Assuming the backend returns a success message upon successful login
+            if (res.status === 200) {
+                const token = res.data.data.access_token;
+                setAuthToken(token);
+                createCart();
+                router("/product-catalogue/clothing");
+                console.log(localStorage.getItem('authToken'));
+            }
+            else {
+                console.log(res.status);
+            }
 
-        //     setLoading(false);
-        // } catch (err: any) {
-        //     console.log(err)
-        //     // toast.error("Login failed. Please check your credentials.");
-        //     setLoading(false);
-        //     // toast.error(err.response.data.data.message);
-        // }
-        // setLoading(false);
+            setLoading(false);
+        } catch (err: any) {
+            console.log(err)
+        }
+        setLoading(false);
     };
     return (
         <Flex
@@ -212,7 +245,7 @@ const LoginForm = () => {
                                 fontWeight={700}
                                 href="forgot-password"
                                 textDecoration="none"
-                                _hover={{ textDecor: "none"}}
+                                _hover={{ textDecor: "none" }}
                             >
                                 Forgot your Password?
                             </ChakraLink>

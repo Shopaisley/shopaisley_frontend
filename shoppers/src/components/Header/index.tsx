@@ -6,7 +6,8 @@ import {
   Input,
   InputGroup,
   Button,
-  Image
+  Image,
+  Icon
 } from '@chakra-ui/react';
 import shoppingBag from '../../assets/icons/shopping-bag.svg';
 import searchBar from '../../assets/icons/fi-rr-search.svg';
@@ -14,16 +15,19 @@ import logo from "../../assets/images/shopaisley-logo.png";
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import { useEffect, useState } from 'react';
+// import { JwtPayload, decode } from 'jsonwebtoken';
 import {
   useLocation,
-  // useNavigate
 } from 'react-router-dom';
+import { FaUserCheck } from "react-icons/fa";
+// import { FiUser } from 'react-icons/fi';
 
 
 const Header = () => {
   // const navigate = useNavigate();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(null);
+  const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
   const { linkStyle } = useStyles();
 
   // useEffect(() => {
@@ -34,15 +38,64 @@ const Header = () => {
   //   }
   // }, [navigate, location]);
 
+  // useEffect(() => {
+  //   setActiveLink(location.pathname);
+  // }, [location.pathname]);
+
+  // const getLoggedInUser = () => {
+  //   const authToken = localStorage.getItem('authToken');
+
+  //   if (authToken) {
+  //     try {
+  //       // Decode the JWT to get user information
+  //       const decodedToken = decode(authToken) as JwtPayload;
+  //       console.log(decodedToken)
+
+  //       if (decodedToken) {
+  //         // Assuming the token contains a field like 'username'
+  //         const username = decodedToken.username;
+  //         return username;
+  //       }
+  //     } catch (error) {
+  //       console.error('Error decoding token:', error);
+  //     }
+  //   }
+
+  //   return null;
+  // };
+
+  const getLoggedInUser = () => {
+    const authToken = localStorage.getItem('authToken');
+
+    if (authToken) {
+      try {
+        const tokenParts = authToken.split('.');
+        const payload = JSON.parse(atob(tokenParts[1]));
+        console.log(payload)
+
+
+        if (payload) {
+          // Assuming the token contains a field like 'username'
+          const username = payload.user_id;
+          return username;
+        }
+      } catch (error) {
+        console.error('Error parsing token:', error);
+      }
+    }
+
+    return null;
+  };
+
   useEffect(() => {
+    // Set active link based on the current location
     setActiveLink(location.pathname);
+
+    // Check if the user is logged in and set the username
+    const user = getLoggedInUser(); // You should implement this function
+    setLoggedInUser(user);
   }, [location.pathname]);
 
-
-  // const handleNavLinkClick = (category: string) => {
-  //   // Update the URL when a navigation link is clicked
-  //   navigate(`/product-catalogue/${category}`);
-  // };
   return (
     <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}
       boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
@@ -168,23 +221,40 @@ const Header = () => {
         {/* Login Button */}
         <Flex
           flexDir={"row"}
-          justify={"center"}
+          justifyItems={"center"}
           align="center"
         >
           <Flex>
             <Image src={shoppingBag} alt='shopping bag' width={"20px"}></Image>
             <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
           </Flex>
-          <ChakraLink
-            href='/login'
-            color={'black'}
-            fontWeight={'600'}
-            _hover={{
-              textDecor: "none"
-            }}
+          <Flex
           >
-            Sign In
-          </ChakraLink>
+            {loggedInUser ? (
+              <Icon
+                color={"#054A91"}
+                w={"30px"}
+                h={"30px"}
+                ml={"12px"}
+                mt={"15px"}
+                // mr={2}
+                // mt={1}
+              >
+                <FaUserCheck />
+              </Icon>
+            ) : (
+              <ChakraLink
+                href='/login'
+                color={'black'}
+                fontWeight={'600'}
+                _hover={{
+                  textDecor: "none"
+                }}
+              >
+                Sign In
+              </ChakraLink>
+            )}
+          </Flex>
         </Flex>
       </Flex>
     </Box>
@@ -213,3 +283,4 @@ const useStyles = () => {
     },
   }
 };
+

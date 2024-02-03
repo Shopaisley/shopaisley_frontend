@@ -10,9 +10,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 //     unitPrice: number;
 // }
 
-
 // Define the base query
-const baseQuery = fetchBaseQuery({ baseUrl: 'https://shopaisley-backend.onrender.com/' });
+const baseQuery = fetchBaseQuery({
+  baseUrl: "https://shopaisley-backend.onrender.com/",
+});
 
 // Create an API slice
 export const appApi = createApi({
@@ -20,21 +21,33 @@ export const appApi = createApi({
   baseQuery,
   tagTypes: ["User"],
   endpoints: (builder) => ({
-    // getHelloV1: builder.query<any, void>({
-    //   query: () => "v1",
-    // }),
-    // getHelloV2: builder.query<any, void>({
-    //   query: () => "v2",
-    // }),
     getProduct: builder.query<any, void>({
-        query: () => "product",
+      query: () => "product",
     }),
     getAProduct: builder.query<any, string>({
-      query: (productId) => `product/${productId}`, // assuming the API returns a product object
+      query: (productId) => `product/${productId}`,
     }),
     getAMerchant: builder.query<any, string>({
       query: (merchantId) => `merchant/${merchantId}`,
     }),
+    getMerchantName: builder.query<any, string>({
+      query: () => "merchant",
+    }),
+    getPostMerchantIds: builder.mutation<any, { merchantIds: string[] }>({
+      query: (merchantIds) => ({
+        url: "merchant",
+        method: "POST",
+        body: { merchantIds },
+      }),
+    }),
+    signIn: builder.mutation<any, { email: string, password: string }>({
+      query: ({ email, password }) => ({
+        url: "auth/signin",
+        method: "POST",
+        body: { email, password },
+      }),
+    }),
+
     // getPost: builder.query({
     //   query: (postId) => /posts/${postId},
     // }),
@@ -43,9 +56,9 @@ export const appApi = createApi({
 
 // Export hooks for usage in functional components
 export const {
-    // useGetHelloV1Query,
-    // useGetHelloV2Query,
-    useGetProductQuery,
-    useGetAProductQuery,
-    useGetAMerchantQuery
+  useGetProductQuery,
+  useGetAProductQuery,
+  useGetAMerchantQuery,
+  useGetPostMerchantIdsMutation,
+  useSignInMutation
 } = appApi;

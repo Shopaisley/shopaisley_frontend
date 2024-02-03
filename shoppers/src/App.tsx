@@ -17,6 +17,7 @@ import { store } from './store/store';
 import { Suspense, lazy } from 'react';
 import PageLoader from './components/PageLoader';
 import React from 'react';
+// import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -33,7 +34,7 @@ const App = () => {
               </Suspense>
             }
             />
-            <Route path="/checkout/shipping" element={
+            <Route path="/checkout/shipping/:productId" element={
               <Suspense fallback={<PageLoader />}>
                 {React.createElement(
                   lazy(() => Promise.resolve({ default: Shipping }))
@@ -49,7 +50,7 @@ const App = () => {
               </Suspense>
             }
             />
-            <Route path="/checkout/payment" element={
+            <Route path="/checkout/payment/:productId" element={
               <Suspense fallback={<PageLoader />}>
                 {React.createElement(
                   lazy(() => Promise.resolve({ default: Payment }))
@@ -98,6 +99,19 @@ const App = () => {
             }
             />
           </Routes>
+          {/* <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            // transition= "Bounce",
+/> */}
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
