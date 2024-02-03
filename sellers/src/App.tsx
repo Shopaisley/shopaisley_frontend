@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import MainLayout from "./components/MainLayout";
 import SellerHeader from "./components/SellerHeader";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import { Order, Test } from "./Routes";
+import { Order } from "./Routes";
 
 
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/test" element={<Test/>}/>
+      
       <Route path="/order" element={<Order/>}/>
     </Routes>
       
