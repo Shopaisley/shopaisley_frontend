@@ -1,0 +1,4 @@
+{
+  "/not-found": "app/not-found.js",
+  "/checkout/shipping/page": "app/checkout/shipping/page.js"
+}
