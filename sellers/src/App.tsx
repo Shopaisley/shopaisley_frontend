@@ -1,11 +1,6 @@
-// import './App.css'
-import { Box } from "@chakra-ui/react";
-import MainLayout from "./components/MainLayout";
-import SellerHeader from "./components/SellerHeader";
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import { Order } from "./Routes";
-
-
+import './App.css'
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Login, Signup, Order } from './Routes';
 
 
 
@@ -13,11 +8,11 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Routes>
-      
-      <Route path="/order" element={<Order/>}/>
-    </Routes>
-      
+      <Routes>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/signup' element={<Signup />}/>
+        <Route path="/order" element={<Order/>}/>
+      </Routes>
     </BrowserRouter>
   )
 }
