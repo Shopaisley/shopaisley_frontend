@@ -1,9 +1,10 @@
 "use client"
-import { Box, Checkbox, Flex, Input, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text } from "@chakra-ui/react";
+import { Box, Checkbox, Flex, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import "./index.css";
+import DoubleSlider from "../Slider";
 
-const categories = ["Electronics", "Clothing", /* Add more categories */];
+// const categories = ["Electronics", "Clothing", /* Add more categories */];
 // const prices = ["0 - 50", "50 - 100", "$100 and above"];
 const colors = ["Red", "Blue", "Green", "Yellow", "Black", "White"];
 
@@ -44,7 +45,7 @@ const Filter: React.FC = () => {
             <Flex
                 flexDir={"column"}
             >
-                <Text
+                {/* <Text
                     fontSize={"15px"}
                     fontWeight={"bold"}
                     lineHeight={"28px"}
@@ -67,14 +68,17 @@ const Filter: React.FC = () => {
                             {category}
                         </Checkbox>
                     ))}
-                </Flex>
+                </Flex> */}
                 <Text
                     fontWeight="bold"
                     lineHeight={"28px"}
                     color={"#000000"}
                     mt={"10px"}
                 >PRICE (₦)</Text>
-                <Slider
+                <DoubleSlider min={1000} max={2000000} values={[priceRange[0], priceRange[0+1]]}
+                    onChange={(value) => handlePriceRangeChange(value)}
+                />
+                {/* <Slider
                     my={"12px"}
                     min={1000}
                     max={1000000}
@@ -94,8 +98,8 @@ const Filter: React.FC = () => {
                             bg={"#3E7af1"}
                         />
                     </SliderTrack>
-                    {/* <SliderThumb /> */}
-                </Slider>
+                    <SliderThumb />
+                </Slider>  */}
                 <Box display="flex" gap="5px" alignContent={"center"} justifyContent="space-between">
                     <Input
                         type="number"
@@ -142,4 +146,8 @@ const Filter: React.FC = () => {
 };
 
 export default Filter;
+
+
+
+
 

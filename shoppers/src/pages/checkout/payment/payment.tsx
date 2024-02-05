@@ -8,27 +8,39 @@ import AdvertHeader from "../../../components/AdvertHeader";
 import {
   Flex,
   Text,
-  // Link as ChakraLink,
+  Link as ChakraLink,
   Box,
   Grid,
   Divider,
   GridItem,
+  Heading,
   Input,
   InputGroup,
+  Checkbox,
+  Table,
+  Tr,
+  Td,
+  Th,
+  Tfoot,
+  Tbody,
+  Thead,
+  TableCaption,
+  TableContainer,
   Switch,
   FormControl,
   FormLabel,
+  Stack,
   Select,
-  Image
 } from "@chakra-ui/react";
-// import logo from "@/assets/images/shopaisley-logo.png";
+import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
-// import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import CheckoutProduct from "../../../components/CheckoutProduct";
+import Image from "next/image";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import CheckoutProduct from "@/components/CheckoutProduct";
 
 
-const Payment = () => {
+const Page = () => {
   return (
     <Box fontFamily={"Public Sans"}>
       <AdvertHeader />
@@ -40,6 +52,13 @@ const Payment = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
+          <Flex flexDir={"column"}
+              
+              h={"100%"}
+              w={"78.5%"}
+              display={"flex"}
+              position={"relative"}
+              >
           <Box display={"flex"} flexDir={"column"} h={"100px"} mt={"10%"}>
             <Text fontSize={"230%"} h={"100%"}>
               <strong>Checkout</strong>
@@ -56,7 +75,7 @@ const Payment = () => {
                 Address
               </Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -64,7 +83,7 @@ const Payment = () => {
               ></Divider>
               <Text fontSize={"100%"}>Shipping</Text>
               <Divider
-                w={"20%"}
+                w={"50%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -73,7 +92,7 @@ const Payment = () => {
               <Text fontSize={"100%"}><strong>Payment</strong></Text>
             </Flex>
           </Box>
-          <Box h={"39.46px"} w={"35%"} border={"1px solid"} pt={"10px"} bgColor={"white"}>
+          <Box h={"39.46px"} w={"35%"} border={"1px solid"} mt={"13.46px"} pt={"10px"} bgColor={"white"}>
             <center>
           <Image src={photo} alt='paystack' width={89}></Image>
           </center>
@@ -147,7 +166,8 @@ const Payment = () => {
                color={"black"}
                pl={"0.4rem"}
                mr={"5%"}
-               ml={"-1.2%"}
+              
+               
                >
               <option value='option1'>2024</option>
               <option value='option2'>2025</option>
@@ -167,11 +187,12 @@ const Payment = () => {
                 borderRadius={"0"}
                 placeholder="CVC"
                 _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"33%"}
+                w={"30%"}
                 border={"2px solid"}
                 borderColor={"#909090"}
                 color={"black"}
                 pl={"0.4rem"}
+                mr={"1.2%"}
               />
             </InputGroup>
             <FormControl display='flex' alignItems='center' mt={"20px"}
@@ -182,8 +203,9 @@ const Payment = () => {
             <Switch id='future-payments' />
             </FormControl>
 
-            <Button buttonText="Pay with card" linkTo={""}></Button>
+            <Button buttonText="Pay with card"></Button>
           </Box>
+          </Flex>
         </GridItem>
         <GridItem
           bgColor={"#EFF2F6"}
@@ -239,4 +261,4 @@ const Payment = () => {
   );
 };
 
-export default Payment;
+export default Page;

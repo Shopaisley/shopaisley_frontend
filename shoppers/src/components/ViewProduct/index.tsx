@@ -3,7 +3,7 @@ import { Box, Button, Flex, Input, Select, Text, Image, Icon } from "@chakra-ui/
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { server } from "../../server";
+import { server } from "../../services/server";
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import cart from "../../assets/icons/shopping-cart.svg";

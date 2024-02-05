@@ -1,5 +1,6 @@
 import React, {lazy, Suspense} from "react";
 import { Box, Text, Image, Spacer, Flex, Link as ChakraLink } from "@chakra-ui/react";
+import React from "react";
 import AdvertHeader from "../../components/AdvertHeader";
 import { useTranslation } from 'react-i18next';
 import "@fontsource/poppins";
@@ -59,11 +60,11 @@ function LandingPage() {
         </Text>
       </Flex>
       <Flex justifyContent={"space-around"}>
-        <ChakraLink href="/product-catalogue/Clothing"><Image src={cloth} alt="cloth" mt={'27px'} loading="lazy"/></ChakraLink>
+        <ChakraLink href="/product-catalogue/clothing"><Image src={cloth} alt="cloth" mt={'27px'}/></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Groceries"><Image src={groceries} alt="groceries" loading="lazy"/></ChakraLink>
+        <ChakraLink href="/product-catalogue/groceries"><Image src={groceries} alt="groceries" /></ChakraLink>
         
-        <ChakraLink href="/product-catalogue/Electronics"><Image src={gadgets} alt="gadgets" loading="lazy"/></ChakraLink>
+        <ChakraLink href="/product-catalogue/electronics"><Image src={gadgets} alt="gadgets" /></ChakraLink>
       </Flex>
     </Box>
   );

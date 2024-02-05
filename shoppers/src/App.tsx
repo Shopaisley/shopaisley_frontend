@@ -17,8 +17,6 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import PageLoader from './components/PageLoader';
 
-// const Home = lazy(() => import('./pages/landing-page'));
-
 const App = () => {
   const queryClient = new QueryClient();
   return (
@@ -34,7 +32,7 @@ const App = () => {
               </Suspense>
             }
             />
-            <Route path="/checkout/shipping" element={
+            <Route path="/checkout/shipping/:productId" element={
               <Suspense fallback={<PageLoader />}>
                 {React.createElement(
                   lazy(() => Promise.resolve({ default: Shipping }))
@@ -50,7 +48,7 @@ const App = () => {
               </Suspense>
             }
             />
-            <Route path="/checkout/payment" element={
+            <Route path="/checkout/payment/:productId" element={
               <Suspense fallback={<PageLoader />}>
                 {React.createElement(
                   lazy(() => Promise.resolve({ default: Payment }))
@@ -99,6 +97,19 @@ const App = () => {
             }
             />
           </Routes>
+          {/* <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            // transition= "Bounce",
+/> */}
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>

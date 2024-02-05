@@ -8,7 +8,7 @@ import "@fontsource/public-sans"
 import "@fontsource/poppins"
 import Footer from "../../components/Footer";
 import AdvertHeader from "../../components/AdvertHeader";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React, { Suspense } from 'react';
 import { Spinner } from "@chakra-ui/react";
 // import axios from "axios";
@@ -17,7 +17,7 @@ import clothing from "../../assets/images/fashion/clothing.jpg";
 import groceries from "../../assets/images/food/groceries.jpg";
 import electronics from "../../assets/images/electronics/electronics.jpg";
 import { useParams } from "react-router-dom";
-import { useGetAMerchantQuery, useGetProductQuery } from "../../store/slices/appSlice";
+import { useGetProductQuery } from "../../store/slices/appSlice";
 import Loader from "../../components/Loader";
 const CatalogueProduct = React.lazy(() => import('../../components/CatalogueProduct'));
 
@@ -64,31 +64,12 @@ const ProductCatalogue = () => {
   const {
     data: products,
     isLoading,
-    error,
-    // isError
+    // error,
   } = useGetProductQuery()
+
   const merchantIds = products?.data.map((product: any) => product.merchantId) || [];
-  const {
-    data: merchants,
-    error: merchantError
-  } = useGetAMerchantQuery(merchantIds)
-
-  console.log(merchants)
-
-  useEffect(() => {
-    if (error) {
-      console.error("Error fetching products:", error);
-    }
-    if (merchantError) {
-      console.error("Error fetching merchants:", error);
-    }
-  }, [error, merchantError]);
-
-  const getBusinessNameByMerchantId = (merchantId: string) => {
-    console.log(merchantId)
-    const merchant = merchants?.data.find((m: any) => m.id === merchantId);
-    return merchant?.BusinessName || "Unknown Retailer";
-  };
+  // const uniqueMerchants = Array.from(new Set(merchantIds));
+  console.log(merchantIds)
 
   return (
     <Box
@@ -151,7 +132,7 @@ const ProductCatalogue = () => {
                 <Grid w={"100%"} templateColumns="repeat(4, 1fr)" gap={"0px 30px"}>
                   {products?.data.map((product: any) => {
                     const productCategoryLower = product.category.toLowerCase();
-                    console.log(product.category)
+                    // console.log(product.category)
                     if (productCategoryLower === categoryName) {
                       return (
                         <CatalogueProduct
@@ -159,7 +140,7 @@ const ProductCatalogue = () => {
                           productID={product.id}
                           productImage={product.ImageURL}
                           productTitle={product.name}
-                          Retailer={getBusinessNameByMerchantId(product.merchantId)}
+                          Retailer={""}
                           productPrice={product.unitPrice}
                         />
                       );
@@ -186,8 +167,7 @@ const ProductCatalogue = () => {
       </Flex>
       <Footer />
     </Box>
-  );
-};
+  );}
 
 export default ProductCatalogue;
 

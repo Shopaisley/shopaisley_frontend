@@ -11,7 +11,7 @@ import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
-import { server } from "../../server";
+import { server } from "../../services/server";
 
 const SignupForm = () => {
     const [fname, setFname] = useState("");
