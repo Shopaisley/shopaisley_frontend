@@ -7,7 +7,7 @@ function DashboardLayout() {
   return (
     <Box
         // transform={{ base: "translateX(-100%)", lg: "none" }}
-        // position="fixed"
+        position="fixed"
         h="100vh"
         w="240px"
         // zIndex="10"

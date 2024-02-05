@@ -1,6 +1,10 @@
 import { Flex, Text } from "@chakra-ui/react"
+import { useTranslation } from 'react-i18next';
+
 
 const AdvertHeader = () => {
+    const { t, i18n } = useTranslation();
+
     return (
         <Flex
             color={"#FFFFFF"}
@@ -15,10 +19,10 @@ const AdvertHeader = () => {
                 NGN
             </Text>
             <Text fontSize="sm" mb={2}>
-                FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!
+                {t('advertHeader.free')}
             </Text>
             <Text fontSize="sm" textAlign='end' mr={'2rem'} mb={2}>
-                Contact Us
+                {t('advertHeader.contact')}
             </Text>
         </Flex>
     )

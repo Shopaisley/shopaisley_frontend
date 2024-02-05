@@ -51,6 +51,7 @@ const Categories = [
 ]
 
 const ProductCatalogue = () => {
+
   // const [products, setProducts] = useState<Product[]>([]);
   const [showMoreProducts, setShowMoreProducts] = useState(false);
   // const [loadedProducts, setLoadedProducts] = useState<Product[]>([]);
@@ -169,3 +170,7 @@ const ProductCatalogue = () => {
   );}
 
 export default ProductCatalogue;
+
+
+
+ 

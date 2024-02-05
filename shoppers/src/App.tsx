@@ -1,4 +1,5 @@
 // import './App.css'
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
   Cart,
@@ -14,10 +15,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { Suspense, lazy } from 'react';
 import PageLoader from './components/PageLoader';
-import React from 'react';
-// import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const queryClient = new QueryClient();

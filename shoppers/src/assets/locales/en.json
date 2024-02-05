@@ -1,0 +1,33 @@
+{
+    "landingPage": {
+      "supermarketInPocket": "The Supermarket\n in your Pocket",
+      "neverQueueAgain": "You'll never stand\n in line again.",
+      "aisleVisit": "What aisle are you visiting first?"
+    },
+    "blackHeader":{
+      "sell": "Sell on Shopaisley",
+      "sign": "Sign In"
+    },
+    "advertHeader":{
+      "free": "FREE SHIPPING ON ALL ORDERS ABOVE NGN20,000.00 THIS BLACK FRIDAY!",
+      "contact": "Contact Us"
+    },
+    "Header":{
+      "cloth": "Clothing",
+      "groc": "Groceries",
+      "elect": "Electronics",
+      "search": "Search",
+      "sign": "Sign In"
+    },
+    "ProductBanner":{
+      "cloth": "Clothing",
+      "groc": "Groceries",
+      "elect": "Electronics",
+      "clothtext": "Discover a wide range of clothing options for every occasion.",
+      "groctext": "Quality groceries delivered right to your doorstep.",
+      "electtext": "Shop for your quality and affordable electronics."
+      
+    }
+
+  }
+  

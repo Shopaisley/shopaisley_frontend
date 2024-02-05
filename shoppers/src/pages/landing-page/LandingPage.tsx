@@ -1,21 +1,27 @@
+import React, {lazy, Suspense} from "react";
+import { Box, Text, Image, Spacer, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import React from "react";
-import { Box, Text, Image, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import AdvertHeader from "../../components/AdvertHeader";
-// import BlackHeader from '../../components/BlackHeader'
+import { useTranslation } from 'react-i18next';
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 import groceries from "../../assets/images/groceries.svg";
 import cloth from "../../assets/images/cloth.svg";
 import gadgets from "../../assets/images/gadgets.svg";
 import girl from "../../assets/images/girl.svg";
-import Header from "../../components/Header";
+import BlackHeader from "../../components/BlackHeader";
+import Loader from "../../components/Loader";
+
+
 
 function LandingPage() {
+  const { t, i18n } = useTranslation();
+
   return (
     <Box bg={"#000"} h={"100%"} fontFamily={"Public Sans"}>
       <AdvertHeader />
-      <Header />
-
+      <BlackHeader />
+      
       <Flex justifyContent={"space-around"} mt={"34px"}>
         <Box>
           <Text
@@ -25,15 +31,18 @@ function LandingPage() {
             lineHeight={"normal"}
             fontSize={"64px"}
             mt={'35px'}
+            ml={'40px'}
           >
-            The <br /> Supermarket <br /> in your <br /> pocket.
+            {t('landingPage.supermarketInPocket')}
           </Text>
-          <Text color={"#fff"} fontSize={"24px"} fontFamily={"Public Sans"} mt={'12px'}>
-            You’ll never line up in a <br /> queue again.
+          <Text color={"#fff"} ml={'40px'} fontSize={"24px"} fontFamily={"Public Sans"} mt={'12px'}>
+          {t('landingPage.neverQueueAgain')}
           </Text>
         </Box>
 
-        <Image src={girl} alt="shopping girl" />
+        <Suspense fallback={<Loader />}>
+          <Image src={girl} alt="shopping girl" loading="lazy"/>
+        </Suspense>
       </Flex>
 
       <Flex justifyContent={"center"} mt={'47px'}>
@@ -47,7 +56,7 @@ function LandingPage() {
           letterSpacing={"-0.617px"}
           color={"#fff"}
         >
-          What aisle are you visiting first?
+          {t('landingPage.aisleVisit')}
         </Text>
       </Flex>
       <Flex justifyContent={"space-around"}>

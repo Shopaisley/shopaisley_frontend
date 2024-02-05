@@ -3,6 +3,6 @@
     "development"
   ],
   "hints": {
-    "axe/forms": "off"
+    "compat-api/css": "off"
   }
 }
