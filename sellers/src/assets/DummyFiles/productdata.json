@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "productCategory": "Electronics",
+      "stock": 25,
+      "price": 499.99
+    },
+    {
+      "id": 2,
+      "productCategory": "Clothing",
+      "stock": 50,
+      "price": 29.99
+    },
+    {
+      "id": 3,
+      "productCategory": "Groceries",
+      "stock": 100,
+      "price": 5.99
+    },
+    {
+      "id": 4,
+      "productCategory": "Electronics",
+      "stock": 10,
+      "price": 799.99
+    },
+    {
+      "id": 5,
+      "productCategory": "Clothing",
+      "stock": 30,
+      "price": 49.99
+    }
+  ]
+  

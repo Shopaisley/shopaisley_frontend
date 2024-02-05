@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+
+
+.simple-table {
+    width: 88%;
+    font-size: 14px;
+    font-family: 'Public Sans', sans-serif;
+    /* border-collapse: collapse; */
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-left: 78px;
+    color: #000;
+  }
+  
+  .simple-table th, .simple-table td {
+    border: 0.1px solid lightgray;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: left;
+  }
+  
+  .simple-table th {
+    background-color: #f2f2f2;
+  }
+  

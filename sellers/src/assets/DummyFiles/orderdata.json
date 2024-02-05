@@ -1,0 +1,38 @@
+[
+    {
+      "customer": "John Doe",
+      "date": "2024-02-01",
+      "paid": true,
+      "status": "Shipped",
+      "total": 120.5
+    },
+    {
+      "customer": "Alice Smith",
+      "date": "2024-02-02",
+      "paid": false,
+      "status": "Pending",
+      "total": 85.0
+    },
+    {
+      "customer": "Bob Johnson",
+      "date": "2024-02-03",
+      "paid": true,
+      "status": "Delivered",
+      "total": 200.0
+    },
+    {
+      "customer": "Eva Davis",
+      "date": "2024-02-04",
+      "paid": true,
+      "status": "Shipped",
+      "total": 150.75
+    },
+    {
+      "customer": "Charlie Brown",
+      "date": "2024-02-05",
+      "paid": false,
+      "status": "Pending",
+      "total": 60.0
+    }
+  ]
+  

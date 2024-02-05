@@ -1,0 +1,32 @@
+{
+    "landingPage": {
+      "supermarketInPocket": "El Supermercado\n en tu bolsillo",
+      "neverQueueAgain": "Nunca volverás a hacer\n cola en una cola.",
+      "aisleVisit": "¿Qué pasillo vas a visitar primero?"
+    },
+    "blackHeader":{
+      "sell": "Vender en Shopaisley",
+      "sign": "Inicia sesión"
+    },
+    "advertHeader":{
+      "free": "¡ENVÍO GRATIS EN TODOS LOS PEDIDOS SUPERIORES A NGN20,000.00 ESTE BLACK FRIDAY!",
+      "contact": "Contáctenos"
+    },
+    "Header":{
+      "cloth": "Ropa",
+      "groc": "Comestibles",
+      "elect": "Electrónica",
+      "search": "Buscar",
+      "sign": "Inicia sesión"
+    },
+    "ProductBanner":{
+      "cloth": "Ropa",
+      "groc": "Comestibles",
+      "elect": "Electrónica",
+      "clothtext": "Descubre una amplia gama de opciones de ropa para cada ocasión.",
+      "groctext": "Comestibles de calidad entregados directamente en la puerta de su casa.",
+      "electtext": "Compre sus productos electrónicos asequibles y de calidad."
+      
+    }
+  }
+  

@@ -3,14 +3,12 @@ import {
   Flex,
   Text,
   Link as ChakraLink,
-  Input,
-  InputGroup,
   Button,
   Image
 } from '@chakra-ui/react';
-import shoppingBag from '../../assets/icons/shopping-bag.svg';
-import searchBar from '../../assets/icons/fi-rr-search.svg';
+
 import logo from "../../assets/images/shopaisley-logo.png";
+import { useTranslation } from 'react-i18next';
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import { useEffect, useState } from 'react';
@@ -18,13 +16,14 @@ import {
   useLocation,
   // useNavigate
 } from 'react-router-dom';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 
 const BlackHeader = () => {
-  // const navigate = useNavigate();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const { linkStyle } = useStyles();
+  const { t, i18n } = useTranslation();
 
   // useEffect(() => {
   //   const currentPath = location.pathname;
@@ -44,14 +43,14 @@ const BlackHeader = () => {
   //   navigate(`/product-catalogue/${category}`);
   // };
   return (
-    <Box fontFamily={"Public Sans"} borderBottom={"1px solid #909090"} position="sticky" top={0} zIndex={10}
+    <Box fontFamily={"Public Sans"} borderBottom={"0.1px solid #909090"} position="sticky" top={0} zIndex={10}
       boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
     >
       <Flex
         as={"nav"}
         align="center"
         justifyContent={'space-between'}
-        bg={'white'}
+        bg={'black'}
         px={'2rem'}
         py={'1.3rem'}
         width="100%"
@@ -75,7 +74,7 @@ const BlackHeader = () => {
                 height={"40px"}
               />
               <Text
-                color={"#000000"}
+                color={"#fff"}
                 fontFamily={"Public Sans"}
                 fontWeight={700}
                 fontSize={"21px"}
@@ -84,108 +83,49 @@ const BlackHeader = () => {
               </Text>
             </Flex>
           </ChakraLink>
-          <Flex
-            flexDir={"row"}
-            w={"12vw"}
-            gap={"25px"}
-            marginX={"4vw"}
-            justify={"center"}
-          >
-            <ChakraLink
-              // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Clothing"}
-              color="black"
-              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Clothing" ? linkStyle._activeLink : linkStyle}
-            >
-              Clothing
-            </ChakraLink>
-            <ChakraLink
-              // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Groceries"}
-              color="black"
-              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Groceries" ? linkStyle._activeLink : linkStyle}
-            >
-              Groceries
-            </ChakraLink>
-            <ChakraLink
-              // onClick={() => handleNavLinkClick("Clothing")}
-              href={"/product-catalogue/Electronics"}
-              color="black"
-              _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
-              style={activeLink === "/product-catalogue/Electronics" ? linkStyle._activeLink : linkStyle}
-            >
-              Electronics
-            </ChakraLink>
-          </Flex>
-          <InputGroup ml={'4rem'}>
-            <Image src={searchBar} alt='seachBar' width={"20px"}></Image>
-            <Input
-              placeholder="Search"
-              marginLeft={3}
-              marginRight={3}
-              _placeholder={{ color: 'black', opacity: '0.4' }}
-              w={"30rem"}
-              border={'2px solid'}
-              borderRadius={"8px"}
-              borderColor={'black'}
-              color={"black"}
-              pl={'0.4rem'}
-            />
-            <Button
-              h="2rem"
-              size="md"
-              marginTop={1}
-              color={"white"}
-              fontSize={"14px"}
-              fontWeight={500}
-              bg={"#054A91"}
-              borderColor={'black'}
-              borderRadius={'4px'}
-              px={"12px"}
-              py={"16px"}
-              lineHeight={"16px"}
-              _hover={{
-                backgroundColor: 'white',
-                color: 'white',
-                cursor: 'pointer',
-                bgColor: '#3E7CB1',
-                // borderColor: '#3E7CB1',
-                // border: "2px solid"
-              }}
-              boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
-            >
-              SEARCH
-            </Button>
-          </InputGroup>
+          
+          <LanguageSwitcher />
+          
         </Flex>
 
-
-        {/* Search Bar */}
-
-
-        {/* Login Button */}
         <Flex
           flexDir={"row"}
           justify={"center"}
           align="center"
         >
-          <Flex>
-            <Image src={shoppingBag} alt='shopping bag' width={"20px"}></Image>
-            <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
-          </Flex>
+          
           <ChakraLink
-            href='/login'
-            color={'black'}
-            fontWeight={'600'}
+            href='http://localhost:5174/'
+            color={'white'}
+            fontWeight={'400'}
+            mr={4}
             _hover={{
-              textDecor: "none"
+              borderBottom: "3px solid #054A91",
+              color: "#054A91",
+              transition: "0.2s ease-in"
             }}
           >
-            Sign In
+            {t('blackHeader.sell')}
           </ChakraLink>
+          
+          <ChakraLink
+            href='/login'
+            bgColor={'#054A91'}
+            color={'white'}
+            borderRadius={4}
+            p={2}
+            fontWeight={'400'}
+            _hover={{
+              textDecor: "none",
+              bgColor:'white',
+              color:'#054A91'
+            }}
+          >
+          {t('blackHeader.sign')}
+          </ChakraLink>
+          
         </Flex>
+        
       </Flex>
     </Box>
   );

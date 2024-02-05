@@ -9,6 +9,7 @@ import {
   Image,
   Icon
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import shoppingBag from '../../assets/icons/shopping-bag.svg';
 import searchBar from '../../assets/icons/fi-rr-search.svg';
 import logo from "../../assets/images/shopaisley-logo.png";
@@ -19,12 +20,13 @@ import { useEffect, useState } from 'react';
 import {
   useLocation,
 } from 'react-router-dom';
+import LanguageSwitcher from '../LanguageSwitcher';
 import { FaUserCheck } from "react-icons/fa";
-// import { FiUser } from 'react-icons/fi';
 
 
 const Header = () => {
   // const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
@@ -151,7 +153,7 @@ const Header = () => {
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
               style={activeLink === "/product-catalogue/clothing" ? linkStyle._activeLink : linkStyle}
             >
-              Clothing
+              {t('Header.cloth')}
             </ChakraLink>
             <ChakraLink
               // onClick={() => handleNavLinkClick("Clothing")}
@@ -160,7 +162,7 @@ const Header = () => {
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
               style={activeLink === "/product-catalogue/groceries" ? linkStyle._activeLink : linkStyle}
             >
-              Groceries
+              {t('Header.groc')}
             </ChakraLink>
             <ChakraLink
               // onClick={() => handleNavLinkClick("Clothing")}
@@ -169,7 +171,7 @@ const Header = () => {
               _hover={{ borderBottom: "3px solid #054A91", transition: "0.2s ease-in-out", }}
               style={activeLink === "/product-catalogue/electronics" ? linkStyle._activeLink : linkStyle}
             >
-              Electronics
+              {t('Header.elect')}
             </ChakraLink>
           </Flex>
           <InputGroup ml={'4rem'}>
@@ -209,7 +211,7 @@ const Header = () => {
               }}
               boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
             >
-              SEARCH
+              {t('Header.search')}
             </Button>
           </InputGroup>
         </Flex>
@@ -217,6 +219,7 @@ const Header = () => {
 
         {/* Search Bar */}
 
+        <LanguageSwitcher />
 
         {/* Login Button */}
         <Flex
@@ -230,6 +233,8 @@ const Header = () => {
           </Flex>
           <Flex
           >
+            {t('Header.sign')}
+          </ChakraLink>
             {loggedInUser ? (
               <Icon
                 color={"#054A91"}
