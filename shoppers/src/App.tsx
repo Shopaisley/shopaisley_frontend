@@ -9,7 +9,8 @@ import {
   Address,
   ProductCatalogue,
   Product,
-  LandingPage
+  LandingPage,
+  Success
 } from './Routes'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from 'react-redux';
@@ -92,6 +93,14 @@ const App = () => {
             />
             <Route path="/product/:productId" element={
               <Suspense fallback={<PageLoader />}>
+                {React.createElement(
+                  lazy(() => Promise.resolve({ default: Product }))
+                )}
+              </Suspense>
+            }
+            />
+            <Route path="/success" element={
+              <Suspense fallback={<Success />}>
                 {React.createElement(
                   lazy(() => Promise.resolve({ default: Product }))
                 )}

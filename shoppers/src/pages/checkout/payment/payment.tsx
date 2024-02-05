@@ -2,45 +2,38 @@
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Button from "../../../components/SAButton";
-import photo from "../../../assets/images/image 5.png"
+import photo from "../../../assets/images/electronics/coffee-maker.jpeg";
 import phone from "../../../assets/images/gadgets/iphone.png"
 import AdvertHeader from "../../../components/AdvertHeader";
 import {
   Flex,
   Text,
-  Link as ChakraLink,
+  // Link as ChakraLink,
   Box,
   Grid,
   Divider,
   GridItem,
-  Heading,
   Input,
   InputGroup,
-  Checkbox,
-  Table,
-  Tr,
-  Td,
-  Th,
-  Tfoot,
-  Tbody,
-  Thead,
-  TableCaption,
-  TableContainer,
   Switch,
   FormControl,
   FormLabel,
-  Stack,
   Select,
+  Image
 } from "@chakra-ui/react";
-import logo from "@/assets/images/shopaisley-logo.png";
+// import logo from "@/assets/images/shopaisley-logo.png";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
-import Image from "next/image";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import CheckoutProduct from "@/components/CheckoutProduct";
+// import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import CheckoutProduct from "../../../components/CheckoutProduct";
+import { useNavigate } from "react-router-dom";
 
 
-const Page = () => {
+const Payment = () => {
+  const navigate = useNavigate()
+  const handlePay = () => {
+    navigate("/success")
+  }
   return (
     <Box fontFamily={"Public Sans"}>
       <AdvertHeader />
@@ -52,13 +45,6 @@ const Page = () => {
           paddingLeft={"10%"}
           paddingRight={"10%"}
         >
-          <Flex flexDir={"column"}
-              
-              h={"100%"}
-              w={"78.5%"}
-              display={"flex"}
-              position={"relative"}
-              >
           <Box display={"flex"} flexDir={"column"} h={"100px"} mt={"10%"}>
             <Text fontSize={"230%"} h={"100%"}>
               <strong>Checkout</strong>
@@ -75,7 +61,7 @@ const Page = () => {
                 Address
               </Text>
               <Divider
-                w={"50%"}
+                w={"20%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -83,7 +69,7 @@ const Page = () => {
               ></Divider>
               <Text fontSize={"100%"}>Shipping</Text>
               <Divider
-                w={"50%"}
+                w={"20%"}
                 h={"1px"}
                 ml={"10px"}
                 mr={"10px"}
@@ -92,7 +78,7 @@ const Page = () => {
               <Text fontSize={"100%"}><strong>Payment</strong></Text>
             </Flex>
           </Box>
-          <Box h={"39.46px"} w={"35%"} border={"1px solid"} mt={"13.46px"} pt={"10px"} bgColor={"white"}>
+          <Box h={"39.46px"} w={"35%"} border={"1px solid"} pt={"10px"} bgColor={"white"}>
             <center>
           <Image src={photo} alt='paystack' width={89}></Image>
           </center>
@@ -166,8 +152,7 @@ const Page = () => {
                color={"black"}
                pl={"0.4rem"}
                mr={"5%"}
-              
-               
+               ml={"-1.2%"}
                >
               <option value='option1'>2024</option>
               <option value='option2'>2025</option>
@@ -187,12 +172,11 @@ const Page = () => {
                 borderRadius={"0"}
                 placeholder="CVC"
                 _placeholder={{ color: "black", opacity: "0.4" }}
-                w={"30%"}
+                w={"33%"}
                 border={"2px solid"}
                 borderColor={"#909090"}
                 color={"black"}
                 pl={"0.4rem"}
-                mr={"1.2%"}
               />
             </InputGroup>
             <FormControl display='flex' alignItems='center' mt={"20px"}
@@ -203,9 +187,8 @@ const Page = () => {
             <Switch id='future-payments' />
             </FormControl>
 
-            <Button buttonText="Pay with card"></Button>
+            <Button buttonText="Pay with card" onClick={handlePay}></Button>
           </Box>
-          </Flex>
         </GridItem>
         <GridItem
           bgColor={"#EFF2F6"}
@@ -222,15 +205,15 @@ const Page = () => {
               productTitle="iPhone 15"
               productSpecification="Pink"
               productQuantity="1"
-              productPrice="1,050,000"
-            ></CheckoutProduct>
+              productPrice={1050000}
+            />
             <CheckoutProduct
               productImage={phone}
               productTitle="iPhone 15 Magsafe"
               productSpecification="Pink"
               productQuantity="1"
-              productPrice="50,000"
-            ></CheckoutProduct>
+              productPrice= {50000}
+            />
             
            
           </Box>
@@ -261,4 +244,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Payment;

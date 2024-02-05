@@ -120,7 +120,7 @@ const Shipping = () => {
 
   const handleContinueToPayment = () => {
     // Navigate to the shipping page
-    navigate(`/checkout/shipping/${productId}?productName=${encodeURIComponent(product.name)}&productPrice=${encodeURIComponent(product.unitPrice)}`);
+    navigate(`/checkout/payment/${productId}?productName=${encodeURIComponent(product.name)}&productPrice=${encodeURIComponent(product.unitPrice)}`);
   }
   return (
     <Box fontFamily={"Public Sans"}>

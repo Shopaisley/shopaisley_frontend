@@ -7,6 +7,7 @@ import ProductCatalogue from "./pages/product-catalogue/ProductCatalogue";
 import Signup from "./pages/sign-up/page";
 import Product from "./pages/product/product";
 import LandingPage from "./pages/landing-page/LandingPage";
+import Success from "./pages/success/success";
 
 export {
     Cart,
@@ -17,5 +18,6 @@ export {
     Address,
     ProductCatalogue,
     Product,
-    LandingPage
+    LandingPage,
+    Success
 }
