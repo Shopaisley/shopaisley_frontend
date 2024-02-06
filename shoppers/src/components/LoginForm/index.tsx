@@ -57,42 +57,37 @@ const LoginForm = () => {
     };
 
     const createCart = async () => {
-        if (isAuthenticated()) {
-            try {
-                const token = localStorage.getItem('authToken');
-                const cart = localStorage.getItem('cart')
-                console.log(cart)
-                // const productsInCart = 
-                if (cart && cart.length > 0) {
-                    const res = await axios.post(
-                        `${server}/order/cart`,
-                        {
-                            "cart": cart
+    if (isAuthenticated()) {
+        try {
+            const token = localStorage.getItem('authToken');
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+            // if (cart.length > 0) {
+                const res = await axios.post(
+                    `${server}/order/cart`,
+                    {
+                        cart: cart,
+                    },
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
                         },
-                        {
-                            headers: {
-                                'Authorization': `Bearer ${token}`,
-                            },
-                        }
-                    );
-                    console.log(res.data);
-                } else {
-                    const res = await axios.post(
-                        `${server}/order/cart`,
-                        {
-                            headers: {
-                                'Authorization': `Bearer ${token}`,
-                            },
-                        }
-                    );
-                    console.log(res.data);
-                }
-            }
-            catch (err) {
-                console.log(err)
-            }
+                    }
+                );
+               const order_id = res.data.data.id;
+               localStorage.setItem('order_id', order_id);
+               console.log(res);
+            // } else {
+                // console.log('Cart is empty');
+            // }
+        } catch (err) {
+            console.error('Error creating cart:', err);
         }
+    } else {
+        console.log('User is not authenticated');
     }
+};
+
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();

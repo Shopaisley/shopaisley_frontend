@@ -18,10 +18,13 @@ import "@fontsource/poppins";
 import { useEffect, useState } from 'react';
 // import { JwtPayload, decode } from 'jsonwebtoken';
 import {
+  Link,
   useLocation,
 } from 'react-router-dom';
 import LanguageSwitcher from '../LanguageSwitcher';
 import { FaUserCheck } from "react-icons/fa";
+import { server } from '../../services/server';
+import axios from 'axios';
 
 
 const Header = () => {
@@ -31,40 +34,7 @@ const Header = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
   const { linkStyle } = useStyles();
-
-  // useEffect(() => {
-  //   const currentPath = location.pathname;
-
-  //   if (currentPath === '/product-catalogue/Clothing') {
-  //     navigate('/product-catalogue/Clothing');
-  //   }
-  // }, [navigate, location]);
-
-  // useEffect(() => {
-  //   setActiveLink(location.pathname);
-  // }, [location.pathname]);
-
-  // const getLoggedInUser = () => {
-  //   const authToken = localStorage.getItem('authToken');
-
-  //   if (authToken) {
-  //     try {
-  //       // Decode the JWT to get user information
-  //       const decodedToken = decode(authToken) as JwtPayload;
-  //       console.log(decodedToken)
-
-  //       if (decodedToken) {
-  //         // Assuming the token contains a field like 'username'
-  //         const username = decodedToken.username;
-  //         return username;
-  //       }
-  //     } catch (error) {
-  //       console.error('Error decoding token:', error);
-  //     }
-  //   }
-
-  //   return null;
-  // };
+  const [cartNo, setCartNo] = useState();
 
   const getLoggedInUser = () => {
     const authToken = localStorage.getItem('authToken');
@@ -91,6 +61,20 @@ const Header = () => {
 
   useEffect(() => {
     // Set active link based on the current location
+    const orderId = localStorage.getItem('order_id')
+    try {
+      const res = axios.get(
+        `${server}/order/${orderId}`,
+      )
+      res.then((response) => {
+        console.log(response.data.data.order_items.length)
+        setCartNo(response.data.data.order_items.length)
+        // setCartNo(response.data.order_items.length())
+
+      })
+    } catch (err) {
+      console.log(err)
+    }
     setActiveLink(location.pathname);
 
     // Check if the user is logged in and set the username
@@ -227,14 +211,16 @@ const Header = () => {
           justifyItems={"center"}
           align="center"
         >
-          <Flex>
+          <Flex
+            as={Link}
+            to={"/cart"}
+          >
             <Image src={shoppingBag} alt='shopping bag' width={"20px"}></Image>
-            <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>0</Text>
+            <Text color={'black'} mr={'1rem'} ml={'0.3rem'} mt={'0.2rem'}>{cartNo}</Text>
           </Flex>
           <Flex
           >
-            {t('Header.sign')}
-          </ChakraLink>
+            {/* {t('Header.sign')} */}
             {loggedInUser ? (
               <Icon
                 color={"#054A91"}
@@ -256,12 +242,13 @@ const Header = () => {
                   textDecor: "none"
                 }}
               >
-                Sign In
+                {/* Sign In */}
+                {t('Header.sign')}
               </ChakraLink>
             )}
           </Flex>
-        </Flex>
       </Flex>
+        </Flex>
     </Box>
   );
 };

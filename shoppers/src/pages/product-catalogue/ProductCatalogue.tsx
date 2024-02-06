@@ -69,7 +69,7 @@ const ProductCatalogue = () => {
 
   const merchantIds = products?.data.map((product: any) => product.merchantId) || [];
   // const uniqueMerchants = Array.from(new Set(merchantIds));
-  console.log(merchantIds)
+  // console.log(merchantIds)
 
   return (
     <Box

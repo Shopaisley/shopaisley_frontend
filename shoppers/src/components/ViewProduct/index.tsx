@@ -9,6 +9,7 @@ import "@fontsource/poppins";
 import cart from "../../assets/icons/shopping-cart.svg";
 import { useGetAProductQuery } from "../../store/slices/appSlice";
 import PageLoader from "../PageLoader";
+import { isAuthenticated } from "../../services/authService";
 
 interface ProductViewProps { }
 
@@ -39,19 +40,48 @@ const ProductView: FC<ProductViewProps> = () => {
       setItemCount((prevCount) => prevCount - 1);
     }
   };
-  const handleAddToCart = async () => {
-    try {
-      // Fetch the number of cart items for the user from the DB
-      const response = await axios.get(`${server}/cart/items/count`);
-      const cartItemCount = response.data.count;
+  const handleAddToCart = async (product: any) => {
+    const orderId = localStorage.getItem('order_id');
+    if (isAuthenticated()) {
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await axios.patch(
+          `${server}/order`,
+          {
+            order_id: orderId,
+            product_id: productId, // Replace with the actual product ID
+            price: data.data.unitPrice,
+            quantity: itemCount, // You may adjust the quantity based on your requirements
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          }
+        );
+        // Check if the response has data before parsing
+        if (response.data) {
+          // Handle the response as needed
+          console.log(response.data);
+        } else {
+          console.error('Empty response received');
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+        console.log(product.id)
+      }
+    } else {
+      // User is not authenticated, create a new cart and store in localStorage
+      const cart = JSON.parse(localStorage.getItem('cart') ?? '') || [];
 
-      // Update the cart item number in the DB
-      await axios.put(`${server}/cart/items/count`, { count: cartItemCount + 1 });
-
-      // Optionally, you can show a success message or perform any other actions after updating the cart item number
-      console.log('Cart item number updated successfully!');
-    } catch (error) {
-      console.error('Error updating cart item number:', error);
+      console.log(cart)
+      const localCartItem = {
+        product_id: product.id,
+        price: product.price,
+        quantity: 1
+      }
+      cart.push(localCartItem);
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
   };
   const handleBuyNow = () => {

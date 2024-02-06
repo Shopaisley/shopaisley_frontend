@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Box,
   Flex,
@@ -23,8 +24,58 @@ import CheckoutProduct from "../../components/CheckoutProduct";
 import magsafe from "../../assets/images/gadgets/magsafe.jpeg";
 import photo from "../../assets/images/gadgets/iphone.jpeg";
 import AdvertHeader from "../../components/AdvertHeader";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { server } from "../../services/server";
+import { useGetAProductQuery } from "../../store/slices/appSlice";
 
 const Page = () => {
+  const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [price, setPrice] = useState(0);
+  const [productId, setProductId] = useState("");
+  const cartList: { image: string; title: string; quantity: string; price: number; }[] = [];
+
+  const {data} = useGetAProductQuery(productId || "");
+  console.log(data.data)
+  // const product = data.data;
+
+  useEffect(() => {
+    // Set active link based on the current location
+    const orderId = localStorage.getItem('order_id')
+    try {
+      const res = axios.get(
+        `${server}/order/${orderId}`,
+      )
+      res.then((response: any) => {
+        console.log(response.data.data.order_items)
+        const orderItems = response.data.data.order_items
+        for (const item in orderItems) {
+          // Perform operations on each item
+          setProductId(response.data.data.order_items[item].product_id)
+          setImage(data.data.ImageURL)
+          setPrice(orderItems[item].price)
+          setQuantity(orderItems[item].quantity)
+          setTitle(data.data.name)
+          console.log(image, title, quantity, price)
+          const product = {
+            "image": image,
+            "title": title,
+            "quantity": quantity,
+            "price": price,
+          };
+          cartList.push(product);
+        }
+        // setCartNo(response.data.order_items.length())
+
+      })
+      // console.log(productId)
+      console.log(cartList)
+    } catch (err) {
+      console.log(err)
+    }
+  }, []);
   return (
     <Flex fontFamily={"Public Sans"} flexDir={"column"}>
       <AdvertHeader />
@@ -44,20 +95,22 @@ const Page = () => {
               </Text>
             </Flex>
             <Flex flexDir={"column"} marginTop={"4%"}>
-              <CheckoutProduct
+              {cartList.map((cartItem) => (
+                  <CheckoutProduct 
+                    productImage={cartItem.image}
+                    productTitle={cartItem.title}
+                    productSpecification=""
+                    productQuantity={cartItem.quantity}
+                    productPrice={cartItem.price}
+                  />
+              ))}
+              {/* <CheckoutProduct
                 productImage={photo}
                 productTitle="iPhone 15"
                 productSpecification="Pink"
                 productQuantity="1"
                 productPrice="1,050,000"
-              ></CheckoutProduct>
-              <CheckoutProduct
-                productImage={magsafe}
-                productTitle="iPhone 15 Magsafe"
-                productSpecification="Pink"
-                productQuantity="1"
-                productPrice="50,000"
-              ></CheckoutProduct>
+              /> */}
             </Flex>
             <Flex marginTop={"10%"} flexDir={"column"}>
               <Text fontSize={"120%"}>

@@ -59,13 +59,14 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
   // };
 
   const handleAddToCart = async (product: any) => {
+    const order_id = localStorage.getItem('order_id');
     if (isAuthenticated()) {
       try {
         const token = localStorage.getItem('authToken');
         const response = await axios.patch(
           `${server}/order`,
           {
-            order_id: "string",
+            order_id: order_id,
             product_id: product.id, // Replace with the actual product ID
             price: product.price,
             quantity: 1, // You may adjust the quantity based on your requirements

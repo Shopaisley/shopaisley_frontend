@@ -43,7 +43,7 @@ const BlackHeader = () => {
   //   navigate(`/product-catalogue/${category}`);
   // };
   return (
-    <Box fontFamily={"Public Sans"} borderBottom={"0.1px solid #909090"} position="sticky" top={0} zIndex={10}
+    <Box fontFamily={"Public Sans"} borderBottom={"0.1px solid #909090"} top={0} zIndex={10}
       boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
     >
       <Flex
