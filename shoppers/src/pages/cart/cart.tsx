@@ -17,69 +17,68 @@ import {
 } from "@chakra-ui/react";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import SAButtons from "../../components/SAButton";
 import CheckoutProduct from "../../components/CheckoutProduct";
-import magsafe from "../../assets/images/gadgets/magsafe.jpeg";
-import photo from "../../assets/images/gadgets/iphone.jpeg";
-import AdvertHeader from "../../components/AdvertHeader";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { server } from "../../services/server";
-import { useGetAProductQuery } from "../../store/slices/appSlice";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 const Page = () => {
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState(0);
-  const [productId, setProductId] = useState("");
-  const cartList: { image: string; title: string; quantity: string; price: number; }[] = [];
-
-  const {data} = useGetAProductQuery(productId || "");
-  console.log(data.data)
-  // const product = data.data;
+  const navigate = useNavigate();
+  const [cartList, setCartList] = useState<any[]>([]);
 
   useEffect(() => {
-    // Set active link based on the current location
-    const orderId = localStorage.getItem('order_id')
-    try {
-      const res = axios.get(
-        `${server}/order/${orderId}`,
-      )
-      res.then((response: any) => {
-        console.log(response.data.data.order_items)
-        const orderItems = response.data.data.order_items
-        for (const item in orderItems) {
-          // Perform operations on each item
-          setProductId(response.data.data.order_items[item].product_id)
-          setImage(data.data.ImageURL)
-          setPrice(orderItems[item].price)
-          setQuantity(orderItems[item].quantity)
-          setTitle(data.data.name)
-          console.log(image, title, quantity, price)
-          const product = {
-            "image": image,
-            "title": title,
-            "quantity": quantity,
-            "price": price,
-          };
-          cartList.push(product);
-        }
-        // setCartNo(response.data.order_items.length())
+    const fetchCartItems = async () => {
+      const orderId = localStorage.getItem('order_id');
+      if (!orderId) return;
 
-      })
-      // console.log(productId)
-      console.log(cartList)
-    } catch (err) {
-      console.log(err)
-    }
+      try {
+        const response = await axios.get(`${server}/order/${orderId}`);
+        const orderItems = response.data.data.order_items;
+
+        const cartItems = await Promise.all(
+          orderItems.map(async (item: any) => {
+            const { data } = await axios.get(`${server}/product/${item.product_id}`);
+            return {
+              id: item.product_id,
+              image: data.data.ImageURL,
+              title: data.data.name,
+              quantity: item.quantity,
+              price: item.price,
+            };
+          })
+        );
+
+        setCartList(cartItems);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchCartItems();
   }, []);
+
+  const handleCheckout = () => {
+    const cartParams = cartList.map(item => 
+      `id=${item.id}&image=${encodeURIComponent(item.image)}&title=${encodeURIComponent(item.title)}&quantity=${item.quantity}&price=${item.price}`
+    ).join('&');
+    navigate(`/checkout/address?${cartParams}`);
+  };
+
+  const calculateSubtotal = (cartList: any[]) => {
+    return cartList.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  };
+
+  const subtotal = useMemo(() => calculateSubtotal(cartList), [cartList]);
+
   return (
     <Flex fontFamily={"Public Sans"} flexDir={"column"}>
-      <AdvertHeader />
-      <Header></Header>
+      <Box position="sticky" zIndex={100} top={0}>
+        <Navbar />
+      </Box>
       <Flex>
         <Grid templateColumns="repeat(2, 1fr)" h={"100%"} w={"100%"}>
           <GridItem h={"100%"} paddingLeft={"4%"} paddingRight={"4%"}>
@@ -89,14 +88,15 @@ const Page = () => {
               </Text>
               <Text paddingTop={"2%"}>
                 Not ready to checkout?{" "}
-                <ChakraLink color={"#003EB6"} href={"/."}>
+                <ChakraLink color={"#003EB6"} href={"/"}>
                   Continue Shopping
                 </ChakraLink>
               </Text>
             </Flex>
             <Flex flexDir={"column"} marginTop={"4%"}>
-              {cartList.map((cartItem) => (
-                  <CheckoutProduct 
+              {cartList.map((cartItem, index) => (
+                  <CheckoutProduct
+                    key={index}
                     productImage={cartItem.image}
                     productTitle={cartItem.title}
                     productSpecification=""
@@ -104,23 +104,16 @@ const Page = () => {
                     productPrice={cartItem.price}
                   />
               ))}
-              {/* <CheckoutProduct
-                productImage={photo}
-                productTitle="iPhone 15"
-                productSpecification="Pink"
-                productQuantity="1"
-                productPrice="1,050,000"
-              /> */}
             </Flex>
             <Flex marginTop={"10%"} flexDir={"column"}>
               <Text fontSize={"120%"}>
                 <strong>Order Information</strong>
               </Text>
               <Accordion defaultIndex={[0]} allowMultiple mb={"20%"} mt={"2"} color={"#909090"}>
-                <AccordionItem  borderStyle={"solid"} borderTopColor={"black"} >
+                <AccordionItem borderStyle={"solid"} borderTopColor={"black"}>
                   <h2>
                     <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left"  ml={"-17px"}>
+                      <Box as="span" flex="1" textAlign="left" ml={"-17px"}>
                         Return Policy
                       </Box>
                       <AccordionIcon />
@@ -130,7 +123,6 @@ const Page = () => {
                     This is our example return policy which is everything you need to know about our returns.
                   </AccordionPanel>
                 </AccordionItem>
-
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
@@ -141,37 +133,17 @@ const Page = () => {
                     </AccordionButton>
                   </h2>
                   <AccordionPanel pb={4} ml={"-17px"} w={"90%"}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </AccordionPanel>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left" ml={"-17px"}>
-                        Shipping Options
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} ml={"-17px"} w={"90%"}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
             </Flex>
           </GridItem>
           <GridItem h={"100%"} paddingLeft={"30%"} paddingRight={"10%"} flexDir={"column"}>
-          <Text fontSize={"120%"} mt={"14%"}>
-                <strong>Order Summary</strong>
-              </Text>
-              <InputGroup mb={"10px"} mt={"30px"} w={"100%"}>
+            <Text fontSize={"120%"} mt={"14%"}>
+              <strong>Order Summary</strong>
+            </Text>
+            <InputGroup mb={"10px"} mt={"30px"} w={"100%"}>
               <Input
                 borderRadius={"0"}
                 placeholder="Enter coupon code here"
@@ -185,40 +157,32 @@ const Page = () => {
             </InputGroup>
             <Box w={"100%"} mt={"7%"} mb={"3%"}>
               <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Subtotal</Text>
-                <Text  wordBreak={"break-word"} textAlign={"right"}>
-                  NGN1,100,000
+                <Text>Subtotal</Text>
+                <Text wordBreak={"break-word"} textAlign={"right"}>
+                  NGN{subtotal.toLocaleString()}
                 </Text>
               </Flex>
               <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Shipping</Text>
-                <Text 
-                  wordBreak={"break-word"}
-                  textAlign={"right"}
-                  color={"#909090"}
-                >
+                <Text>Shipping</Text>
+                <Text wordBreak={"break-word"} textAlign={"right"} color={"#909090"}>
                   Calculated at the next step
                 </Text>
               </Flex>
-              <Divider
-                h={"2px"}
-                bgColor={"black"}
-                mt={"-3px"}
-                mb={"4px"}
-              ></Divider>
+              <Divider h={"2px"} bgColor={"black"} mt={"-3px"} mb={"4px"}></Divider>
               <Flex h={"40px"} flexDirection={"row"} justify={"space-between"}>
-                <Text >Total</Text>
-                <Text  wordBreak={"break-word"} textAlign={"right"}>
-                  -
+                <Text>Total</Text>
+                <Text wordBreak={"break-word"} textAlign={"right"}>
+                  NGN{subtotal.toLocaleString()}
                 </Text>
               </Flex>
             </Box>
-            <SAButtons buttonText="Continue to checkout" linkTo={"/checkout/address"}></SAButtons>
+            <SAButtons buttonText="Continue to checkout" onClick={handleCheckout} />
           </GridItem>
         </Grid>
       </Flex>
-      <Footer></Footer>
+      <Footer />
     </Flex>
   );
 };
+
 export default Page;

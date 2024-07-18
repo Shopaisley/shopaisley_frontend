@@ -1,5 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Button, Flex, Input, Select, Text, Image, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Text,
+  Image,
+  Icon,
+} from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -7,24 +16,53 @@ import { server } from "../../services/server";
 import "@fontsource/public-sans";
 import "@fontsource/poppins";
 import cart from "../../assets/icons/shopping-cart.svg";
-import { useGetAProductQuery } from "../../store/slices/appSlice";
+// import { useGetAProductQuery } from "../../store/slices/appSlice";
+import { jwtDecode } from "jwt-decode";
 import PageLoader from "../PageLoader";
 import { isAuthenticated } from "../../services/authService";
+import {
+  FaMinus,
+  FaPlus,
+  FaRegStar,
+  FaStar,
+  FaStarHalfAlt,
+} from "react-icons/fa";
+import { useGetAProductQuery } from "../../store/slices/appSlice";
 
-interface ProductViewProps { }
+interface ProductViewProps {}
 
 const ProductView: FC<ProductViewProps> = () => {
   const { productId } = useParams();
   // const [product, setProduct] = useState<Product | null>(null);
   const [itemCount, setItemCount] = useState(1);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState("");
+  // const [data, setData] = useState<Product | null>(null);
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useGetAProductQuery(productId || "");
-    useEffect(() => {
-    console.log(productId)
-  }, [productId])
+  useEffect(() => {
+    // const fetchProduct = async () => {
+    //   try {
+    //     const response = await axios.get(`${server}/product/${productId}`);
+    //     console.log(response);
+    //     if (response.data) {
+    //       setData(response.data);
+    //     } else {
+    //       setError("No data received");
+    //     }
+    //   } catch (error) {
+    //     setError("Error loading product details");
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
+    // fetchProduct();
+    console.log(productId);
+  }, [productId]);
+
   if (isLoading) {
-    return (<PageLoader />)   
+    return <PageLoader />;
   }
 
   if (error || !data) {
@@ -41,11 +79,20 @@ const ProductView: FC<ProductViewProps> = () => {
     }
   };
   const handleAddToCart = async (product: any) => {
-    const orderId = localStorage.getItem('order_id');
+    const orderId = localStorage.getItem("order_id");
     if (isAuthenticated()) {
       try {
-        const token = localStorage.getItem('authToken');
-        const response = await axios.patch(
+        const token = localStorage.getItem("authToken");
+        console.log(token);
+        const decoded: any = jwtDecode(token || "");
+        console.log("Decoded token:", decoded); // Add this line to debug
+        const userId = decoded?.id;
+        console.log(userId); // Ensure userId is being extracted correctly
+        if (!userId) {
+          throw new Error("User ID is not available in the token");
+        }
+        const response = await axios.post(
+          // `${server}/cart/${userId}/item`,
           `${server}/order`,
           {
             order_id: orderId,
@@ -55,7 +102,7 @@ const ProductView: FC<ProductViewProps> = () => {
           },
           {
             headers: {
-              'Authorization': `Bearer ${token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -64,54 +111,105 @@ const ProductView: FC<ProductViewProps> = () => {
           // Handle the response as needed
           console.log(response.data);
         } else {
-          console.error('Empty response received');
+          console.error("Empty response received");
         }
       } catch (error) {
-        console.error('Error adding to cart:', error);
-        console.log(product.id)
+        console.error("Error adding to cart:", error);
+        console.log(product.id);
       }
     } else {
       // User is not authenticated, create a new cart and store in localStorage
-      const cart = JSON.parse(localStorage.getItem('cart') ?? '') || [];
+      const cart = JSON.parse(localStorage.getItem("cart") ?? "") || [];
 
-      console.log(cart)
+      console.log(cart);
       const localCartItem = {
-        product_id: product.id,
+        productId: product.id,
         price: product.price,
-        quantity: 1
-      }
+        quantity: itemCount,
+      };
       cart.push(localCartItem);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
   };
   const handleBuyNow = () => {
     // Navigate to the checkout page with product details and price
-    navigate(`/checkout/address/${productId}?productName=${encodeURIComponent(data.data.name)}&productPrice=${encodeURIComponent(data.data.unitPrice)}&quantity=${itemCount}`);
+    navigate(
+      `/checkout/address/${productId}?productName=${encodeURIComponent(
+        data.name
+      )}&productPrice=${encodeURIComponent(data.price)}&quantity=${itemCount}`
+    );
   };
-  //   const handleBuyNow = () => {
-  //   // Navigate to the checkout page with product details and price
-  //   navigate(`/checkout/address?productId=${encodeURIComponent(productId || "")}&productName=${encodeURIComponent(data.data.name)}&productPrice=${encodeURIComponent(data.data.unitPrice)}&quantity=${itemCount}`);
-  // };
   return (
     <Flex
-      fontFamily={"Public Sans"}
+      fontFamily={"Mulish"}
       flexDir={"row"}
       mt={"4rem"}
       px={"5vw"}
-      bg={"#ffffff"}
+      // bg={"#ffffff"}
       justifyContent={"space-between"}
       alignContent={"center"}
       borderRadius={"6px"}
     >
-      <Box h={"490px"} w={"420px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
-        <Image w={"80%"} h={"80%"} src={data.data.ImageURL} alt="Product Image 1" mb={2} />
+      <Box
+        h={"490px"}
+        bg={"#ffffff"}
+        w={"450px"}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Image
+          w={"80%"}
+          h={"80%"}
+          src={data.data.ImageURL}
+          alt="Product Image 1"
+          mb={2}
+        />
       </Box>
-      <Box mt={"60px"}>
-        <Text fontSize={"2.314rem"} fontWeight={600} mb={"1rem"} color={"black"} lineHeight={"49.371px"} letterSpacing={"-1.111px"}>
+      <Box
+        bg={"#ffffff"}
+        w={"490px"}
+        h={"490px"}
+        px={"20px"}
+        alignContent={"center"}
+      >
+        <Text
+          fontSize={"2.14rem"}
+          fontFamily={"Value Sans Pro"}
+          fontWeight={500}
+          mb={"0.5rem"}
+          color={"black"}
+          lineHeight={"49.371px"}
+          letterSpacing={"-1.111px"}
+        >
           {data.data.name}
         </Text>
-        <Text fontSize={"1.4rem"} fontWeight={400} color={"black"} lineHeight={"37.029px"} letterSpacing={"-0.741px"}>
-          ₦{data.data.unitPrice.toLocaleString()}
+        <Flex flexDir={"row"} gap={"10px"} alignItems={"center"} mb={"0.5rem"}>
+          <Flex flexDir={"row"} gap={"2px"}>
+            <Icon as={FaStar} w={"14px"} color={"#b27e27"} />
+            <Icon as={FaStar} w={"14px"} color={"#b27e27"} />
+            <Icon as={FaStar} w={"14px"} color={"#b27e27"} />
+            <Icon as={FaStarHalfAlt} w={"14px"} color={"#b27e27"} />
+            <Icon as={FaRegStar} w={"14px"} color={"#b27e27"} />
+          </Flex>
+          <Text
+            fontSize={"14px"}
+            letterSpacing={"-0.525px"}
+            fontWeight={400}
+            color={"black"}
+            opacity={0.5}
+          >
+            (2,000 ratings)
+          </Text>
+        </Flex>
+        <Text
+          fontSize={"1.3rem"}
+          fontWeight={600}
+          color={"black"}
+          lineHeight={"37.029px"}
+          letterSpacing={"-0.741px"}
+        >
+          ₦{data.data.price?.toLocaleString()}
         </Text>
         <Text
           color={"grey"}
@@ -122,44 +220,38 @@ const ProductView: FC<ProductViewProps> = () => {
           opacity={0.5}
           mb={4}
         >
-          {data.data.retailer}
+          {/* {data.retailer} */}
         </Text>
 
-        <Text mt={"16.94px"} lineHeight={"24.686px"} fontSize={"17.486px"} fontWeight={400} color={"black"} mb={"43.42px"}>
+        <Text
+          mt={"16.94px"}
+          lineHeight={"24.686px"}
+          fontSize={"15px"}
+          fontWeight={400}
+          color={"black"}
+          mb={"43.42px"}
+        >
           {data.data.description}
         </Text>
 
-        <Flex
-          w={"25vw"}
-          flexDir={"row"}
-          justify={"space-between"}
-        // h={"54.389px"}
-        // border={"1.029px solid #000"}
-        >
-          <Flex
-            w={"12vw"}
-            flexDir={"row"}
-          >
+        <Flex w={"25vw"} flexDir={"row"} justify={"space-between"}>
+          <Flex w={"12vw"} flexDir={"row"} alignContent={"center"}>
             <Button
+              as={FaMinus}
               onClick={handleDecrement}
-              color={"grey"}
-              bg={"white"}
-              // mb={"1rem"}
-              // border={"none"}
+              w={"60px"}
+              color={"#04101D"}
+              bg={"#889FBA"}
               borderTop={"#000 solid 0.2px"}
               borderBottom={"#000  solid 0.2px"}
               borderLeft={"#000 solid 0.2px"}
-              fontSize={"1.2rem"}
               pl={"1rem"}
-              py={"1.5rem"}
               borderRadius={0}
-            >
-              -
-            </Button>
+              cursor={"pointer"}
+            />
             <Input
               value={itemCount}
               onChange={(e) => setItemCount(Number(e.target.value))}
-              // w="150px"
               color={"black"}
               bg={"white"}
               outline={"none"}
@@ -167,7 +259,6 @@ const ProductView: FC<ProductViewProps> = () => {
               fontSize={"1rem"}
               borderTop={"#000 solid 0.2px"}
               borderBottom={"#000 solid 0.2px"}
-              py={"1.5rem"}
               textAlign="center"
               isReadOnly
               mb={"1rem"}
@@ -178,54 +269,24 @@ const ProductView: FC<ProductViewProps> = () => {
             />
             <Button
               onClick={handleIncrement}
-              color={"grey"}
-              bg={"white"}
+              as={FaPlus}
+              w={"60px"}
+              color={"#04101D"}
+              bg={"#889FBA"}
               mb={"1rem"}
               border={"none"}
               borderTop={"#000 solid 0.2px"}
               borderBottom={"#000 solid 0.2px"}
               borderRight={"#000 solid 0.2px"}
-              fontSize={"1.2rem"}
               pr={"1rem"}
               borderRadius={0}
-              py={"1.5rem"}
-            // opacity={0.5}
-            >
-              +
-            </Button>
+              cursor={"pointer"}
+            />
           </Flex>
-
-          <Select
-            w={"10vw"}
-            h={"3.2rem"}
-            placeholder="Select Option"
-            _placeholder={{ color: "black" }}
-            borderRadius={"0px"}
-            // ml={"4.4rem"}
-            bg={"#fff"}
-            fontSize={"0.9rem"}
-            title="Select Option"
-          >
-            <option value="option1" color={"black"}>
-              Option 1
-            </option>
-            <option value="option2" color={"black"}>
-              Option 2
-            </option>
-            <option value="option3" color={"black"}>
-              Option 3
-            </option>
-          </Select>
-
           {/* Box for item count */}
         </Flex>
         {/* Buttons to add to cart and process order */}
-        <Flex
-          w={"25vw"}
-          flexDir={"row"}
-          justify={"space-between"}
-          mt={"1rem"}
-        >
+        <Flex w={"25vw"} flexDir={"row"} justify={"space-between"} mt={"1rem"}>
           <Button
             w={"12vw"}
             border={"1.029px solid rgba(13, 13, 13, 0.49)"}
@@ -235,27 +296,17 @@ const ProductView: FC<ProductViewProps> = () => {
             letterSpacing={"-0.411px"}
             color={"#ffffff"}
             p={"1.3rem"}
-            bg={"rgba(13, 13, 13, 0.60)"}
+            bg={"#04101D"}
             borderRadius={"2px"}
             _hover={{
-              bg: "rgba(0, 0, 0, 0.60)",
-              color: "#ffffff"
+              bg: "#09203B",
+              color: "#ffffff",
             }}
             boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
             onClick={handleAddToCart}
           >
-            <Flex
-              w={"100%"}
-              flexDir={"row"}
-              gap={"10px"}
-              align={"center"}
-            >
-              <Icon
-                as={Image}
-                src={cart}
-                h={"16px"}
-                w={"16px"}
-              />
+            <Flex w={"100%"} flexDir={"row"} gap={"10px"} align={"center"}>
+              <Icon as={Image} src={cart} h={"16px"} w={"16px"} />
               ADD TO CART
             </Flex>
           </Button>
@@ -272,7 +323,7 @@ const ProductView: FC<ProductViewProps> = () => {
             border={"1.029px solid #003EB6"}
             _hover={{
               bg: "#003EB6",
-              color: "#ffffff"
+              color: "#ffffff",
             }}
             boxShadow={"rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"}
             onClick={handleBuyNow}
@@ -286,25 +337,3 @@ const ProductView: FC<ProductViewProps> = () => {
 };
 
 export default ProductView;
-
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     try {
-  //       const response = await axios.get(`${server}/product/${productId}`);
-  //       setProduct(response.data.data);
-  //     } catch (error) {
-  //       console.error('Error fetching product details:', error);
-  //     }
-  //   };
-
-  //   fetchProduct();
-  // }, [productId]);
-
-  // interface Product {
-//   id: string;
-//   ImageURL: string;
-//   name: string;
-//   retailer: string;
-//   unitPrice: number;
-//   description: string; // Add a description property
-// }

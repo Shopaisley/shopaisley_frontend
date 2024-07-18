@@ -1,6 +1,6 @@
 import LoginForm from "../../components/LoginForm";
 import { Flex, Text, Link as ChakraLink, Image } from "@chakra-ui/react";
-import logo from "../../assets/images/shopaisley-logo.png";
+import logo from "../../assets/images/campuscart-logo.svg";
 import "@fontsource/poppins";
 import "@fontsource/public-sans";
 
@@ -13,27 +13,13 @@ const Login = () => {
             align="center"
             pt={"20px"}
         >
-            <Flex
-                my={"30px"}
-                flexDirection={"row"}
-                // justifyItems={"center"}
-                align={"center"}
-            >
                 <Image
                     src={logo}
                     alt="shopaisley-logo"
-                    width={"100px"}
+                    width={"250px"}
                     height={"100px"}
+                    my={"30px"}
                 />
-                <Text
-                    color={"#000000"}
-                    fontFamily={"Public Sans"}
-                    fontWeight={700}
-                    fontSize={"28px"}
-                >
-                    Shop<span style={{color: "#054A91"}}>aisley</span>
-                </Text>
-            </Flex>
             <LoginForm />
             <Flex mt={"35px"} fontSize={"14px"} color="#FFFFFF" lineHeight="12px">
                 <Text fontFamily={"Poppins"} fontWeight={500}>

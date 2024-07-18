@@ -11,6 +11,10 @@ export default defineConfig({
       filename: 'my-sw.ts'
     })
   ],
+  server: {
+    host: true,
+    port: 3000,
+  }
   // server: {
   //   proxy: {
   //     "product": {

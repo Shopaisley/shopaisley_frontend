@@ -27,7 +27,8 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({status, title, message})
             alignItems='center'
             justifyContent='center'
             textAlign='center'
-            height='200px'
+            height='100vh'
+            colorScheme='blue'
         >
             <AlertIcon boxSize='40px' mr={0} />
             <AlertTitle mt={4} mb={1} fontSize='lg'>

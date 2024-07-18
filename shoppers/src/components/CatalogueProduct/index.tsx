@@ -5,6 +5,9 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { server } from "../../services/server";
 import { isAuthenticated } from "../../services/authService";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { toast } from "react-toastify";
+// import { jwtDecode } from "jwt-decode";
 
 interface CatalogueProductProps {
   productID: string;
@@ -12,7 +15,6 @@ interface CatalogueProductProps {
   productTitle: string;
   Retailer: string;
   productPrice: number;
-  onClick?: any;
 }
 
 const CatalogueProduct: FC<CatalogueProductProps> = ({
@@ -24,6 +26,7 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const [isHeartClicked, setIsHeartClicked] = useState(false);
 
   const handleHover = () => {
     setIsHovered(true);
@@ -34,86 +37,78 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
   };
 
   const handleProductClick = (productId: string) => {
-    // Use the product title and id to create the path
-    // const path = `/product/${productTitle.replace(/\s+/g, '-').toLowerCase()}-${productID}`;
     const path = `/product/${productId}`;
-
-    // Navigate to the product view page
     navigate(path);
   };
 
-  // const handleAddToCart = async () => {
-  //   try {
-  //     // Fetch the number of cart items for the user from the DB
-  //     const response = await axios.get(`${server}/cart/items/count`);
-  //     const cartItemCount = response.data.count;
-
-  //     // Update the cart item number in the DB
-  //     await axios.put(`${server}/cart/items/count`, { count: cartItemCount + 1 });
-
-  //     // Optionally, you can show a success message or perform any other actions after updating the cart item number
-  //     console.log('Cart item number updated successfully!');
-  //   } catch (error) {
-  //     console.error('Error updating cart item number:', error);
-  //   }
-  // };
-
-  const handleAddToCart = async (product: any) => {
-    const order_id = localStorage.getItem('order_id');
+  const handleAddToCart = async (product: any, event: React.MouseEvent) => {
+    event.stopPropagation();
+    const order_id = localStorage.getItem("order_id");
+    console.log(order_id)
     if (isAuthenticated()) {
       try {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem("authToken") || "";
+        // const decode = jwtDecode(token)
+        console.log(product)
+        console.log(product.id)
+        console.log(product.price)
         const response = await axios.patch(
           `${server}/order`,
           {
             order_id: order_id,
-            product_id: product.id, // Replace with the actual product ID
+            product_id: product.id,
             price: product.price,
-            quantity: 1, // You may adjust the quantity based on your requirements
+            quantity: 1,
           },
           {
             headers: {
-              'Authorization': `Bearer ${token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
+        console.log(response.data)
 
-        // Check if the response has data before parsing
         if (response.data) {
-          // Handle the response as needed
           console.log(response.data);
+          toast.success("Product added to cart successfully");
         } else {
-          console.error('Empty response received');
+          console.error("Empty response received");
+          toast.error("Error: Empty response received");
         }
-      } catch (error) {
-        console.error('Error adding to cart:', error);
+      } catch (error: any) {
+        console.error("Error adding to cart:", error);
+        console.log(error.response?.data);
+        toast.error(`Error adding to cart: ${error.message}`);
       }
     } else {
-      // User is not authenticated, create a new cart and store in localStorage
-      const cart = JSON.parse(localStorage.getItem('cart') ?? '') || [];
-
-      console.log(cart)
+      const cart = JSON.parse(localStorage.getItem("cart") ?? "[]");
       const localCartItem = {
         product_id: product.id,
         price: product.price,
-        quantity: 1
-      }
+        quantity: 1,
+      };
       cart.push(localCartItem);
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
+      toast.success("Product added to cart successfully");
     }
+  };
+
+  const handleHeartClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsHeartClicked(!isHeartClicked);
   };
 
   return (
     <Box
-      w={"208px"}
+      w={"250px"}
       h={"340px"}
       mb={"40px"}
       py={"8px"}
-      px={"4px"}
+      px={"12px"}
       _hover={{
         boxShadow: "1px 2px 35px 0px rgba(17, 17, 26, 0.18)",
         cursor: "pointer",
-        transition: "0.3s ease-in-out"
+        transition: "0.3s ease-in-out",
       }}
       borderRadius={"4px"}
       onMouseEnter={handleHover}
@@ -121,63 +116,98 @@ const CatalogueProduct: FC<CatalogueProductProps> = ({
       display={"flex"}
       flexDir={"column"}
       alignItems={"center"}
+      position={"relative"}
+      onClick={() => handleProductClick(productID)}
+      bg={"#fff"}
     >
-      <Box
-        onClick={() => handleProductClick(productID)}
-        w={"100%"}
-      >
-        <Flex h={"208px"} w={"208px"}>
-          <Image src={productImage} alt={productTitle} width={"202px"} height={"208px"} />
+      <Box w={"100%"}>
+        <Flex h={"230px"} w={"225px"} position={"relative"}>
+          <Image
+            src={productImage}
+            alt={productTitle}
+            width={"225px"}
+            height={"230px"}
+          />
+          {isHovered && (
+            <>
+              <Box
+                position={"absolute"}
+                top={0}
+                left={0}
+                width={"100%"}
+                height={"100%"}
+                bg={"rgba(256, 256, 256, 0.7)"}
+                zIndex={1}
+                transition={"opacity 0.3s ease-in-out"}
+                opacity={isHovered ? 1 : 0}
+              />
+              <Flex
+                position={"absolute"}
+                bottom={"10px"}
+                width={"100%"}
+                justifyContent={"space-between"}
+                px={"10px"}
+                zIndex={2}
+                transition={"bottom 0.3s ease-in-out"}
+              >
+                <Button
+                  as={FaShoppingCart}
+                  color={"white"}
+                  w={"45px"}
+                  h={"45px"}
+                  bg={"#054A91"}
+                  borderRadius={"50%"}
+                  _hover={{
+                    bg: "#b27e27",
+                  }}
+                  onClick={(event) =>
+                    handleAddToCart(
+                      { id: productID, price: productPrice },
+                      event
+                    )
+                  }
+                />
+                <Button
+                  as={FaHeart}
+                  color={isHeartClicked ? "red" : "white"}
+                  w={"45px"}
+                  h={"45px"}
+                  bg={isHeartClicked ? "#C3CFDC" : "#054A91"}
+                  borderRadius={"50%"}
+                  _hover={{
+                    bg: "#4D6F98",
+                  }}
+                  onClick={handleHeartClick}
+                />
+              </Flex>
+            </>
+          )}
         </Flex>
         <Flex
           color={"#000000"}
           fontSize={"14px"}
           flexDirection={"column"}
-          // align={"center"}
-          // w={"100%"}
-          mt={"8px"}
+          mt={"25px"}
         >
           <Text noOfLines={1} lineHeight={"22px"}>
             <strong>{productTitle}</strong>
           </Text>
-          <Text
-            fontSize={"12px"}
-            color={"#75757A"}
-            fontWeight={600}
-          >
+          <Text fontSize={"12px"} color={"#75757A"} fontWeight={600}>
             {Retailer}
           </Text>
         </Flex>
-        <Flex fontSize={"14px"} w={"100%"} fontWeight={500} color={"#000000"} mt={"5px"} align={"start"}>
-          ₦{productPrice}
+        <Flex
+          fontSize={"14px"}
+          w={"100%"}
+          fontWeight={500}
+          color={"#000000"}
+          mt={"5px"}
+          align={"start"}
+        >
+          ₦{productPrice.toLocaleString()}
         </Flex>
       </Box>
-      {isHovered && (
-        <Box
-          as={Button}
-          w={"100%"}
-          justifySelf={"center"}
-          bg={"#054A91"}
-          borderRadius={"3px"}
-          fontSize={"13px"}
-          fontWeight={500}
-          transition={"1s ease-in-out"}
-          color={"white"}
-          my={"5px"}
-          _hover={{
-            backgroundColor: "white",
-            color: "white",
-            cursor: "pointer",
-            bgColor: "#3E7CB1",
-            transition: "0.3s ease-in-out",
-          }}
-          onClick={handleAddToCart}
-        >
-          ADD TO CART
-        </Box>
-      )}
     </Box>
-    // </Link>
   );
 };
 

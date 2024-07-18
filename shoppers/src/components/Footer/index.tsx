@@ -18,7 +18,7 @@ const Footer: FC = () => {
       // as="footer"
       mt="auto"
       py={"4px"}
-      bgColor="#3E7CB1"
+      bgColor="#124076"
       color="white"
       px={"149px"}
       fontFamily={"Public Sans"}

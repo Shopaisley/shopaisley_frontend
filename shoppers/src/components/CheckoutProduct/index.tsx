@@ -7,7 +7,8 @@ interface CheckoutProductProps {
   productTitle: string;
   productSpecification: string;
   productQuantity: string;
-  productPrice: number;
+  productPrice: string;
+  onClick?: any;
 }
 
 const CheckoutProduct: FC<CheckoutProductProps> = ({
@@ -16,6 +17,7 @@ const CheckoutProduct: FC<CheckoutProductProps> = ({
   productSpecification,
   productQuantity,
   productPrice,
+  onClick
 }) => {
   return (
     <Box h={"130px"}>
@@ -41,8 +43,7 @@ const CheckoutProduct: FC<CheckoutProductProps> = ({
         </Flex>
       </Flex>
       <Flex w={"15%"} fontSize={"80%"} pt={"90px"} flexDirection={"row"} justify={"right"}>
-        <Link href={""} style={{textDecoration:"underline"}}>Remove</Link>
-
+        <Link style={{textDecoration:"underline"}} onClick={onClick}>Remove</Link>
       </Flex>
     </Flex>
     <Divider h={"1%"} bg={"#909090"}></Divider>

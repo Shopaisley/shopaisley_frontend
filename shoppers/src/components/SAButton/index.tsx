@@ -16,28 +16,25 @@ const SAButtons: FC<ButtonProps> = (
         onClick
     }
 ) => {
-    // const router = useNavigate()
-    // const handleSubmit = () => {
-    //     router(linkTo)
-    // }
     return (
         <Box
             as={Button}
             display={"flex"}
             w={"100%"}
-            borderRadius={"0"}
+            borderRadius={"6px"}
             h={"51.429px"}
             justifyContent={"center"}
             alignItems={"center"}
             flexShrink={"0"}
             color={"white"}
             border={"1.03px solid #3E7CB1"}
-            bg={"#3E7CB1"}
-            fontFamily={"Public Sans"}
+            bg={"#0D3058"}
+            fontFamily={"Value Sans Pro"}
             fontWeight={600}
-            fontSize={"16px"}
+            fontSize={"17px"}
             _hover={{
-                color: "#000000",
+                bg: "#09203B",
+                color: "#fff",
             }}
             onClick={onClick}
         >

@@ -1,7 +1,8 @@
 // import './App.css'
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  Home,
   Cart,
   Login,
   Shipping,
@@ -10,13 +11,14 @@ import {
   Address,
   ProductCatalogue,
   Product,
-  LandingPage,
-  Success
-} from './Routes'
+  Success,
+  Search,
+} from "./Routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import PageLoader from './components/PageLoader';
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import PageLoader from "./components/PageLoader";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -25,88 +27,138 @@ const App = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/cart" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Cart }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/home"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Home }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/checkout/shipping/:productId" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Shipping }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/cart"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Cart }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/checkout/address/:productId" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Address }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/checkout/shipping/:productId"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Shipping }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/checkout/payment/:productId" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Payment }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/checkout/address/:productId"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Address }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: LandingPage }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/checkout/payment/:productId"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Payment }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/login" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Login }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Home }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/sign-up" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Signup }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/login"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Login }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/product-catalogue/:categoryName" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: ProductCatalogue }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/sign-up"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Signup }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/product/:productId" element={
-              <Suspense fallback={<PageLoader />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Product }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/product-catalogue"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: ProductCatalogue }))
+                  )}
+                </Suspense>
+              }
             />
-            <Route path="/success" element={
-              <Suspense fallback={<Success />}>
-                {React.createElement(
-                  lazy(() => Promise.resolve({ default: Product }))
-                )}
-              </Suspense>
-            }
+            <Route
+              path="/product-catalogue/:categoryName"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: ProductCatalogue }))
+                  )}
+                </Suspense>
+              }
+            />
+            <Route
+              path="/product/:productId"
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Product }))
+                  )}
+                </Suspense>
+              }
+            />
+            <Route
+              path="/success"
+              element={
+                <Suspense fallback={<Success />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Success }))
+                  )}
+                </Suspense>
+              }
+            />
+            <Route
+              path="/search/*"
+              element={
+                <Suspense fallback={<Search />}>
+                  {React.createElement(
+                    lazy(() => Promise.resolve({ default: Search }))
+                  )}
+                </Suspense>
+              }
             />
           </Routes>
-          {/* <ToastContainer
+          <ToastContainer
             position="bottom-center"
             autoClose={5000}
             hideProgressBar={false}
@@ -118,11 +170,11 @@ const App = () => {
             pauseOnHover
             theme="dark"
             // transition= "Bounce",
-/> */}
+          />
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

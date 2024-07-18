@@ -12,6 +12,7 @@ import "@fontsource/public-sans";
 import SubmitBtn from "../SubmitBtn";
 import axios from "axios";
 import { server } from "../../services/server";
+import { api } from "../../services/server";
 
 const SignupForm = () => {
     const [fname, setFname] = useState("");
@@ -128,6 +129,7 @@ const SignupForm = () => {
         } finally {
             setLoading(false);
         }
+
 
         // alert(`${name},\n${email},\n${phoneNumber}\n\nUser Created Succesfully`)
     };
